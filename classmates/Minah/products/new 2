@@ -1,0 +1,504 @@
+ 
+<a class="aa-browse-btn" href="#">Browse all Product <span class="fa fa-long-arrow-right"></span></a>
+                    </div>
+                    <!-- / women product category -->
+                    <!-- quick view modal -->                  
+                  <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">                      
+                        <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <div class="row">
+                            <!-- Modal view slider -->
+                            <div class="col-md-6 col-sm-6 col-xs-12">                              
+                              <div class="aa-product-view-slider">                                
+                                <div class="simpleLens-gallery-container" id="demo-1">
+                                  <div class="simpleLens-container">
+                                      <div class="simpleLens-big-image-container">
+                                          <a class="simpleLens-lens-image" data-lens-image="img/view-slider/large/polo-shirt-1.png">
+                                              <img src="img/view-slider/medium/polo-shirt-1.png" class="simpleLens-big-image">
+                                          </a>
+                                      </div>
+                                  </div>
+                                  <div class="simpleLens-thumbnails-container">
+                                      <a href="#" class="simpleLens-thumbnail-wrapper"
+                                         data-lens-image="img/view-slider/large/polo-shirt-1.png"
+                                         data-big-image="img/view-slider/medium/polo-shirt-1.png">
+                                          <img src="img/view-slider/thumbnail/polo-shirt-1.png">
+                                      </a>                                    
+                                      <a href="#" class="simpleLens-thumbnail-wrapper"
+                                         data-lens-image="img/view-slider/large/polo-shirt-3.png"
+                                         data-big-image="img/view-slider/medium/polo-shirt-3.png">
+                                          <img src="img/view-slider/thumbnail/polo-shirt-3.png">
+                                      </a>
+
+                                      <a href="#" class="simpleLens-thumbnail-wrapper"
+                                         data-lens-image="img/view-slider/large/polo-shirt-4.png"
+                                         data-big-image="img/view-slider/medium/polo-shirt-4.png">
+                                          <img src="img/view-slider/thumbnail/polo-shirt-4.png">
+                                      </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Modal view content -->
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div class="aa-product-view-content">
+                                <h3>T-Shirt</h3>
+                                <div class="aa-price-block">
+                                  <span class="aa-product-view-price">Tshs 34,500</span>
+                                  <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
+                                </div>
+                                <p></p>
+                                <h4>Size</h4>
+                                <div class="aa-prod-view-size">
+                                  <a href="#">S</a>
+                                  <a href="#">M</a>
+                                  <a href="#">L</a>
+                                  <a href="#">XL</a>
+                                </div>
+                                <div class="aa-prod-quantity">
+                                  <form action="">
+                                    <select name="" id="">
+                                      <option value="0" selected="1">1</option>
+                                      <option value="1">2</option>
+                                      <option value="2">3</option>
+                                      <option value="3">4</option>
+                                      <option value="4">5</option>
+                                      <option value="5">6</option>
+                                    </select>
+                                  </form>
+                                  <p class="aa-prod-category">
+                                    Category: <a href="#">Polo T-Shirt</a>
+                                  </p>
+                                </div>
+                                <div class="aa-prod-view-bottom">
+                                  <a href="#" class="aa-add-to-cart-btn"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                                  <a href="#" class="aa-add-to-cart-btn">View Details</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>                        
+                      </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                  </div><!-- / quick view modal -->              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / Products section -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <!-- Login Modal -->  
+  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">                      
+        <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4>Login or Register</h4>
+          <form class="aa-login-form" action="">
+            <label for="">Username or Email address<span>*</span></label>
+            <input type="text" placeholder="Username or email">
+            <label for="">Password<span>*</span></label>
+            <input type="password" placeholder="Password">
+            <button class="aa-browse-btn" type="submit">Login</button>
+            <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
+            <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
+            <div class="aa-register-now">
+              Don't have an account?<a href="registerform.html">Register now!</a>
+            </div>
+          </form>
+        </div>                        
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Login Modal -->  
+  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">                      
+        <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4>Login or Register</h4>
+          <form class="aa-login-form" action="">
+            <label for="">Username or Email address<span>*</span></label>
+            <input type="text" placeholder="Username or email">
+            <label for="">Password<span>*</span></label>
+            <input type="password" placeholder="Password">
+            <button class="aa-browse-btn" type="submit">Login</button>
+            <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
+            <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
+            <div class="aa-register-now">
+              Don't have an account?<a href="registerform.html">Register now!</a>
+            </div>
+          </form>
+        </div>                        
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>    
+
+
+
+<section id="menu">
+    <div class="container">
+      <div class="menu-area">
+        <!-- Navbar -->
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>          
+          </div>
+		  
+		  
+		  
+		  
+
+<ul class="dropdown-menu">                
+                  <li><a href="#">Casual</a></li>
+                  <li><a href="#">Sports</a></li>
+                  <li><a href="#">Formal</a></li>
+                  <li><a href="#">Standard</a></li>                                                
+                  <li><a href="#">T-Shirts</a></li>
+                  <li><a href="#">Shirts</a></li>
+                  <li><a href="#">Jeans</a></li>
+                  <li><a href="#">Trousers</a></li>
+                  <li><a href="#">And more.. <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Sleep Wear</a></li>
+                      <li><a href="#">Sandals</a></li>
+                      <li><a href="#">Loafers</a></li>                                      
+                    </ul>
+                  </li>
+                </ul>
+
+              <li><a href="#">Products <span class="caret"></span></a>
+                <ul class="dropdown-menu">                
+                  <li><a href="product.html">Shop Page</a></li>
+				  
+				  
+				  <li><a href="index.html">Home</a></li>
+				  
+				  
+				  
+				  
+				   <li><a href="#">Products <span class="caret"></span></a>
+                <ul class="dropdown-menu">                
+                  <li><a href="product.html">Shop Page</a></li>
+				  
+				  
+				  
+				  
+				  
+				  <!-- Start header section -->
+  <header id="aa-header">
+    <!-- start header top  -->
+    <div class="aa-header-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="aa-header-top-area">
+              <!-- start header top right -->
+              <div class="aa-header-top-right">
+                <ul class="aa-head-top-nav-right">
+                  <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- / header top  -->
+
+    <!-- start header bottom  -->
+    <div class="aa-header-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="aa-header-bottom-area">
+              <!-- logo  -->
+              <div class="aa-logo">
+                <a href="index.html">
+                  <span class="fa fa-shopping-cart"></span>
+                  <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
+                </a>
+              </div>
+              <!-- / logo  -->
+               <!-- search box -->
+              <div class="aa-search-box">
+                <form action="">
+                  <input type="text" name="" id="" placeholder="Type your search..... 'for Products' ">
+                  <button type="submit"><span class="fa fa-search"></span></button>
+                </form>
+              </div>
+              <!-- / search box -->             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- / header bottom  -->
+  </header>
+  <!-- / header section -->
+  <!-- menu -->
+  <section id="menu">
+    <div class="container">
+      <div class="menu-area">
+        <!-- Navbar -->
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>          
+          </div>
+          <div class="navbar-collapse collapse">
+            <!-- Left nav -->
+            <ul class="nav navbar-nav">
+              <li><a href="index.html"></a></li>
+              <li><a href="#">Men <span class="caret"></span></a>
+                <ul class="dropdown-menu">                
+                  <li><a href="#">T-Shirts</a></li>
+                  <li><a href="#">Shirts</a></li>
+                  <li><a href="#">Jeans</a></li>
+                  <li><a href="#">Trousers</a></li>
+                  <li><a href="#">And more.. <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Sleep Wear</a></li>
+                                                            
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">Women <span class="caret"></span></a>
+                <ul class="dropdown-menu">  
+                  <li><a href="#">T-Shirts</a></li>
+                  <li><a href="#">Shirts</a></li>
+                  <li><a href="#">Jeans</a></li>
+                  <li><a href="#">Trousers</a></li>
+                  <li><a href="#">And more.. <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Sleep Wear</a></li>
+                      <li><a href="#">And more.. <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Rings</a></li>
+                          <li><a href="#">Earrings</a></li>
+                          <li><a href="#">SKirts</a></li>
+                          <li><a href="#">Jackets</a></li>
+                          <li><a href="#">Tops</a></li>
+                                                  
+                          <li><a href="#">Sunglases</a></li>
+                          <li><a href="#">Nail</a></li>                       
+                        </ul>
+                      </li>                   
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">Kids <span class="caret"></span></a>
+                <ul class="dropdown-menu">                
+                  <li><a href="#">T-Shirts</a></li>
+                  <li><a href="#">Shirts</a></li>
+                  <li><a href="#">Jeans</a></li>
+                  <li><a href="#">Trousers</a></li>
+                  <li><a href="#">And more.. <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Sleep Wear</a></li>
+                                                            
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+             <li><a href="aboutus.html">About Us</a></li>
+              <li><a href="#">Products <span class="caret"></span></a>
+                <ul class="dropdown-menu">                
+                  <li><a href="product.html">Shop Page</a></li>
+                                                 
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>       
+    </div>
+  </section>
+
+
+
+
+ <div class="tab-pane fade" id="women">
+                      <ul class="aa-product-catg">
+                        <!-- start single product item -->
+                        <li>
+                          <figure>
+                            <a class="aa-product-img" href="#"><img src="img/women/red-black-dotted-gawn.jpg" alt="red black dotted img"></a>
+                            <a class="aa-add-card-btn"href="registerform.html"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            <figcaption>
+                              <h4 class="aa-product-title"><a href="Redblackgawn.html">Red Black Gawn</a></h4>
+                              <span class="aa-product-price">Tshs 35,000</span><span class="aa-product-price"><del>Tshs 50,000</del></span>
+                            </figcaption>
+                          </figure>                         
+                         
+                          <!-- product badge -->
+                          <span class="aa-badge aa-sale" href="#">SALE!</span>
+                        </li>
+                        <!-- start single product item -->
+                        <li>
+                          <figure>
+                            <a class="aa-product-img" href="#"><img src="img/women/red-shiffon-tops.jpg" alt="red shiffon img"></a>
+                          <a class="aa-add-card-btn"href="registerform.html"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            <figcaption>
+                              <h4 class="aa-product-title"><a href="Redshiffon.html">Red Shiffon Top and Black Skirt</a></h4>
+                              <span class="aa-product-price">Tshs 15,000</span>
+                            </figcaption>
+                          </figure>                         
+                         
+                          <!-- product badge -->
+                           <span class="aa-badge aa-hot" href="#">HOT!</span>
+                        </li>
+                        <!-- start single product item -->
+                        <li>
+                          <figure>
+                            <a class="aa-product-img" href="#"><img src="img/women/women1.jpg" alt="women1 img"></a>
+                             <a class="aa-add-card-btn"href="registerform.html"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            <figcaption>
+                              <h4 class="aa-product-title"><a href="Blackgawn.html">Black Gawn</a></h4>
+                              <span class="aa-product-price">Tshs 45,000</span><span class="aa-product-price"><del>Tshs 65,000</del></span>
+                            </figcaption>
+                          </figure>                         
+                         
+                        <!-- start single product item -->
+                        <li>
+                          <figure>
+                            <a class="aa-product-img" href="#"><img src="img/women/women2.jpg" alt="women2 img"></a>
+                            <a class="aa-add-card-btn"href="registerform.html"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            <figcaption>
+                              <h4 class="aa-product-title"><a href="Blackfloralgawn.html">Black Top and Floral Skirt</a></h4>
+                              <span class="aa-product-price">Tshs 50,000</span><span class="aa-product-price"><del>Tshs 85,000</del></span>
+                            </figcaption>
+                          </figure>                          
+                         
+                          <!-- product badge -->
+                          <span class="aa-badge aa-sold-out" href="#">Sold Out!</span>
+                        </li>
+                        <!-- start single product item -->
+                        <li>
+                          <figure>
+                            <a class="aa-product-img" href="#"><img src="img/women/women3.jpg" alt="women3 img"></a>
+                             <a class="aa-add-card-btn"href="registerform.html"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            <figcaption>
+                              <h4 class="aa-product-title"><a href="Denimgawn.html">Denim Gawn</a></h4>
+                              <span class="aa-product-price">Tshs 100,000</span>
+                            </figcaption>
+                          </figure>
+                         
+                          
+                        </li>
+                        <!-- start single product item -->
+                        <li>
+                          <figure>
+                            <a class="aa-product-img" href="#"><img src="img/women/red-casual-gawn.jpg" alt="red casual img"></a>
+                             <a class="aa-add-card-btn"href="registerform.html"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            <figcaption>
+                              <h4 class="aa-product-title"><a href="Casualgawn.html">Casual Gawn</a></h4>
+                              <span class="aa-product-price">Tshs 85,000</span><span class="aa-product-price"><del>Tshs 100,000</del></span>
+                            </figcaption>
+                          </figure>                          
+                         
+                        </li>
+                        <!-- start single product item -->
+                        <li>
+                          <figure>
+                            <a class="aa-product-img" href="#"><img src="img/women/women4.jpg" alt="women4 img"></a>
+                             <a class="aa-add-card-btn"href="registerform.html"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            <figcaption>
+                              <h4 class="aa-product-title"><a href="Punjabiwear.html">Punjabi Wear</a></h4>
+                              <span class="aa-product-price">Tshs 15,000</span><span class="aa-product-price"><del>Tshs 35,000</del></span>
+                            </figcaption>
+                          </figure>                          
+                         
+                          <!-- product badge -->
+                          <span class="aa-badge aa-sale" href="#">SALE!</span>
+                        </li>
+                        <!-- start single product item -->
+                        <li>
+                          <figure>
+                            <a class="aa-product-img" href="#"><img src="img/women/women5.jpeg" alt="women5 img"></a>
+							<a href="#" class="aa-add-to-cart-btn">View Details</a>
+                             <a class="aa-add-card-btn"href="registerform.html"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            <figcaption>
+                              <h4 class="aa-product-title"><a href="Simpledress.html">Simple Dress</a></h4>
+                              <span class="aa-product-price">Tshs 95,000</span>
+                            </figcaption>
+                          </figure>                         
+                          
+                          <!-- product badge -->
+                           <span class="aa-badge aa-sold-out" href="#">Sold Out!</span>
+                        </li>                        
+                      </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
