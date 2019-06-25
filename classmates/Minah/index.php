@@ -1,4 +1,21 @@
+<?php 
+require 'includes/main.php';
 
+if (isset($_POST['subscribeEmail'])) {
+  $subEmail = $_POST['emailSub'];
+
+  $add = $conn->prepare("INSERT INTO `subscription` (`email`) VALUES (?)");
+  if ($add->execute(array($subEmail))) {
+    $submsg = "<div >
+  <strong>Success!</strong>Subscription added..!!</div>";
+  }
+
+  
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -53,12 +70,12 @@
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="home1.html">
+                <a href="index.php">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
                 <!-- img based logo -->
-                <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
+                <!-- <a href="index.php"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>
               <!-- / logo  -->
                           
@@ -70,6 +87,12 @@
     <!-- / header bottom  -->
   </header>
   <!-- / header section -->
+  <?php 
+    if (isset($submsg)) {
+      echo $submsg;
+    }
+
+   ?>
   <!-- menu -->
   <section id="menu">
     <div class="container">
@@ -87,12 +110,11 @@
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
             <ul class="nav navbar-nav">
-              <li><a href="Products.html">Men <span></span></a></li> 
-			  <li><a href="shopnow.html">Women<span></span></a></li> 
-			  <li><a href="aboutus.html">About Us</a></li>
+              <li><a href="Products.php">Men <span></span></a></li> 
+			  <li><a href="shopnow.php">Women<span></span></a></li> 
+			  <li><a href="aboutus.php">About Us</a></li>
 			   <!-- Start header section -->
                   
-				  
 				
                 </ul>
 </div>
@@ -125,7 +147,7 @@
                <span data-seq>Save Up to 75% Off</span>                
                 <p style="font-size: 50px;">Men Collection</p>                
                 <p data-seq></p>
-                <a data-seq href="Products.html" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                <a data-seq href="Products.php" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>
             <!-- single slide item -->           
@@ -137,7 +159,7 @@
                 <span data-seq>Save Up to 75% Off</span>                
                 <p style="font-size: 50px;">Latest casual wears </p>                
                 <p data-seq></p>
-                <a data-seq href="shopnow.html" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                <a data-seq href="shopnow.php" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>
             <!-- single slide item -->  
@@ -150,7 +172,7 @@
                 <p style="font-size: 50px;">Best Collection</p>                
                 <p data-seq style="font-size: 30px;">Dress it up</p>
                 <p style="font-size: 20px; text-indent: 15px;">Style for every accasion.....</p>
-                <a data-seq href="shopnow.html" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                <a data-seq href="shopnow.php" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>                   
           </ul>
@@ -178,7 +200,7 @@
                     <img src="img/women/girl1.jpg" alt="Girl1 img">                    
                     <div class="aa-prom-content">
                       <span>Latest Arrivals</span>
-                      <h4><a href="shopnow.html">For Women</a></h4>                      
+                      <h4><a href="shopnow.php">For Women</a></h4>                      
                     </div>
                   </div>
                 </div>
@@ -191,7 +213,7 @@
                       <img src="img/man/man2.jpg" alt="Man2 img">                      
                       <div class="aa-prom-content">
                         <span>Exclusive Item</span>
-                        <h4><a href="Products.html">For Men</a></h4>                        
+                        <h4><a href="Products.php">For Men</a></h4>                        
                       </div>
                     </div>
                   </div>
@@ -200,7 +222,7 @@
                       <img src="img/women/girl2.jpg" alt="girl2img">                      
                       <div class="aa-prom-content">
                         <span>Sale Off</span>
-                        <h4><a href="shopnow.html">For Ladies</a></h4>                        
+                        <h4><a href="shopnow.php">For Ladies</a></h4>                        
                       </div>
                     </div>
                   </div>
@@ -209,7 +231,7 @@
                       <img src="img/man/man5.jpg" alt="Kids1 img">                      
                       <div class="aa-prom-content">
                         <span>New Arrivals</span>
-                        <h4><a href="Products.html">For Men</a></h4>                        
+                        <h4><a href="Products.php">For Men</a></h4>                        
                       </div>
                     </div>
                   </div>
@@ -218,7 +240,7 @@
                       <img src="img/man/man6.jpg" alt="Boy1 img">                      
                       <div class="aa-prom-content">
                         <span>New Arrivals  </span>
-                        <h4><a href="Products.html">For Men</a></h4>                        
+                        <h4><a href="Products.php">For Men</a></h4>                        
                       </div>
                     </div>
                   </div>
@@ -244,9 +266,9 @@
           <div class="aa-subscribe-area">
             <h3>Subscribe our Website </h3>
             <p>If you want our monthly newsletter, please enter your email below and subscribe</p>
-            <form action="" class="aa-subscribe-form">
-              <input type="email" name="" id="" placeholder="Enter your Email">
-              <input type="submit" value="Subscribe">
+            <form  method="POST" action="index.php" class="aa-subscribe-form">
+              <input type="email" name="emailSub" id="" placeholder="Enter your Email">
+              <input type="submit" name="subscribeEmail" value="Subscribe">
             </form>
           </div>
         </div>

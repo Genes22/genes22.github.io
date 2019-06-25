@@ -1,7 +1,18 @@
+<?php 
+require 'includes/main.php';
+
+if (isset($_POST['subscribeEmail'])) {
+  $subEmail = $_POST['emailSub'];
+
+  $add = $conn->prepare("INSERT INTO `subscription` (`email`) VALUES (?)");
+  if ($add->execute(array($subEmail))) {
+    $submsg = "<div >
+  <strong>Success!</strong>Subscription added..!!</div>";
+  } 
+}
+?>
 <html>
-
 <head>
-
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
@@ -51,12 +62,12 @@
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="index.php">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
                 <!-- img based logo -->
-                <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
+                <!-- <a href="index.php"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>
               <!-- / logo  -->
                       
@@ -86,7 +97,7 @@
             <!-- Left nav -->
             <ul class="nav navbar-nav">
               
-              <li><a href="aboutus.html">About Us</a></li>
+              <li><a href="aboutus.php">About Us</a></li>
                 </ul>
               </li>
             </ul>
@@ -106,7 +117,7 @@
       <div class="aa-catg-head-banner-content">
         <h2>Products Page</h2>
         <ol class="breadcrumb">
-          <li><a href="home1.html">Home</a></li>                   
+          <li><a href="index.php">Home</a></li>                   
           <li class="active"></li>
         </ol>
       </div>
@@ -140,7 +151,7 @@
                             <a class="aa-product-img" href="#"><img src="img/women/girl4.jpg" alt="red black dotted img"></a>
                             <a class="aa-add-card-btn"href=""><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                             <figcaption>
-                              <h4 class="aa-product-title"><a href="Redblackgown.html">Red with dotted White Black Gown</a></h4>
+                              <h4 class="aa-product-title"><a href="Redblackgown.php">Red with dotted White Black Gown</a></h4>
                               <span class="aa-product-price">Tshs 35,000</span><span class="aa-product-price"><del>Tshs 50,000</del></span>
                             </figcaption>
                           </figure>                          
@@ -154,7 +165,7 @@
                             <a class="aa-product-img" href="#"><img src="img/women/red-shiffon-tops.jpg" alt="red shiffon img"></a>
                           <a class="aa-add-card-btn"href=""><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                             <figcaption>
-                              <h4 class="aa-product-title"><a href="Redshiffon.html">Red Shiffon Top and White dotted Black Skirt</a></h4>
+                              <h4 class="aa-product-title"><a href="Redshiffon.php">Red Shiffon Top and White dotted Black Skirt</a></h4>
                               <span class="aa-product-price">Tshs 15,000</span>
                             </figcaption>
                           </figure>                         
@@ -168,7 +179,7 @@
                             <a class="aa-product-img" href="#"><img src="img/women/women1.jpg" alt="women1 img"></a>
                              <a class="aa-add-card-btn"href=""><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                             <figcaption>
-                              <h4 class="aa-product-title"><a href="Blackgown.html">Black Gown</a></h4>
+                              <h4 class="aa-product-title"><a href="Blackgown.php">Black Gown</a></h4>
                               <span class="aa-product-price">Tshs 45,000</span><span class="aa-product-price"><del>Tshs 65,000</del></span>
                             </figcaption>
                           </figure>                         
@@ -180,7 +191,7 @@
                             <a class="aa-product-img" href="#"><img src="img/women/women2.jpg" alt="women2 img"></a>
                             <a class="aa-add-card-btn"href=""><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                             <figcaption>
-                              <h4 class="aa-product-title"><a href="Blackfloralgown.html">Black Top and Floral Skirt</a></h4>
+                              <h4 class="aa-product-title"><a href="Blackfloralgown.php">Black Top and Floral Skirt</a></h4>
                               <span class="aa-product-price">Tshs 50,000</span><span class="aa-product-price"><del>Tshs 85,000</del></span>
                             </figcaption>
                           </figure>                            
@@ -194,7 +205,7 @@
                             <a class="aa-product-img" href="#"><img src="img/women/women3.jpg" alt="women3 img"></a>
                              <a class="aa-add-card-btn"href=""><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                             <figcaption>
-                              <h4 class="aa-product-title"><a href="Denimgown.html">Denim Gown</a></h4>
+                              <h4 class="aa-product-title"><a href="Denimgown.php">Denim Gown</a></h4>
                               <span class="aa-product-price">Tshs 100,000</span>
                             </figcaption>
                           </figure>                  
@@ -206,7 +217,7 @@
                             <a class="aa-product-img" href="#"><img src="img/women/red-casual-gown.jpg" alt="red casual img"></a>
                              <a class="aa-add-card-btn"href=""><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                             <figcaption>
-                              <h4 class="aa-product-title"><a href="Casualgown.html">Casual Gown</a></h4>
+                              <h4 class="aa-product-title"><a href="Casualgown.php">Casual Gown</a></h4>
                               <span class="aa-product-price">Tshs 85,000</span><span class="aa-product-price"><del>Tshs 100,000</del></span>
                             </figcaption>
                           </figure>      
@@ -217,7 +228,7 @@
                             <a class="aa-product-img" href="#"><img src="img/women/women4.jpg" alt="women4 img"></a>
                              <a class="aa-add-card-btn"href=""><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                             <figcaption>
-                              <h4 class="aa-product-title"><a href="Punjabiwear.html">Punjabi Wear</a></h4>
+                              <h4 class="aa-product-title"><a href="Punjabiwear.php">Punjabi Wear</a></h4>
                               <span class="aa-product-price">Tshs 15,000</span><span class="aa-product-price"><del>Tshs 35,000</del></span>
                             </figcaption>
                           </figure>                       
@@ -231,7 +242,7 @@
                             <a class="aa-product-img" href="#"><img src="img/women/women5.jpeg" alt="women5 img"></a> 
                              <a class="aa-add-card-btn"href=""><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                             <figcaption>
-                              <h4 class="aa-product-title"><a href="Simpledress.html">Simple Dress</a></h4>
+                              <h4 class="aa-product-title"><a href="Simpledress.php">Simple Dress</a></h4>
                               <span class="aa-product-price">Tshs 95,000</span>
                             </figcaption>
                           </figure>                         
@@ -247,7 +258,7 @@
 
  
           
-         
+  
   <!-- Subscribe section -->
   <section id="aa-subscribe">
     <div class="container">
@@ -256,18 +267,16 @@
           <div class="aa-subscribe-area">
             <h3>Subscribe our Website </h3>
             <p>If you want our monthly newsletter, please enter your email below and subscribe</p>
-            <form action="" class="aa-subscribe-form">
-              <input type="email" name="" id="" placeholder="Enter your Email">
-              <input type="submit" value="Subscribe">
+            <form  method="POST" action="index.php" class="aa-subscribe-form">
+              <input type="email" name="emailSub" id="" placeholder="Enter your Email">
+              <input type="submit" name="subscribeEmail" value="Subscribe">
             </form>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- / Subscribe section --> 
-        
- 
+  <!-- / Subscribe section -->
 
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

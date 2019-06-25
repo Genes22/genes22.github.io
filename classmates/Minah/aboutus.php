@@ -1,4 +1,21 @@
+<?php 
+require 'includes/main.php';
 
+if (isset($_POST['subscribeEmail'])) {
+  $subEmail = $_POST['emailSub'];
+
+  $add = $conn->prepare("INSERT INTO `subscription` (`email`) VALUES (?)");
+  if ($add->execute(array($subEmail))) {
+    $submsg = "<div >
+  <strong>Success!</strong>Subscription added..!!</div>";
+  }
+
+  
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -54,11 +71,11 @@
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="index.php">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
-				<p><a href="home1.html">Home</a></p> 
+				<p><a href="index.php">Home</a></p> 
                 <!-- img based logo -->
                 <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>
@@ -90,24 +107,24 @@
 	  </center>
   <!-- /details about OnoA -->
 
-   <!-- Comment section -->
+  <!-- Subscribe section -->
   <section id="aa-subscribe">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="aa-subscribe-area">
-            <h3>Comment on our product</h3>
-            <p>We need your comment in order to improve our marketing</p>
-            <form action="" class="aa-subscribe-form">
-              <input type="email" name="" id="" placeholder="Enter your Email or Username"><br><br><br>
-			  <input type="email" name="" id="" placeholder="Write your comment"><br><br><br><input type="submit" value="Comment">
+            <h3>Subscribe our Website </h3>
+            <p>If you want our monthly newsletter, please enter your email below and subscribe</p>
+            <form  method="POST" action="index.php" class="aa-subscribe-form">
+              <input type="email" name="emailSub" id="" placeholder="Enter your Email">
+              <input type="submit" name="subscribeEmail" value="Subscribe">
             </form>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- / Comment section -->
+  <!-- / Subscribe section -->
 
  <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

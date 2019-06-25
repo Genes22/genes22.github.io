@@ -1,3 +1,21 @@
+<?php 
+require 'includes/main.php';
+
+if (isset($_POST['subscribeEmail'])) {
+  $subEmail = $_POST['emailSub'];
+
+  $add = $conn->prepare("INSERT INTO `subscription` (`email`) VALUES (?)");
+  if ($add->execute(array($subEmail))) {
+    $submsg = "<div >
+  <strong>Success!</strong>Subscription added..!!</div>";
+  } 
+}
+//get product details
+//$products = $conn->prepare("SELECT * FROM `products`");
+//$products->execute();
+
+
+?>
 <html>
 
 <head>
@@ -51,7 +69,7 @@
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="index.php">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
@@ -86,7 +104,7 @@
             <!-- Left nav -->
             <ul class="nav navbar-nav">
               
-              <li><a href="aboutus.html">About Us</a></li>
+              <li><a href="aboutus.php">About Us</a></li>
                 </ul>
               </li>
             </ul>
@@ -106,7 +124,7 @@
       <div class="aa-catg-head-banner-content">
         <h2>Products Page</h2>
         <ol class="breadcrumb">
-          <li><a href="home1.html">Home</a></li>                   
+          <li><a href="index.php">Home</a></li>                   
           <li class="active"></li>
         </ol>
       </div>
@@ -255,7 +273,7 @@
     </div>
   </section>
   <!-- / Products section -->
-          
+  
   <!-- Subscribe section -->
   <section id="aa-subscribe">
     <div class="container">
@@ -264,16 +282,16 @@
           <div class="aa-subscribe-area">
             <h3>Subscribe our Website </h3>
             <p>If you want our monthly newsletter, please enter your email below and subscribe</p>
-            <form action="" class="aa-subscribe-form">
-              <input type="email" name="" id="" placeholder="Enter your Email">
-              <input type="submit" value="Subscribe">
+            <form  method="POST" action="index.php" class="aa-subscribe-form">
+              <input type="email" name="emailSub" id="" placeholder="Enter your Email">
+              <input type="submit" name="subscribeEmail" value="Subscribe">
             </form>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- / Subscribe section --> 
+  <!-- / Subscribe section -->
         
    
   <!-- jQuery library -->
