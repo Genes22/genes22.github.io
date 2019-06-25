@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2019 at 12:06 PM
+-- Generation Time: Jun 25, 2019 at 02:04 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -44,9 +44,7 @@ CREATE TABLE `bus_details` (
 --
 
 INSERT INTO `bus_details` (`bus_id`, `name`, `location`, `destination`, `number_seats`, `plate_number`, `bus_phone`, `bus_photo`) VALUES
-(1, 'dar express', 'dar', 'arusha', 60, 546, 623458919, 'darexpress.jpg'),
-(2, 'dar lux', 'Mwanza', 'Dodoma', 60, 256, 24597655, 'mshindi'),
-(3, 'ratco', 'mwanza', 'dodoma', 60, 4568, 7564826, 'mshindi.jpg');
+(2, 'dar lux', 'Mwanza', 'Dodoma', 60, 256, 24597655, 'dar lux.jpeg');
 
 -- --------------------------------------------------------
 
@@ -63,6 +61,13 @@ CREATE TABLE `passenger` (
   `travel_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `passenger`
+--
+
+INSERT INTO `passenger` (`passenger_id`, `pass_name`, `from`, `destination`, `phone`, `travel_date`) VALUES
+(7, 'mshindi    DIT', 'mwanza', 'dodoma', '06542354', '2019-06-28');
+
 -- --------------------------------------------------------
 
 --
@@ -74,7 +79,8 @@ CREATE TABLE `ticket` (
   `passenger_id` int(11) NOT NULL,
   `bus_id` int(11) NOT NULL,
   `seat_no` int(11) NOT NULL,
-  `travel_date` date NOT NULL
+  `travel_date` date NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -109,13 +115,13 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT for table `bus_details`
 --
 ALTER TABLE `bus_details`
-  MODIFY `bus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `bus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `passenger`
 --
 ALTER TABLE `passenger`
-  MODIFY `passenger_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `passenger_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ticket`
