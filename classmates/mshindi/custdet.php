@@ -23,7 +23,7 @@ if (isset($_GET['routeDT'])){
 </head>
 
 <body>
-    <form method="GET" action="ticket.php">
+    <form method="GET" action="tickets.php">
     <div class="container">
         <div class="row">
             <div class="col-md-11 offset-md-3 offset-lg-2 text-center" style="width: 80%;padding: 0px;margin-left: 120px;">

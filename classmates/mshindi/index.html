@@ -35,13 +35,6 @@ float-right:100%;
   float:left;
 }
 
-
-
-
-
-
-
-
   
 /* Style the tab */
 .tab {
@@ -417,30 +410,6 @@ height: 50;
 </div>
 </div>
 </center>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="mySlides fade">
-  <div class="numbertext"></div>
-  <img src="al sady.jpg"  alt="al sady" style="width:100%">
-</div>
-</div>
-</div>
-
-
 <div style="text-align:center">
   <span class="dot"></span> 
   <span class="dot"></span> 
@@ -524,10 +493,22 @@ function showSlides() {
             <div class="info-box"><i class="fa fa-phone-square my-info-icons"></i><span class="text-uppercase text-info">Phone: </span><span>+25570000</span></div>
         </div>
         <div class="col-12 col-sm-6 col-md-6 site-form" style="padding-right: 40px;margin-left: 5%;">
-            <form method="get" id="my-form"><label>From</label>
-                <div class="form-group"><label class="sr-only" for="firstname">First Nameeefdsfdsfsf</label><input class="form-control" type="text" name="From " required="" placeholder="Dar " autofocus="" id="firstname"></div><label>Destination</label>
-                <div class="form-group"><label class="sr-only" for="lastname">Last Name</label><input class="form-control form-control-lg" type="text" name="Destination" required="" placeholder="Arusha" id="lastname"></div><label>Travelling Date</label>
-                <div class="form-group"><input class="form-control" type="date" name="Traveling date" required=""></div><button class="btn btn-warning" type="button">Reset</button><button class="btn btn-success text-right" type="submit"><a href="buses.html">Submit</a></button></form>
+                        <form action="custdet.php" method="GET" id="my-form">
+                <div class="form-group">
+                    <label for="from">From</label>
+                    <input class="form-control" type="text" name="location" required="" placeholder="Dar">
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input class="form-control form-control-lg" type="text" name="destination" required="" placeholder="Arusha" id="lastname">
+                </div>
+                <div class="form-group">
+                    <label for="TravelDate">Travel date</label>
+                    <input class="form-control" type="date" name="TravelDate" required="">
+                </div>
+                <button class="btn btn-warning" type="button">Reset</button>
+                <input type="submit" name="routeDT" class="btn btn-success text-right">
+            </form>
         </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>

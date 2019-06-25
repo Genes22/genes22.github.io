@@ -68,7 +68,7 @@ if (isset($_GET['save'])){
                       </tbody>
                     </table>
                 </div>
-                <div class="pricingTable-sign-up"><a href="#" class="btn btn-block">pay now</a></div>
+                <div class="pricingTable-sign-up"><a href="PAYMENT METHOD.HTML" class="btn btn-block">pay now</a></div>
             </div>
         </div>
     </div>
