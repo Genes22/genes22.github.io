@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2019 at 02:38 PM
+-- Generation Time: Jun 25, 2019 at 02:54 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -37,14 +37,6 @@ CREATE TABLE `products` (
   `productImage` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`Product id`, `Product name`, `Product description`, `Product quantity`, `Product price`, `productImage`) VALUES
-(2, 'Genes', 'sadsaasd', 'dfsdf', 32342, 'advert-banner.jpg'),
-(4, 'kitenge', 'sadsaasd', '32', 120000, 'women-fashion.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -58,6 +50,25 @@ CREATE TABLE `student` (
   `gpa` float NOT NULL,
   `grade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscription`
+--
+
+CREATE TABLE `subscription` (
+  `subs_id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subscription`
+--
+
+INSERT INTO `subscription` (`subs_id`, `email`) VALUES
+(1, 'amina@gmail.com'),
+(7, 'aminaismail@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -98,6 +109,12 @@ ALTER TABLE `student`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subscription`
+--
+ALTER TABLE `subscription`
+  ADD PRIMARY KEY (`subs_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -111,13 +128,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `Product id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Product id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `subscription`
+--
+ALTER TABLE `subscription`
+  MODIFY `subs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
