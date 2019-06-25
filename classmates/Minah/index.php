@@ -110,8 +110,8 @@ if (isset($_POST['subscribeEmail'])) {
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
             <ul class="nav navbar-nav">
-              <li><a href="Products.php">Men <span></span></a></li> 
-			  <li><a href="shopnow.php">Women<span></span></a></li> 
+              <li><a href="Products.php?category=men">Men <span></span></a></li> 
+			  <li><a href="Products.php?category=women">Women<span></span></a></li> 
 			  <li><a href="aboutus.php">About Us</a></li>
 			   <!-- Start header section -->
                   
@@ -147,7 +147,7 @@ if (isset($_POST['subscribeEmail'])) {
                <span data-seq>Save Up to 75% Off</span>                
                 <p style="font-size: 50px;">Men Collection</p>                
                 <p data-seq></p>
-                <a data-seq href="Products.php" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                <a data-seq href="Products.php?category=men" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>
             <!-- single slide item -->           
@@ -159,7 +159,7 @@ if (isset($_POST['subscribeEmail'])) {
                 <span data-seq>Save Up to 75% Off</span>                
                 <p style="font-size: 50px;">Latest casual wears </p>                
                 <p data-seq></p>
-                <a data-seq href="shopnow.php" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                <a data-seq href="Products.php?category=women" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>
             <!-- single slide item -->  
@@ -172,7 +172,7 @@ if (isset($_POST['subscribeEmail'])) {
                 <p style="font-size: 50px;">Best Collection</p>                
                 <p data-seq style="font-size: 30px;">Dress it up</p>
                 <p style="font-size: 20px; text-indent: 15px;">Style for every accasion.....</p>
-                <a data-seq href="shopnow.php" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                <a data-seq href="Products.php?category=women" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
               </div>
             </li>                   
           </ul>
@@ -200,7 +200,7 @@ if (isset($_POST['subscribeEmail'])) {
                     <img src="img/women/girl1.jpg" alt="Girl1 img">                    
                     <div class="aa-prom-content">
                       <span>Latest Arrivals</span>
-                      <h4><a href="shopnow.php">For Women</a></h4>                      
+                      <h4><a href="Products.php?category=women">For Women</a></h4>                      
                     </div>
                   </div>
                 </div>
@@ -213,7 +213,7 @@ if (isset($_POST['subscribeEmail'])) {
                       <img src="img/man/man2.jpg" alt="Man2 img">                      
                       <div class="aa-prom-content">
                         <span>Exclusive Item</span>
-                        <h4><a href="Products.php">For Men</a></h4>                        
+                        <h4><a href="Products.php?category=men">For Men</a></h4>                        
                       </div>
                     </div>
                   </div>
@@ -222,7 +222,7 @@ if (isset($_POST['subscribeEmail'])) {
                       <img src="img/women/girl2.jpg" alt="girl2img">                      
                       <div class="aa-prom-content">
                         <span>Sale Off</span>
-                        <h4><a href="shopnow.php">For Ladies</a></h4>                        
+                        <h4><a href="Products.php?category=women">For Ladies</a></h4>                        
                       </div>
                     </div>
                   </div>
@@ -231,7 +231,7 @@ if (isset($_POST['subscribeEmail'])) {
                       <img src="img/man/man5.jpg" alt="Kids1 img">                      
                       <div class="aa-prom-content">
                         <span>New Arrivals</span>
-                        <h4><a href="Products.php">For Men</a></h4>                        
+                        <h4><a href="Products.php?category=men">For Men</a></h4>                        
                       </div>
                     </div>
                   </div>
@@ -240,7 +240,7 @@ if (isset($_POST['subscribeEmail'])) {
                       <img src="img/man/man6.jpg" alt="Boy1 img">                      
                       <div class="aa-prom-content">
                         <span>New Arrivals  </span>
-                        <h4><a href="Products.php">For Men</a></h4>                        
+                        <h4><a href="Products.php?category=men">For Men</a></h4>                        
                       </div>
                     </div>
                   </div>

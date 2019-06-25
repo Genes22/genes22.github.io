@@ -1,34 +1,18 @@
 <?php 
 require 'includes/main.php';
-$category = 1;
-if (isset($_GET['category'])) {
-  $cat = $_GET['category'];
-  if ($cat == 'women') {
-    $category = 0;
-  }else{
-    $category = 1;
-  }
+$prdname = "Red black gown";
+if (isset($_GET['product'])) {
+  $prdname = $_GET['product'];
 }
 
-//add subscription 
-if (isset($_POST['subscribeEmail'])) {
-  $subEmail = $_POST['emailSub'];
-
-  $add = $conn->prepare("INSERT INTO `subscription` (`email`) VALUES (?)");
-  if ($add->execute(array($subEmail))) {
-    $submsg = "<div >
-  <strong>Success!</strong>Subscription added..!!</div>";
-  } 
-}
 //end subscription
 //get product details
-$products = $conn->prepare("SELECT * FROM `products` WHERE `category`=?");
-$products->execute(array($category));
+$proddet = $conn->prepare("SELECT * FROM `products` WHERE `productName`=?");
+$proddet->execute(array($prdname));
+$product = $proddet->fetch(PDO::FETCH_ASSOC);
 ?>
 <html>
-
-<head>
-
+<head> 
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
@@ -66,9 +50,11 @@ $products->execute(array($category));
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-  </head>
-  <body>
-  <header id="aa-header">
+</head>
+<body>
+
+
+<header id="aa-header">
     <!-- start header bottom  -->
     <div class="aa-header-bottom">
       <div class="container">
@@ -78,7 +64,7 @@ $products->execute(array($category));
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.php">
+                <a href="index.html">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
@@ -86,7 +72,7 @@ $products->execute(array($category));
                 <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>
               <!-- / logo  -->
-                        
+                      
             </div>
           </div>
         </div>
@@ -109,33 +95,10 @@ $products->execute(array($category));
               <span class="icon-bar"></span>
             </button>          
           </div>
-          <div class="navbar-collapse collapse">
-            <!-- Left nav -->
-            <ul class="nav navbar-nav">
-              
-              <li><a href="aboutus.php">About Us</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div> 
-      </div>
-    </div>
-  </section>
-  <!-- / menu -->  
- 
-  <!-- catg header banner section -->
-  <section id="aa-catg-head-banner">
-    <img src="img/advert-banner.jpg" alt="advert-banner img">
-    <div class="aa-catg-head-banner-area">
-     <div class="container">
-      <div class="aa-catg-head-banner-content">
-        <h2>Products Page</h2>
-        <ol class="breadcrumb">
-          <li><a href="index.php">Home</a></li>                   
+          <ul>
+          <li><a href="home1.html">Home</a></li>                   
           <li class="active"></li>
-        </ol>
+        </ul>
       </div>
      </div>
    </div>
@@ -153,75 +116,32 @@ $products->execute(array($category));
               <div class="aa-product-inner">
                 <!-- start prduct navigation -->
                  <ul class="nav nav-tabs aa-products-tab">
-                    <li class="active"><a href="#men" data-toggle="tab">
-                      <?php 
-                      if ($category == 0) {
-                        echo 'WOMEN';
-                      }else{
-                        echo 'MEN';
-                      }
-
-                       ?>
-                    </a></li>
-                    
-                   </ul>
-                  <!-- Tab panes -->
-                  <div class="tab-content">
-                    <!-- Start men product category -->
-                    <div class="tab-pane fade in active" id="men">
-                      <ul class="aa-product-catg">
-                        <!-- start single product item -->
-                      <?php
-                      while ($prods= $products->fetch(PDO::FETCH_ASSOC)) {  
-                        echo "<li>
-                          <figure>
-                            <a class='aa-product-img' href='#'><img src='img/uploaded/".$prods['productImage']."' alt='Slim Men Shirt img'></a>
-                            <a class='aa-add-card-btn'href=''><span class='fa fa-shopping-cart'></span>Add To Cart</a>
-                              <figcaption>
-                              <h4 class='aa-product-title'><a href='details.php?product=".$prods['ProductName']."'>".$prods['ProductName']."</a></h4>
-                              <span class='aa-product-price'>Tshs 25,000</span><span class='aa-product-price'><del>Tshs ".$prods['ProductPrice']."</del></span>
-                            </figcaption>
-                          </figure>                        
-                         
-                          <!-- product badge -->
-                          <span class='aa-badge aa-sale' href='#'>SALE!</span>
-                        </li>";
-                       }
-                       ?>          
-                      </ul>
-                    
-                    </div>
-              <!-- / men product category -->
-              <!-- start women product category -->                 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- / Products section -->
+                  <div id="slimshirt">
+                     <a class="aa-product-img" href="#"><img src='img/uploaded/<?php echo $product['productImage']; ?>' alt="<?php echo $product['ProductName']; ?>"></a>
+                   </div>
+                  <h4><?php echo $product['ProductName']; ?></h4>
+                  <!-- buying -->
+                  <form method="GET" action="buy.php" class="aa-login-form">
+                  <label for="size">size<span>*</span></label>
+                    <select name="size" id="size" required="true">
+                      <option value="S">S</option>
+                      <option value="M"  selected="S">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                    </select>
+                  <label for="quantity">How many pieces<span>*</span></label>
+                   <input type="number" name="quantity" required="true">
+                    </select>
+                    <div>
+                  <input class="aa-browse-btn" type="submit" value="BUY">
+			             </div>
+      </form>
+		  
+		    <!-- banner section -->
   
-  <!-- Subscribe section -->
-  <section id="aa-subscribe">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="aa-subscribe-area">
-            <h3>Subscribe our Website </h3>
-            <p>If you want our monthly newsletter, please enter your email below and subscribe</p>
-            <form  method="POST" action="index.php" class="aa-subscribe-form">
-              <input type="email" name="emailSub" id="" placeholder="Enter your Email">
-              <input type="submit" name="subscribeEmail" value="Subscribe">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- / Subscribe section -->
-        
    
+
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
