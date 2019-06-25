@@ -1,16 +1,36 @@
 <?php 
 require 'includes/daba.php';
 
-$bus  = $_GET['busname'];
+$busname  = $_GET['busname'];
 
 if (isset($_GET['save'])){
-    $fname = $_GET['firstname'];
-    $lname = $_GET['lastname'];
-    $phone = $_GET['phone'];
+    $fname = cleaner($_GET['firstname']);
+    $lname = cleaner($_GET['lastname']);
+    $passname = cleaner($fname."    ".$lname);
+    $phone = cleaner($_GET['phone']);
+    $passid = cleaner($_GET['passengerID']);
 
-    //$buses = $db->prepare("SELECT * FROM `bus_details` WHERE `location`=? AND `destination`=?");
-    //$buses->execute(array($init,$destination));
-} 
+    //get bus id
+    $bus = $db->prepare("SELECT `bus_id`,`bus_photo` FROM `bus_details` WHERE `name`=?");
+    $bus->execute(array($_GET['busname']));
+    $buside = $bus->fetch(PDO::FETCH_ASSOC);
+    $busID = $buside['bus_id'];
+    $busPhoto = $buside['bus_photo'];
+    
+    //update passenger details
+    $buses = $db->prepare("UPDATE `passenger` SET `pass_name` = ?, `phone` = ? WHERE `passenger_id` = ?");
+    $buses->execute(array($passname,$phone,$passid));
+    //passenger details
+    $tpass = $db->prepare("SELECT * FROM `passenger` WHERE `passenger_id` = ? and`phone` = ? ");
+    $tpass->execute(array($passid, $phone));
+    $passenger = $tpass->fetch(PDO::FETCH_ASSOC);
+
+    //add ticket details
+    $seatno = rand(1,60);
+    $tickdet = $db->prepare("INSERT INTO `ticket` (`passenger_id`, `bus_id`, `seat_no`, `travel_date`) VALUES ()");
+    $tickdet->execute(array($passid,$busID,$seatno,$passenger['travel_date']));
+}
+     
 ?>
 
 <!DOCTYPE html>
@@ -46,15 +66,15 @@ if (isset($_GET['save'])){
                         </tr>
                         <tr>
                           <th>From</th>
-                          <td>Mwanza</td>
+                          <td><?php echo $passenger['from']; ?></td>
                         </tr>
                         <tr>
                           <th>To</th>
-                          <td>Dodoma</td>
+                          <td><?php echo $passenger['destination']; ?></td>
                         </tr>
                         <tr>
                           <th>Bus name</th>
-                          <td><?php echo $bus; ?></td>
+                          <td><?php echo $busname; ?></td>
                         </tr>
                         <tr>
                           <th>Bus fare</th>
@@ -62,7 +82,7 @@ if (isset($_GET['save'])){
                         </tr>
                         <tr>
                           <th>Ticket number</th>
-                          <td>12</td>
+                          <td><?php echo $seatno; ?></td>
                         </tr>
 
                       </tbody>
@@ -70,6 +90,7 @@ if (isset($_GET['save'])){
                 </div>
                 <div class="pricingTable-sign-up"><a href="PAYMENT METHOD.HTML" class="btn btn-block">pay now</a></div>
             </div>
+            <img src="assets/images/buses/<?php echo $busPhoto; ?>" alt="bus image">
         </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>

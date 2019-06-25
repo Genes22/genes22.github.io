@@ -2,12 +2,19 @@
 require 'includes/daba.php';
 
 if (isset($_GET['routeDT'])){
-    $init = $_GET['location'];
-    $destination = $_GET['destination'];
-    $date = $_GET['TravelDate'];
+    $init = cleaner($_GET['location']);
+    $destination = cleaner($_GET['destination']);
+    $date = cleaner($_GET['TravelDate']);
 
-    $buses = $db->prepare("SELECT * FROM `bus_details` WHERE `location`=? AND `destination`=?");
-    $buses->execute(array($init,$destination));
+    $addpass = $db->prepare("INSERT INTO `passenger` (`from`, `destination`,`travel_date`) VALUES (?, ?, ?)");
+    if($addpass->execute(array($init, $destination, $date))){
+        $buses = $db->prepare("SELECT * FROM `bus_details` WHERE `location`=? AND `destination`=?");
+        $buses->execute(array($init,$destination));
+    }
+    $getid = $db->prepare("SELECT `passenger_id` FROM `passenger` WHERE `from`=? AND `destination`=? AND `travel_date`=?");
+    $getid->execute(array($init, $destination, $date));
+    $id = $getid->fetch(PDO::FETCH_ASSOC);
+    $passid = $id['passenger_id'];
 } 
 ?>
 <!DOCTYPE html>
@@ -68,6 +75,7 @@ if (isset($_GET['routeDT'])){
                                         <div class="form-group">
                                             <label>Phone number</label>
                                             <input class="form-control" type="tel" autocomplete="off" required="true" name="phone">
+                                            <input type="hidden" name="passengerID" value="<?php echo $passid; ?>">
                                         </div>
                                         <hr>
                                         <div class="form-row">
