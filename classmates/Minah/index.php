@@ -1,20 +1,18 @@
 <?php 
 require 'includes/main.php';
+session_start();
+if (!isset($_SESSION['loginEmail'])) {
+  header('location: login.php');
+  $_SESSION['loginNotice'] = "Please login first to use Onoa shop";
+}
 
 if (isset($_POST['subscribeEmail'])) {
   $subEmail = $_POST['emailSub'];
-
   $add = $conn->prepare("INSERT INTO `subscription` (`email`) VALUES (?)");
   if ($add->execute(array($subEmail))) {
-    $submsg = "<div >
-  <strong>Success!</strong>Subscription added..!!</div>";
-  }
-
-  
+    $submsg = "Subscription added..!!";
+  } 
 }
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,14 +85,29 @@ if (isset($_POST['subscribeEmail'])) {
     <!-- / header bottom  -->
   </header>
   <!-- / header section -->
-  <?php 
+  <!-- menu -->
+  <section id="menu">
+      <?php
+    if (isset($_SESSION['loginSuccess'])) {
+        echo "<div class='alert alert-success alert-dismissible  show' role='alert'>
+          <strong>success.!!</strong>".$_SESSION['loginSuccess']."
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+          </button>
+          </div>";
+          unset($_SESSION['loginSuccess']);
+    } 
     if (isset($submsg)) {
-      echo $submsg;
+      echo "<div class='alert alert-success alert-dismissible  show' role='alert'>
+          <strong>success.!!</strong>".$submsg."
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+          </button>
+          </div>";
+      unset($submsg);
     }
 
    ?>
-  <!-- menu -->
-  <section id="menu">
     <div class="container">
       <div class="menu-area">
         <!-- Navbar -->

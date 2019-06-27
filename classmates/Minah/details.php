@@ -1,5 +1,11 @@
 <?php 
 require 'includes/main.php';
+session_start();
+if (!isset($_SESSION['loginEmail'])) {
+  header('location: login.php');
+  $_SESSION['loginNotice'] = "Please login first to use Onoa shop";
+}
+
 $prdname = "Red black gown";
 if (isset($_GET['product'])) {
   $prdname = $_GET['product'];
@@ -7,7 +13,7 @@ if (isset($_GET['product'])) {
 
 //end subscription
 //get product details
-$proddet = $conn->prepare("SELECT * FROM `products` WHERE `productName`=?");
+$proddet = $db->prepare("SELECT * FROM `products` WHERE `productName`=?");
 $proddet->execute(array($prdname));
 $product = $proddet->fetch(PDO::FETCH_ASSOC);
 ?>

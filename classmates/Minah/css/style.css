@@ -69,6 +69,9 @@ a:focus {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
 }
+p {
+  color: #ffffff;
+}
 
 h2 {
   font-size: 30px;
@@ -2604,6 +2607,7 @@ img {
 
 /*---- Login form ----*/
 
+.aa-login-form input[type="email"],
 .aa-login-form input[type="text"],
 .aa-login-form input[type="password"] {
   border: 1px solid #ccc;

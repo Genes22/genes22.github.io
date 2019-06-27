@@ -1,6 +1,6 @@
 <?php
 
-require 'includes/db.php';
+require '../includes/db.php';
 
 if(isset($_POST['add'])){
 

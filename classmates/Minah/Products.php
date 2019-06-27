@@ -1,5 +1,10 @@
 <?php 
 require 'includes/main.php';
+session_start();
+if (!isset($_SESSION['loginEmail'])) {
+  header('location: login.php');
+  $_SESSION['loginNotice'] = "Please login first to use Onoa shop";
+}
 $category = 1;
 if (isset($_GET['category'])) {
   $cat = $_GET['category'];
@@ -14,7 +19,7 @@ if (isset($_GET['category'])) {
 if (isset($_POST['subscribeEmail'])) {
   $subEmail = $_POST['emailSub'];
 
-  $add = $conn->prepare("INSERT INTO `subscription` (`email`) VALUES (?)");
+  $add = $db->prepare("INSERT INTO `subscription` (`email`) VALUES (?)");
   if ($add->execute(array($subEmail))) {
     $submsg = "<div >
   <strong>Success!</strong>Subscription added..!!</div>";
@@ -22,7 +27,7 @@ if (isset($_POST['subscribeEmail'])) {
 }
 //end subscription
 //get product details
-$products = $conn->prepare("SELECT * FROM `products` WHERE `category`=?");
+$products = $db->prepare("SELECT * FROM `products` WHERE `category`=?");
 $products->execute(array($category));
 ?>
 <html>

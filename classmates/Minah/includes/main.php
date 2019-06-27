@@ -1,5 +1,5 @@
 <?php 
-	$conn = new PDO('mysql:host=127.0.0.1; dbname=onoa;', 'root', '');
+	$db = new PDO('mysql:host=127.0.0.1;dbname=onoa;', 'root', '');
 
 	function cleaner($data){
 		$one = strip_tags($data);

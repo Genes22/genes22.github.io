@@ -1,63 +1,35 @@
 <?php
+require 'includes/main.php';
+session_start();
+if (isset($_SESSION['loginEmail'])) {
+  header('location: ./');
+  $_SESSION['loginSuccess'] = "Welcome to Onoa shop";
+}
 
-$username = $_POST ['username'];
-$email = $_POST ['email'];
-$password = $_POST ['password'];
+if(isset($_POST['Login'])){
+  $email = cleaner(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
+  $password = md5(cleaner($_POST ['password']));
 
-// If  (!empty($username) || !empty($email) ||  !empty($password) )
-// {
-// 	$host = "localhost";
-// 	$dbusername = "root";
-// 	$dbpassword = "";
-// 	$dbname = "onoa";
-	
-// 	// create connection 
-// 	$conn = new myql ($host , $dbusername , $dbpassword , $dbname );
-	
-// 	if ( mysql_connect_error () ){
-// 		die ('Connect  Error  ('. mysql_connect_error () .') '. ( mysql_connect_error () .')' ); 
-// 	}
-// 	else {
-// 		$SELECT = "SELECT email From login Where email=? Limit1";
-// 		$INSERT = "INSERT Into login (username, email, password ) values (?, ?, ?) ";
-		
-// 		//prepare statement
-// 		$stmt = $conn-> prepare($SELECT);
-// 		$stmt -> bind_param("s" , $email);
-// 		$stmt -> execute (); 
-// 		$stmt -> bind_result ($email);
-// 		$stmt -> store_result();
-// 		$rnum = $stmt -> num_rows();
+  if(!empty($username) || !empty($password) ){
+    // create connection 
+    $users = $db->prepare("SELECT * FROM `users` WHERE `Email`=?");
+    if($users->execute(array($email))){
+      $row = $users->fetch(PDO::FETCH_ASSOC);
+      if ($row['Password'] == $password) {
+        $_SESSION['loginEmail'] = $email;
+        header('location: ./');
+        $_SESSION['loginSuccess'] = "Welcome to Onoa shop";
+      }else{
+        $error =  'You have entered a wrong password please try again';
+      }
 
-// if ( $rnum==0) 
-// {
-// 	$stmt -> close();
-	
-// 	$stmt = $conn->prepare($INSERT);
-// 	$stmt -> bind_param ("ssi", $username, $email, $password );
-//     $stmt -> execute ();
-	 
-// 	 echo  "New recode inserted sucessfully";
-	
-// }
-// 	else {
-// 		echo "Someone already has registered using this email";
-// 	}
-	
-// 	$stmt -> close();
-// 	$conn -> close();
-// 	}	
-	
-// }
-// else {
-// 	echo "All fields are required";
-// 	die();
-// }
-
-
+    }else {
+      $error = "This email is not registered please <a href='register.php'><b>Click here to register</b></a>";
+    }
+  }
+}
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -148,6 +120,35 @@ $password = $_POST ['password'];
   <section id="aa-catg-head-banner">
     <img src="img/advert-banner.jpg" alt="advert-banner img">
     <div class="aa-catg-head-banner-area">
+     <?php 
+      if (isset($_SESSION['loginNotice'])) {
+        echo "<div class='alert alert-warning alert-dismissible  show' role='alert'>
+          <strong>Login.!!</strong>".$_SESSION['loginNotice']."
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+          </button>
+          </div>";
+          unset($_SESSION['loginNotice']);
+      }
+      if (isset($_SESSION['email'])) {
+        echo "<div class='alert alert-success alert-dismissible  show' role='alert'>
+          <strong>success.!!</strong>You have registered successifully please login.
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+          </button>
+          </div>";
+          unset($_SESSION['email']);
+      }
+      if (isset($error)) {
+        echo "<div class='alert alert-danger alert-dismissible  show' role='alert'>
+          <strong>Failed.!!</strong>".$error."
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+          <span aria-hidden='true'>&times;</span>
+          </button>
+          </div>";
+          unset($error);
+      }
+    ?>
      <div class="container">
       <div class="aa-catg-head-banner-content">
         <h2>Account Page</h2>
@@ -155,6 +156,7 @@ $password = $_POST ['password'];
           <li><a href="index.php">Home</a></li>                   
           <li class="active">Account</li>
         </ol>
+        <p>Please Login to use our shop</p>
       </div>
      </div>
    </div>
@@ -171,12 +173,15 @@ $password = $_POST ['password'];
               <div class="col-md-6">
                 <div class="aa-myaccount-register">                 
                  <h4>Login</h4>
-                 <form action="check.php" class="aa-login-form" method="POST">
-                    <label for="">Username<span>*</span></label>
-                    <input type="text" placeholder="Username" name="Username" required >
-                    <label for="">Password<span>*</span></label>
-                    <input type="password" placeholder="Password" name="Password" required >
-                    <input type="submit" name="Login" class="aa-browse-btn">                    
+                 <form action="login.php" class="aa-login-form" method="POST">
+                    <label for="email">Email<span>*</span></label>
+                    <input type="email"  placeholder="Email" name="email" required >
+                    <label for="password">Password<span>*</span></label>
+                    <input type="password" placeholder="Password" name="password" required >
+                    <input type="submit" name="Login" class="aa-browse-btn">
+                    <div class="aa-register-now">
+                      Don't have an account? <a href="register.php"><b> Register!</b></a>
+                    </div>                    
                   </form>
                 </div>
               </div>
@@ -186,12 +191,7 @@ $password = $_POST ['password'];
      </div>
    </div>
  </section>
- <!-- / Cart view section -->
-
- 
-
-
-    
+  <!-- / Cart view section -->
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
