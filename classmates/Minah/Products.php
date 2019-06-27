@@ -129,6 +129,7 @@ $products->execute(array($category));
             <ul class="nav navbar-nav">
               
               <li><a href="aboutus.php">About Us</a></li>
+              <li style="float: right;"><a href="logout.php">Logout</a></li>
                 </ul>
               </li>
             </ul>

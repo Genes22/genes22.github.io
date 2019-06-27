@@ -132,11 +132,12 @@ if (isset($_POST['subscribeEmail'])) {
           </div>
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
-            <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav">
               <li><a href="Products.php?category=men">Men <span></span></a></li> 
-			  <li><a href="Products.php?category=women">Women<span></span></a></li> 
-			  <li><a href="aboutus.php">About Us</a></li>
-			   <!-- Start header section -->
+        		  <li><a href="Products.php?category=women">Women<span></span></a></li> 
+        		  <li><a href="aboutus.php">About Us</a></li>
+              <li><a href="logout.php">Logout</a></li>
+        		   <!-- Start header section -->
                   
 				
                 </ul>

@@ -79,7 +79,7 @@ $product = $proddet->fetch(PDO::FETCH_ASSOC);
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="index.php">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
@@ -111,8 +111,9 @@ $product = $proddet->fetch(PDO::FETCH_ASSOC);
             </button>          
           </div>
           <ul>
-          <li><a href="home1.html">Home</a></li>                   
+          <li style="float: left;"><a href="index.php">Home</a></li>                   
           <li class="active"></li>
+          <li style="float: right;"><a href="logout.php">Logout</a></li>
         </ul>
       </div>
      </div>
@@ -136,24 +137,19 @@ $product = $proddet->fetch(PDO::FETCH_ASSOC);
                    </div>
                   <h4><?php echo $product['ProductName']; ?></h4>
                   <!-- buying -->
-                  <form method="GET" action="buy.php" class="aa-login-form">
-                  <label for="size">size<span>*</span></label>
-                    <select name="size" id="size" required="true">
-                      <option value="S">S</option>
-                      <option value="M"  selected="S">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                      <option value="XXL">XXL</option>
-                    </select>
-                  <label for="quantity">How many pieces<span>*</span></label>
-                   <input type="number" name="quantity" required="true">
-                    </select>
-                    <div>
-                  <input class="aa-browse-btn" type="submit" value="BUY">
-			             </div>
-      </form>
-		  
 		    <!-- banner section -->
+
+  <!-- Subscribe section -->
+  <section id="aa-subscribe">
+    <div class="container">
+      <div class="row">
+            <p><?php echo $product['ProductDesc']; ?></p>
+      </div>
+      <button><a href="products.php">Back</a></button>
+    </div>
+  </section>
+  <!-- / Subscribe section -->
+   
   
    
 
