@@ -10,10 +10,11 @@ if(isset($_POST['Login'])){
   $email = cleaner(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
   $password = md5(cleaner($_POST ['password']));
 
-  if(!empty($username) || !empty($password) ){
+  if(!empty($email) || !empty($password) ){
     // create connection 
     $users = $db->prepare("SELECT * FROM `users` WHERE `Email`=?");
-    if($users->execute(array($email))){
+    $users->execute(array($email));
+    if($users->rowCount()>0){
       $row = $users->fetch(PDO::FETCH_ASSOC);
       if ($row['Password'] == $password) {
         $_SESSION['loginEmail'] = $email;
@@ -22,7 +23,6 @@ if(isset($_POST['Login'])){
       }else{
         $error =  'You have entered a wrong password please try again';
       }
-
     }else {
       $error = "This email is not registered please <a href='register.php'><b>Click here to register</b></a>";
     }
@@ -82,7 +82,7 @@ if(isset($_POST['Login'])){
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="index.php">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
@@ -156,7 +156,7 @@ if(isset($_POST['Login'])){
           <li><a href="index.php">Home</a></li>                   
           <li class="active">Account</li>
         </ol>
-        <p>Please Login to use our shop</p>
+        <p class="detailer">Please Login to use our shop</p>
       </div>
      </div>
    </div>

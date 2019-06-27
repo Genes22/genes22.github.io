@@ -1,7 +1,17 @@
 <?php 
 require 'includes/main.php';
 session_start();
-if (!isset($_SESSION['loginEmail'])) {
+if (isset($_SESSION['loginEmail'])) {
+    $email = $_SESSION['loginEmail'];
+    $user = $db->prepare("SELECT * FROM `users` WHERE `Email`=:email");
+    $user->execute(array(":email" => $email));
+    $count = $user->rowCount();
+    if($count == 0){
+      header('location: login.php');
+      unset($_SESSION['loginEmail']);
+      $_SESSION['loginNotice'] = "Please login first to use Onoa shop";
+    }
+}else{
   header('location: login.php');
   $_SESSION['loginNotice'] = "Please login first to use Onoa shop";
 }
@@ -180,8 +190,9 @@ $products->execute(array($category));
                       while ($prods= $products->fetch(PDO::FETCH_ASSOC)) {  
                         echo "<li>
                           <figure>
-                            <a class='aa-product-img' href='#'><img src='img/uploaded/".$prods['productImage']."' alt='Slim Men Shirt img'></a>
-                            <a class='aa-add-card-btn'href=''><span class='fa fa-shopping-cart'></span>Add To Cart</a>
+                          <a class='aa-product-img' href='details.php?product=".$prods['ProductName']."'><img src='img/uploaded/".$prods['productImage']."' alt='Slim Men Shirt img'>
+                          </a>
+                          <a class='aa-add-card-btn' onclick='addcart(".json_encode($prods['ProductName']).")'><span class='fa fa-shopping-cart'></span>Add To Cart</a>
                               <figcaption>
                               <h4 class='aa-product-title'><a href='details.php?product=".$prods['ProductName']."'>".$prods['ProductName']."</a></h4>
                               <span class='aa-product-price'>Tshs 25,000</span><span class='aa-product-price'><del>Tshs ".$prods['ProductPrice']."</del></span>
@@ -226,7 +237,30 @@ $products->execute(array($category));
   </section>
   <!-- / Subscribe section -->
         
-   
+<script type="text/javascript">
+
+  var addcart = (Product) =>{
+    var data = Product;
+    console.log(data);
+    // $.ajax({
+    //         type: 'POST',
+    //         url: '/set_session',
+    //         data: $("#userform").serialize()
+    //     })
+    //     .done(function(data){
+    //         // show the response
+    //          $('#response').html(data);
+    //     })
+    //     .fail(function() {
+    //         // just in case posting your form failed
+    //         alert( "Posting failed." );
+    //     });
+    //     // to prevent refreshing the whole page page
+    //     return false;
+  }
+  
+
+</script>
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->

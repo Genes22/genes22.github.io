@@ -69,9 +69,6 @@ a:focus {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
 }
-p {
-  color: #ffffff;
-}
 
 h2 {
   font-size: 30px;
@@ -85,6 +82,9 @@ img {
   border: none;
 }
 
+.detailer {
+  color: #ffffff;
+}
 .aa-primary-btn {
   font-size: 16px;
   padding: 10px 30px;

@@ -1,14 +1,24 @@
 <?php 
 require 'includes/main.php';
 session_start();
-if (!isset($_SESSION['loginEmail'])) {
+if (isset($_SESSION['loginEmail'])) {
+    $email = $_SESSION['loginEmail'];
+    $user = $db->prepare("SELECT * FROM `users` WHERE `Email`=:email");
+    $user->execute(array(":email" => $email));
+    $count = $user->rowCount();
+    if($count == 0){
+      header('location: login.php');
+      unset($_SESSION['loginEmail']);
+      $_SESSION['loginNotice'] = "Please login first to use Onoa shop";
+    }
+}else{
   header('location: login.php');
   $_SESSION['loginNotice'] = "Please login first to use Onoa shop";
 }
 
 if (isset($_POST['subscribeEmail'])) {
   $subEmail = $_POST['emailSub'];
-  $add = $conn->prepare("INSERT INTO `subscription` (`email`) VALUES (?)");
+  $add = $db->prepare("INSERT INTO `subscription` (`email`) VALUES (?)");
   if ($add->execute(array($subEmail))) {
     $submsg = "Subscription added..!!";
   } 

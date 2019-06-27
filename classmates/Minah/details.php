@@ -1,11 +1,20 @@
 <?php 
 require 'includes/main.php';
 session_start();
-if (!isset($_SESSION['loginEmail'])) {
+if (isset($_SESSION['loginEmail'])) {
+    $email = $_SESSION['loginEmail'];
+    $user = $db->prepare("SELECT * FROM `users` WHERE `Email`=:email");
+    $user->execute(array(":email" => $email));
+    $count = $user->rowCount();
+    if($count == 0){
+      header('location: login.php');
+      unset($_SESSION['loginEmail']);
+      $_SESSION['loginNotice'] = "Please login first to use Onoa shop";
+    }
+}else{
   header('location: login.php');
   $_SESSION['loginNotice'] = "Please login first to use Onoa shop";
 }
-
 $prdname = "Red black gown";
 if (isset($_GET['product'])) {
   $prdname = $_GET['product'];
@@ -22,7 +31,7 @@ $product = $proddet->fetch(PDO::FETCH_ASSOC);
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>OnoA Shop | Prdoucts Page</title>
+    <title>OnoA Shop | products Page</title>
     
     <!-- Font awesome -->
     <link href="css/font-awesome.css" rel="stylesheet">

@@ -125,7 +125,7 @@ if(isset($_POST['register'])){
           <li><a href="index.php">Home</a></li>                   
           <li class="active">Account</li>
         </ol>
-        <p>Please register to use our shop</p>
+        <p class="detailer">Please register to use our shop</p>
       </div>
      </div>
    </div>
