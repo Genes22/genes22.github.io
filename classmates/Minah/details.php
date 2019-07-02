@@ -145,7 +145,7 @@ $product = $proddet->fetch(PDO::FETCH_ASSOC);
       <div class="row">
             <p><?php echo $product['ProductDesc']; ?></p>
       </div>
-      <button><a href="products.php">Back</a></button>
+      <button><a href="products.php?category=">Back</a></button>
     </div>
   </section>
   <!-- / Subscribe section -->

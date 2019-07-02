@@ -101,7 +101,6 @@ if(isset($_POST['register'])){
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
             <ul class="nav navbar-nav">
-              <li><a href="Products.php">Products </a></li>
               <li><a href="aboutus.php">About Us</a></li>
                 </ul>
               </li>

@@ -142,6 +142,13 @@ if (isset($_POST['subscribeEmail'])) {
 			The aim for building this ordering website is to give online customers the possibility to place an order with just a few clicks from their desktop/laptop/mobile phone.
 		</div>
 		<br/>
+
+    <div>
+      Contact us 
+      +255658349463<br>
+      Email: minahh658@gmail.com
+    </div>
+    
 	  </center>
   <!-- /details about OnoA -->
 

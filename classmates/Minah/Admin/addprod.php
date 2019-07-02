@@ -1,43 +1,67 @@
 <?php
-require '../includes/main.php';
-session_start();
 
-if (isset($_SESSION['adminEmail'])) {
-  header('location: addprod.php');
-  $_SESSION['adminloginSuccess'] = "Welcome to Onoa shop";
+require '../includes/main.php';
+
+if(!isset($_SESSION['adminEmail'])){
+  header('location: ./');
 }
 
-if(isset($_POST['Login'])){
-  $email = cleaner(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
-  $password = md5(cleaner($_POST ['password']));
 
-  if(!empty($email) || !empty($password) ){
-    // create connection 
-    $users = $db->prepare("SELECT * FROM `users` WHERE `Email`=?");
-    $users->execute(array($email));
-    if($users->rowCount()>0){
-      $row = $users->fetch(PDO::FETCH_ASSOC);
-      if ($row['Password'] == $password) {
-        $_SESSION['adminEmail'] = $email;
-        header('location:addProd.php');
-        $_SESSION['adminloginSuccess'] = "Login succeded";
-      }else{
-        $error =  'You have entered a wrong password please try again';
-      }
-    }else {
-      $error = "This email is not registered please <a href='register.php'><b>Click here to register</b></a>";
+
+if(isset($_POST['add'])){
+	$productname = cleaner($_POST['Productname']);
+	$productDescription= cleaner($_POST['ProductDescription']);
+	$quantity = cleaner($_POST ['Quantity']);
+	$price = cleaner($_POST ['Price']);
+	
+  //check if the product name is not empty
+  if(!empty($productname)){
+		if (isset($_FILES['image'])) {
+		        $file_name = $_FILES['image']['name'];
+            $file_size = $_FILES['image']['size'];
+            $file_tmp = $_FILES['image']['tmp_name'];
+            $file_type = $_FILES['image']['type'];
+            $path_parts = pathinfo($file_name);
+            $file_ext = strtolower($path_parts['extension']);
+            $filename = $path_parts['filename'];
+            $imageName = cleaner($filename.'.'.$file_ext);
+
+            //Short version of the above 3 lines of code
+            //$file_ext = strtolower(end(explode('.',$_FILES['ProductImage']['name'])));
+            $extensions = array("jpeg", "jpg", "png");
+
+            if(in_array($file_ext,$extensions)=== false){
+                 $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+             }     
+            if($file_size > 2097152) {
+                $errors[]='File size must be excately 2 MB';
+            }
+            if(empty($errors)==true) {
+              //moving the image file to products directory
+                move_uploaded_file($file_tmp,"../img/uploaded/".$file_name);
+                $insert = $db->prepare("INSERT INTO `products` (`Product name`, `Product description`, `Product quantity`, `Product price`, `productImage`) VALUES (?, ?, ?, ?,?)");
+                if ($insert->execute(array($productname, $productDescription,$quantity,$price,$imageName))) {
+                    $valid = "product added successifully";
+                }else{
+                    $valid =  "failed to insert new product please check your data";
+                }
+            }else{
+                print_r($errors);
+            }
+        }
     }
-  }
 }
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <title>OnoA Shop | Account Page</title>
+    <title>Add products</title>
     
     <!-- Font awesome -->
     <link href="../css/font-awesome.css" rel="stylesheet">
@@ -73,6 +97,7 @@ if(isset($_POST['Login'])){
 
   </head>
   <body>
+ 
   <header id="aa-header">
     <!-- start header bottom  -->
     <div class="aa-header-bottom">
@@ -83,7 +108,7 @@ if(isset($_POST['Login'])){
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.php">
+                <a href="index.html">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
@@ -95,54 +120,35 @@ if(isset($_POST['Login'])){
     </div>
     <!-- / header bottom  -->
   </header>
-  <!-- / header section -->
 
-  <!-- catg header banner section -->
-  <section id="aa-catg-head-banner">
-    <div class="aa-catg-head-banner-area">
-     <?php 
-      if (isset($_SESSION['loginNotice'])) {
-        echo "<div class='alert alert-warning alert-dismissible  show' role='alert'>
-          <strong>Login.!!</strong>".$_SESSION['loginNotice']."
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-          <span aria-hidden='true'>&times;</span>
-          </button>
-          </div>";
-          unset($_SESSION['loginNotice']);
-      }
-      if (isset($_SESSION['email'])) {
-        echo "<div class='alert alert-success alert-dismissible  show' role='alert'>
-          <strong>success.!!</strong>You have registered successifully please login.
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-          <span aria-hidden='true'>&times;</span>
-          </button>
-          </div>";
-          unset($_SESSION['email']);
-      }
-      if (isset($error)) {
-        echo "<div class='alert alert-danger alert-dismissible  show' role='alert'>
-          <strong>Failed.!!</strong>".$error."
-          <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-          <span aria-hidden='true'>&times;</span>
-          </button>
-          </div>";
-          unset($error);
-      }
-    ?>
-     <div class="container">
-      <div class="aa-catg-head-banner-content">
-        <h2>Account Page</h2>
-        <ol class="breadcrumb">
-          <li><a href="index.php">Home</a></li>                   
-          <li class="active">Account</li>
-        </ol>
-        <p class="detailer">Please Login to use our shop</p>
+ <!-- / header section -->
+  <!-- menu -->
+  <section id="menu">
+    <div class="container">
+      <div class="menu-area">
+        <!-- Navbar -->
+        
+          <div class="navbar-collapse collapse">
+            <!-- Left nav -->
+            <ul class="nav navbar-nav">
+              <li><a href="home1.html">Home </a></li>
+            
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div> 
       </div>
-     </div>
-   </div>
+    </div>
   </section>
-  <!-- / catg header banner section -->
+  <!-- / menu -->  
+            <?php 
+                if (isset($valid)) {
+                  echo $valid;
+                }
 
+            ?>
  <!-- Cart view section -->
  <section id="aa-myaccount">
    <div class="container">
@@ -152,16 +158,20 @@ if(isset($_POST['Login'])){
             <div class="row">
               <div class="col-md-6">
                 <div class="aa-myaccount-register">                 
-                 <h4>Login</h4>
-                 <form action="index.php" class="aa-login-form" method="POST">
-                    <label for="email">Email<span>*</span></label>
-                    <input type="email"  placeholder="Email" name="email" required >
-                    <label for="password">Password<span>*</span></label>
-                    <input type="password" placeholder="Password" name="password" required >
-                    <input type="submit" name="Login" class="aa-browse-btn">
-                    <div class="aa-register-now">
-                      Don't have an account? <a href="register.php"><b> Register!</b></a>
-                    </div>                    
+                 <h4>Add Products</h4>
+                 <form action="addprod.php" enctype="multipart/form-data" class="aa-login-form" method="POST">
+                    <label for="">Product name<span></span></label>
+                    <input type="text" placeholder="Product name" name="Productname" required > <br> <br>
+                    <label for="">Product Description<span></span></label>
+                    <input type="text" placeholder="ProductDescription" name="ProductDescription" required > <br> <br>
+                    <label for="">Quantity<span></span></label>
+                    <input type="text" placeholder="Quantity" name="Quantity" required > <br> <br>
+                    <label for="">Price<span></span></label>
+                    <input type="Price" placeholder="Price" name="Price" required><br> <br>
+                    <input type="file" name="image"> <br> <br>
+                    <input type="submit" name="add" class="aa-browse-btn">
+                    <br>
+
                   </form>
                 </div>
               </div>
@@ -171,7 +181,12 @@ if(isset($_POST['Login'])){
      </div>
    </div>
  </section>
-  <!-- / Cart view section -->
+ <!-- / Cart view section -->
+
+
+
+
+    
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
