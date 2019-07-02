@@ -137,9 +137,9 @@ float-right:100%;
 
 
 <div class="tab">
-  <button class="tablinks"> <a class="hery" href="index.html">HOME</a></button>
-   <button class="tablinks"> <a class="noula" href="aboutus.html">ABOUT US</a></button>
-    <button class="tablinks"> <a class="bro"  href="contactus.html">CONTACT US </a></button>
+  <button class="tablinks"> <a class="hery" href="index.php">HOME</a></button>
+   <button class="tablinks"> <a class="noula" href="aboutus.php">ABOUT US</a></button>
+    <button class="tablinks"> <a class="bro"  href="contactus.php">CONTACT US </a></button>
 </div>
 
 
@@ -346,17 +346,18 @@ float-right:100%;
                                 <p style="text-align:justify;color:#fff;">Dar es Salam, Tanzania, East Africa</p>
                             </div>
                         </div>
-
+                        <center>
                         <div class="floatcenter" style="height:190px;">
                             <p style="color:blue">WORK SHOP</p>
                             <div class="mt15 white" style="margin-left: 30px;margin-top: 20px;">
-                                <p style="text-align:justify;color:#fff;">Plot No. 84</p>
-                                <p style="text-align:justify;color:#fff;">Tegeta Nyaishozi</p>
-                                <p style="text-align:justify;color:#fff;">Wazo Industrial Area</p>
-                                <p style="text-align:justify;color:#fff;">Bagamoyo Road</p>
-                                <p style="text-align:justify;color:#fff;">Dar es Salam, Tanzania, East Africa</p>
+                                <p style="color:#fff;">Plot No. 84</p>
+                                <p style="color:#fff;">Tegeta Nyaishozi</p>
+                                <p style="color:#fff;">Wazo Industrial Area</p>
+                                <p style="color:#fff;">Bagamoyo Road</p>
+                                <p style="color:#fff;">Dar es Salam, Tanzania, East Africa</p>
                             </div>
                         </div>
+                        </center>
 <br>
 <br>
 <br>

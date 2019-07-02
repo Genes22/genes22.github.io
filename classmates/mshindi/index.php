@@ -195,9 +195,9 @@ height: 50;
 
 
 <div class="tab">
-  <button class="tablinks"> <a class="hery" href="index.html">HOME</a></button>
-   <button class="tablinks"> <a class="noula" href="aboutus.html"> ABOUT US</a></button>
-    <button class="tablinks"> <a class="bro"  href="CONTACTS.html"> CONTACT US</a></button>
+  <button class="tablinks"> <a class="hery" href="index.php">HOME</a></button>
+   <button class="tablinks"> <a class="noula" href="aboutus.php"> ABOUT US</a></button>
+    <button class="tablinks"> <a class="bro"  href="contactus.php"> CONTACT US</a></button>
 </div>
 
 
@@ -234,174 +234,86 @@ height: 50;
 
 
 
-
-
-
 <center>
 <div class="border">
-
 <div class="slideshow-container">
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/shabiby.jpeg" style="width: 80%">
-
 </div>
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/mtei.jpg" style="width: 80%">
-  
 </div>
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/njombe.jpg" style="width: 80%">
-  
 </div>
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/tilisho.jpg" style="width: 80%">
   </div>
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/tashrif.jpeg" style="width: 80%">
-  
 </div>
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/sutco.jpeg" style="width: 80%">
-  
 </div>
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/simba.jpeg" style="width: 80%">
-  
 </div>
-
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/ratco.jpeg" style="width: 80%">
-  
 </div>
-
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
-  <img src="buses/kilimanjaro.jpeg" style="width: 80%">
-  
+  <img src="buses/kilimanjaro.jpeg" style="width: 80%">  
 </div>
-
-
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/newforce.jpeg" style="width: 80%">
-  
 </div>
-
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/mbeya.jpeg" style="width: 80%">
-  
 </div>
-
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/kidia.jpg" style="width: 80%">
-  
 </div>
-
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/Jmc.jpeg" style="width: 80%">
   
 </div>
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/iringa.jpeg" style="width: 80%">
-  
 </div>
-
-
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/happy.jpg" style="width: 80%">
-  
 </div>
-
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/extra.jpg" style="width: 80%">
-  
-</div>
-
-
-
+  </div>
 <div class="mySlides fade">
   <div class="numbertext"></div>
-  <img src="buses/esther.jpeg" style="width: 80%">
-  
+  <img src="buses/esther.jpeg" style="width: 80%">  
 </div>
-
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
-  <img src="buses/dar lux.jpeg" style="width: 80%">
-  
+  <img src="assets/images/buses/darlux.jpeg" style="width: 80%">
 </div>
-
-  
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/abc.jpg" style="width: 80%">
-  
 </div>
-
-
-
 <div class="mySlides fade">
   <div class="numbertext"></div>
   <img src="buses/al sady.jpg"  alt="al sady" style="width: 80%">
@@ -455,32 +367,10 @@ function showSlides() {
 }
 </script>
 
-
-
-
-
-
-<!--Available routes-->
-
-<br>
-<br>
-<br>
-<br>
-
-
-<!--back on top-->
-
-<a href="#top">TOP</a>
-
-
-<!--booking form-->
-<br>
-<br>
-
 <center>
 <div>
 
- <div class="row" style="margin-top: 10%;">
+ <div class="row" style="margin-top: 5%;">
         <div class="col-md-12" style="color: rgb(0,0,0);">
             <h2 class="text-center text-info" style="color: rgb(0,0,0)!important;font-weight: bold;">Please Enter Your Traveling details</h2>
         </div>
@@ -573,17 +463,17 @@ DATE:<input type="date" name="date" value=""></BR>
                                 <p style="text-align:justify;color:#fff;">Dar es Salam, Tanzania, East Africa</p>
                             </div>
                         </div>
-
+                        <center>
                         <div class="floatcenter" style="height:190px;">
                             <p style="color:blue">WORK SHOP</p>
                             <div class="mt15 white" style="margin-left: 30px;margin-top: 20px;">
-                                <p style="text-align:justify;color:#fff;">Plot No. 84</p>
-                                <p style="text-align:justify;color:#fff;">Tegeta Nyaishozi</p>
-                                <p style="text-align:justify;color:#fff;">Wazo Industrial Area</p>
-                                <p style="text-align:justify;color:#fff;">Bagamoyo Road</p>
-                                <p style="text-align:justify;color:#fff;">Dar es Salam, Tanzania, East Africa</p>
+                                <p style="color:#fff;">Plot No. 84</p>
+                                <p style="color:#fff;">Tegeta Nyaishozi</p>
+                                <p style="color:#fff;">Wazo Industrial Area</p>
+                                <p style="color:#fff;">Bagamoyo Road</p>
                             </div>
                         </div>
+                        </center>
 <br>
 <br>
 <br>
