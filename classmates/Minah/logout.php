@@ -62,11 +62,11 @@ if (session_destroy()) {
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.php">
+                <a href="./">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
-				<p><a href="index.php">Home</a></p> 
+				<p><a href="./">Home</a></p> 
                 <!-- img based logo -->
                 <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>

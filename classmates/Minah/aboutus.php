@@ -85,7 +85,7 @@ if (isset($_POST['subscribeEmail'])) {
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.php">
+                <a href="./">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
@@ -116,7 +116,7 @@ if (isset($_POST['subscribeEmail'])) {
             </button>          
           </div>
           <ul>
-          <li style="float: left;"><a href="index.php">Home</a></li>                   
+          <li style="float: left;"><a href="./">Home</a></li>                   
           <li class="active"></li>
           <li style="float: right;"><a href="logout.php">Logout</a></li>
         </ul>
@@ -160,7 +160,7 @@ if (isset($_POST['subscribeEmail'])) {
           <div class="aa-subscribe-area">
             <h3>Subscribe our Website </h3>
             <p>If you want our monthly newsletter, please enter your email below and subscribe</p>
-            <form  method="POST" action="index.php" class="aa-subscribe-form">
+            <form  method="POST" action="./" class="aa-subscribe-form">
               <input type="email" name="emailSub" id="" placeholder="Enter your Email">
               <input type="submit" name="subscribeEmail" value="Subscribe">
             </form>

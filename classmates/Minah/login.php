@@ -82,7 +82,7 @@ if(isset($_POST['Login'])){
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.php">
+                <a href="./">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
@@ -153,7 +153,7 @@ if(isset($_POST['Login'])){
       <div class="aa-catg-head-banner-content">
         <h2>Account Page</h2>
         <ol class="breadcrumb">
-          <li><a href="index.php">Home</a></li>                   
+          <li><a href="./">Home</a></li>                   
           <li class="active">Account</li>
         </ol>
         <p class="detailer">Please Login to use our shop</p>

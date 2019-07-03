@@ -79,7 +79,7 @@ $product = $proddet->fetch(PDO::FETCH_ASSOC);
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.php">
+                <a href="./">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
@@ -111,7 +111,7 @@ $product = $proddet->fetch(PDO::FETCH_ASSOC);
             </button>          
           </div>
           <ul>
-          <li style="float: left;"><a href="index.php">Home</a></li>                   
+          <li style="float: left;"><a href="./">Home</a></li>                   
           <li class="active"></li>
           <li style="float: right;"><a href="logout.php">Logout</a></li>
         </ul>
@@ -145,7 +145,7 @@ $product = $proddet->fetch(PDO::FETCH_ASSOC);
       <div class="row">
             <p><?php echo $product['ProductDesc']; ?></p>
       </div>
-      <button><a href="products.php?category=">Back</a></button>
+      <button><a href="products.php?category=<?php echo $_GET['category']; ?>">Back</a></button>
     </div>
   </section>
   <!-- / Subscribe section -->

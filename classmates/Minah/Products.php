@@ -1,6 +1,7 @@
 <?php 
 require 'includes/main.php';
 session_start();
+
 if (isset($_SESSION['loginEmail'])) {
     $email = $_SESSION['loginEmail'];
     $user = $db->prepare("SELECT * FROM `users` WHERE `Email`=:email");
@@ -15,13 +16,19 @@ if (isset($_SESSION['loginEmail'])) {
   header('location: login.php');
   $_SESSION['loginNotice'] = "Please login first to use Onoa shop";
 }
-$category = 1;
+$categry = 1;
 if (isset($_GET['category'])) {
   $cat = $_GET['category'];
   if ($cat == 'women') {
-    $category = 0;
+    $categry = 0;
+  }elseif ($cat == 'men') {
+    $categry = 1;
+  }elseif ($cat == 0) {
+    $categry = 0;
+  }elseif ($cat == 1) {
+    $categry = 1;
   }else{
-    $category = 1;
+    $categry = 1;
   }
 }
 
@@ -38,7 +45,7 @@ if (isset($_POST['subscribeEmail'])) {
 //end subscription
 //get product details
 $products = $db->prepare("SELECT * FROM `products` WHERE `category`=?");
-$products->execute(array($category));
+$products->execute(array($categry));
 ?>
 <html>
 
@@ -93,7 +100,7 @@ $products->execute(array($category));
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.php">
+                <a href="./">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
@@ -149,7 +156,7 @@ $products->execute(array($category));
       <div class="aa-catg-head-banner-content">
         <h2>Products Page</h2>
         <ol class="breadcrumb">
-          <li><a href="index.php">Home</a></li>                   
+          <li><a href="./">Home</a></li>                   
           <li class="active"></li>
         </ol>
       </div>
@@ -171,10 +178,10 @@ $products->execute(array($category));
                  <ul class="nav nav-tabs aa-products-tab">
                     <li class="active"><a href="#men" data-toggle="tab">
                       <?php 
-                      if ($category == 0) {
-                        echo 'WOMEN';
-                      }else{
+                      if ($categry == 1) {
                         echo 'MEN';
+                      }elseif($categry == 0){
+                        echo 'WOMEN';
                       }
 
                        ?>
@@ -191,11 +198,11 @@ $products->execute(array($category));
                       while ($prods= $products->fetch(PDO::FETCH_ASSOC)) {  
                         echo "<li>
                           <figure>
-                          <a class='aa-product-img' href='details.php?product=".$prods['ProductName']."'><img src='img/uploaded/".$prods['productImage']."' alt='Slim Men Shirt img'>
+                          <a class='aa-product-img' href='details.php?product=".$prods['ProductName'].'&category='.$prods['category']."'><img src='img/uploaded/".$prods['productImage']."' alt='Slim Men Shirt img'>
                           </a>
                           <a class='aa-add-card-btn' onclick='addcart(".json_encode($prods['ProductName']).")'><span class='fa fa-shopping-cart'></span>Add To Cart</a>
                               <figcaption>
-                              <h4 class='aa-product-title'><a href='details.php?product=".$prods['ProductName']."'>".$prods['ProductName']."</a></h4>
+                              <h4 class='aa-product-title'><a href='details.php?product=".$prods['ProductName'].'&category='.$prods['category']."'>".$prods['ProductName']."</a></h4>
                               <span class='aa-product-price'>Tshs 25,000</span><span class='aa-product-price'><del>Tshs ".$prods['ProductPrice']."</del></span>
                             </figcaption>
                           </figure>                        
@@ -227,7 +234,7 @@ $products->execute(array($category));
           <div class="aa-subscribe-area">
             <h3>Subscribe our Website </h3>
             <p>If you want our monthly newsletter, please enter your email below and subscribe</p>
-            <form  method="POST" action="index.php" class="aa-subscribe-form">
+            <form  method="POST" action="./" class="aa-subscribe-form">
               <input type="email" name="emailSub" id="" placeholder="Enter your Email">
               <input type="submit" name="subscribeEmail" value="Subscribe">
             </form>
@@ -242,25 +249,19 @@ $products->execute(array($category));
 
   var addcart = (Product) =>{
     var data = Product;
-    console.log(data);
-    // $.ajax({
-    //         type: 'POST',
-    //         url: '/set_session',
-    //         data: $("#userform").serialize()
-    //     })
-    //     .done(function(data){
-    //         // show the response
-    //          $('#response').html(data);
-    //     })
-    //     .fail(function() {
-    //         // just in case posting your form failed
-    //         alert( "Posting failed." );
-    //     });
-    //     // to prevent refreshing the whole page page
-    //     return false;
-  }
-  
 
+    //initialize http get request
+    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.readyState==4&&xmlhttp.status==200){
+            console.log(xmlhttp.responseText);
+        }
+    }
+
+    xmlhttp.open('GET','cart.php?product='+data,true); /*sending the  product name to the cart section*/
+    xmlhttp.send();
+    }
 </script>
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

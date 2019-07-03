@@ -78,12 +78,12 @@ if (isset($_POST['subscribeEmail'])) {
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.php">
+                <a href="./">
                   <span class="fa fa-shopping-cart"></span>
                   <p>OnoA<strong>Shop</strong> <span>Your Online Ordering Partner</span></p>
                 </a>
                 <!-- img based logo -->
-                <!-- <a href="index.php"><img src="img/logo.jpg" alt="logo img"></a> -->
+                <!-- <a href="./"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>
               <!-- / logo  -->
                           
@@ -290,7 +290,7 @@ if (isset($_POST['subscribeEmail'])) {
           <div class="aa-subscribe-area">
             <h3>Subscribe our Website </h3>
             <p>If you want our monthly newsletter, please enter your email below and subscribe</p>
-            <form  method="POST" action="index.php" class="aa-subscribe-form">
+            <form  method="POST" action="./" class="aa-subscribe-form">
               <input type="email" name="emailSub" id="" placeholder="Enter your Email">
               <input type="submit" name="subscribeEmail" value="Subscribe">
             </form>
