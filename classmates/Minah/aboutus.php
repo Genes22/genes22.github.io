@@ -92,6 +92,9 @@ if (isset($_POST['subscribeEmail'])) {
 				        <!-- img based logo -->
                 <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>
+              <div style="float: right;" title="View cart items">
+                <a href="cartitems.php"><i class="fa fa-shopping-cart fa-3x"></i></a>
+              </div>
               <!-- / logo  -->
                </div>
           </div>

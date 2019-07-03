@@ -107,6 +107,9 @@ $products->execute(array($categry));
                 <!-- img based logo -->
                 <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
               </div>
+              <div style="float: right;" title="View cart items">
+                <a href="cartitems.php"><i class="fa fa-shopping-cart fa-3x"></i></a>
+              </div>
               <!-- / logo  -->
                         
             </div>
@@ -204,7 +207,7 @@ $products->execute(array($categry));
                           <a class='aa-add-card-btn' onclick='addcart(".json_encode($prods['ProductName']).")'><span class='fa fa-shopping-cart'></span>Add To Cart</a>
                               <figcaption>
                               <h4 class='aa-product-title'><a href='details.php?product=".$prods['ProductName'].'&category='.$prods['category']."'>".$prods['ProductName']."</a></h4>
-                              <span class='aa-product-price'>Tshs 25,000</span><span class='aa-product-price'><del>Tshs ".$prods['ProductPrice']."</del></span>
+                              <span class='aa-product-price'>Tshs ".$prods['ProductPrice']."</span></span>
                             </figcaption>
                           </figure>                        
                          
