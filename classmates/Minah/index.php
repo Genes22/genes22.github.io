@@ -1,6 +1,8 @@
 <?php 
 require 'includes/main.php';
 session_start();
+//user has to be logged in to use the system
+//apply the feature to all the pages on the main domain
 if (isset($_SESSION['loginEmail'])) {
     $email = $_SESSION['loginEmail'];
     $user = $db->prepare("SELECT * FROM `users` WHERE `Email`=:email");

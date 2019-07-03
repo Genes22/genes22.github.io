@@ -188,6 +188,7 @@ $products->execute(array($categry));
                     </a></li>
                     
                    </ul>
+                   <div class="notifications"></div>
                   <!-- Tab panes -->
                   <div class="tab-content">
                     <!-- Start men product category -->
@@ -225,7 +226,8 @@ $products->execute(array($categry));
     </div>
   </section>
   <!-- / Products section -->
-  
+  <div class="notifications"></div>
+
   <!-- Subscribe section -->
   <section id="aa-subscribe">
     <div class="container">
@@ -249,17 +251,17 @@ $products->execute(array($categry));
 
   var addcart = (Product) =>{
     var data = Product;
-
+    var notif = document.querySelector(".notifications")
     //initialize http get request
-    
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
         if(xmlhttp.readyState==4&&xmlhttp.status==200){
-            console.log(xmlhttp.responseText);
+          var response = xmlhttp.responseText;
+          notif.innerHTML = "<div class='alert alert-success alert-dismissible  show' role='alert'>" + response + "<button type='button' class='close' data-dismiss='alert' aria-label='Close'> <span aria-hidden='true'>&times;</span></button></div>";
         }
     }
 
-    xmlhttp.open('GET','cart.php?product='+data,true); /*sending the  product name to the cart section*/
+    xmlhttp.open('GET','addCart.php?product='+data,true); /*sending the  product name to the cart section*/
     xmlhttp.send();
     }
 </script>

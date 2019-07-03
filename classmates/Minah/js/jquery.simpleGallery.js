@@ -13,7 +13,7 @@
         var opts = $.extend({}, $.fn.simpleGallery.defaults, options);
 
         if (this.length <= 0) {
-            debug('There are no thumbnails in the gallery');
+            //debug('There are no thumbnails in the gallery');
             return false;
         }
 
