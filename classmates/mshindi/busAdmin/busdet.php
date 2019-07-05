@@ -82,7 +82,7 @@ if (isset($_POST['addbus'])) {
               unset($_SESSION['loginSuccess']);
       }
   ?>
-  
+  <button class="btn btn-success" style="float: left;"><a href="wateja.php" style="color: white;">View Tickets</a></button>
 	<form method="POST" enctype="multipart/form-data" action="busdet.php" style ="margin-left: 13em; margin-bottom: 13em; font-size: 2em ; margin-top: 5em">
     <input type="submit" class="btn btn-danger" name="logout" style="float: right;" value="Logout">
 		<label for="busName">Bus name</label>

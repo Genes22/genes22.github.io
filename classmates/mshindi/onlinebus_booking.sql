@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2019 at 01:05 PM
+-- Generation Time: Jul 05, 2019 at 02:23 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -55,8 +55,32 @@ CREATE TABLE `bus_details` (
   `number_seats` int(11) NOT NULL,
   `plate_number` int(11) NOT NULL,
   `bus_phone` int(11) NOT NULL,
+  `bus_fare` int(11) NOT NULL,
   `bus_photo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `bus_details`
+--
+
+INSERT INTO `bus_details` (`bus_id`, `name`, `location`, `destination`, `number_seats`, `plate_number`, `bus_phone`, `bus_fare`, `bus_photo`) VALUES
+(1, 'JMC EXPRESS', 'Dar', 'Mwanza', 60, 456, 716959410, 45000, 'jmc.jpeg'),
+(2, 'DAR LUX', 'Mwanza', 'Dar', 60, 234, 742095730, 25000, 'darlux.jpeg'),
+(3, 'SHABIBY ', 'Dodoma', 'Dar', 60, 220, 755054590, 20000, 'shabiby.jpeg'),
+(4, 'ABC', 'Dar', 'Dodoma', 60, 780, 655054590, 45000, 'abc.jpg'),
+(5, 'EXTRA LUXURY', 'Dar', 'Arusha', 60, 600, 655552222, 25000, 'extra.jpg'),
+(6, 'HAPPY NATION', 'Arusha', 'Dar', 60, 400, 657829097, 20000, 'happy.jpg'),
+(7, 'ESTHER LUXURY', 'Kilimanjaro', 'Dar', 60, 900, 759304010, 45000, 'esther.jpeg'),
+(8, 'TILISHO SAFARI', 'Dar', 'Kilimanjaro', 60, 800, 623897860, 20000, 'tilisho.jpg'),
+(9, 'NEW FORCE', 'Dar', 'Morogoro', 60, 100, 769569023, 30000, 'newforce.jpeg'),
+(10, 'UPENDO COARCH', 'Iringa', 'Dar', 60, 350, 716959410, 25000, 'iringa.jpeg'),
+(11, 'SUTCO', 'Dar', 'Iringa', 60, 365, 716456810, 30000, 'sutco.jpeg'),
+(12, 'MTEI EXPRESS', 'Singida', 'Dar', 60, 434, 743906543, 20000, 'mtei.jpg'),
+(13, 'MBEYA EXPRESS', 'Dar', 'Mbeya', 60, 569, 732651234, 45000, 'mbeya.jpeg'),
+(14, 'NJOMBE EXPRESS', 'Dar', 'Njombe', 60, 345, 765908765, 20000, 'njombe.jpg'),
+(15, 'SIMBA MTOTO', 'Dar', 'Tanga', 60, 456, 655435677, 25000, 'simba.jpeg'),
+(16, 'TASHRIF', 'Tanga', 'Dar', 60, 123, 716959823, 45000, 'tashrif.jpeg'),
+(17, 'AL SADY', 'Morogoro', 'Dar', 60, 345, 625659410, 25000, 'al sady.jpg');
 
 -- --------------------------------------------------------
 
@@ -79,8 +103,8 @@ CREATE TABLE `passenger` (
 
 INSERT INTO `passenger` (`passenger_id`, `pass_name`, `from`, `destination`, `phone`, `travel_date`) VALUES
 (7, 'mshindi    DIT', 'mwanza', 'dodoma', '06542354', '2019-06-28'),
-(8, '', 'dar', 'arusha', '', '2019-07-11'),
-(9, 'mshindi    mshindi', 'mwanza', 'dodoma', '06548949865', '2019-07-11');
+(9, 'mshindi    mshindi', 'mwanza', 'dodoma', '06548949865', '2019-07-11'),
+(11, 'mshindi    mshindi', 'dar', 'dodoma', '124567564323', '2019-07-26');
 
 -- --------------------------------------------------------
 
@@ -141,13 +165,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bus_details`
 --
 ALTER TABLE `bus_details`
-  MODIFY `bus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `bus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `passenger`
 --
 ALTER TABLE `passenger`
-  MODIFY `passenger_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `passenger_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `ticket`

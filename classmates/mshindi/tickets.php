@@ -47,11 +47,10 @@ if (isset($_GET['save'])){
 </head>
 
 <body>
-    <div class="row">
-        <div class="col-sm-4 col-md-7 offset-md-3">
-            <div class="pricingTable green" style="margin-top: 100px;">
-                <div>
-                <div style="float: left;">
+    <center>
+    <div class="row"  style="margin-top: 10%;">
+        <div class="col-sm-3 col-md-6 offset-md-3">
+                <div style="float: left;margin-left: 5px; margin-top: 70px;">
                   <img src="assets/images/buses/<?php echo $busPhoto; ?>" alt="bus image">
                 </div>
                 <div style="float: right;">
@@ -60,7 +59,7 @@ if (isset($_GET['save'])){
                     <center><h3>Ticket</h3></center>
                 </div>
                 <div class="pricingContent">
-                    <table class="table table-hover table-dark">
+                    <table class="table table-dark" style="width: 350px;">
                       <tbody>
                         <tr>
                           <th>First name</th>
@@ -94,13 +93,12 @@ if (isset($_GET['save'])){
                       </tbody>
                     </table>
                 </div>
+                <div class="pricingTable-sign-up"><a href="PAYMENT METHOD.HTML" class="btn btn-success">pay now</a></div>
                 </div>  
-                </div>
-                <div class="pricingTable-sign-up"><a href="PAYMENT METHOD.HTML" class="btn btn-block">pay now</a></div>
-            </div>
-            <!-- <img src="assets/images/buses/<?php echo $busPhoto; ?>" alt="bus image"> -->
+            <!-- <img src="assets/images/buses/<?php //echo $busPhoto; ?>" alt="bus image"> -->
         </div>
     </div>
+    </center>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/script.min.js"></script>
