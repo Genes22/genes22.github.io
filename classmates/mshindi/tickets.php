@@ -11,11 +11,12 @@ if (isset($_GET['save'])){
     $passid = cleaner($_GET['passengerID']);
 
     //get bus id
-    $bus = $db->prepare("SELECT `bus_id`,`bus_photo` FROM `bus_details` WHERE `name`=?");
+    $bus = $db->prepare("SELECT `bus_id`,`bus_photo`, `bus_fare` FROM `bus_details` WHERE `name`=?");
     $bus->execute(array($_GET['busname']));
     $buside = $bus->fetch(PDO::FETCH_ASSOC);
     $busID = $buside['bus_id'];
     $busPhoto = $buside['bus_photo'];
+    $fare = $buside['bus_fare'];
     
     //update passenger details
     $buses = $db->prepare("UPDATE `passenger` SET `pass_name` = ?, `phone` = ? WHERE `passenger_id` = ?");
@@ -49,8 +50,13 @@ if (isset($_GET['save'])){
     <div class="row">
         <div class="col-sm-4 col-md-7 offset-md-3">
             <div class="pricingTable green" style="margin-top: 100px;">
-                <div class="pricingTable-header">
-                    <p style="float: right; font-weight: bold;">Not paid</p>
+                <div>
+                <div style="float: left;">
+                  <img src="assets/images/buses/<?php echo $busPhoto; ?>" alt="bus image">
+                </div>
+                <div style="float: right;">
+                  <div class="pricingTable-header">
+                    <!-- <p style="float: right; font-weight: bold;">Not paid</p> -->
                     <center><h3>Ticket</h3></center>
                 </div>
                 <div class="pricingContent">
@@ -78,7 +84,7 @@ if (isset($_GET['save'])){
                         </tr>
                         <tr>
                           <th>Bus fare</th>
-                          <td>40,000Tsh</td>
+                          <td><?php echo $fare; ?></td>
                         </tr>
                         <tr>
                           <th>Ticket number</th>
@@ -88,9 +94,11 @@ if (isset($_GET['save'])){
                       </tbody>
                     </table>
                 </div>
+                </div>  
+                </div>
                 <div class="pricingTable-sign-up"><a href="PAYMENT METHOD.HTML" class="btn btn-block">pay now</a></div>
             </div>
-            <img src="assets/images/buses/<?php echo $busPhoto; ?>" alt="bus image">
+            <!-- <img src="assets/images/buses/<?php echo $busPhoto; ?>" alt="bus image"> -->
         </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2019 at 02:04 PM
+-- Generation Time: Jul 05, 2019 at 01:05 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -25,6 +25,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `adminID` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`adminID`, `email`, `password`) VALUES
+(1, 'makyaokapinga@gmail.com', 'bb8eab924ee1ec8147b48f29589bf8d9');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bus_details`
 --
 
@@ -38,13 +57,6 @@ CREATE TABLE `bus_details` (
   `bus_phone` int(11) NOT NULL,
   `bus_photo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `bus_details`
---
-
-INSERT INTO `bus_details` (`bus_id`, `name`, `location`, `destination`, `number_seats`, `plate_number`, `bus_phone`, `bus_photo`) VALUES
-(2, 'dar lux', 'Mwanza', 'Dodoma', 60, 256, 24597655, 'dar lux.jpeg');
 
 -- --------------------------------------------------------
 
@@ -66,7 +78,9 @@ CREATE TABLE `passenger` (
 --
 
 INSERT INTO `passenger` (`passenger_id`, `pass_name`, `from`, `destination`, `phone`, `travel_date`) VALUES
-(7, 'mshindi    DIT', 'mwanza', 'dodoma', '06542354', '2019-06-28');
+(7, 'mshindi    DIT', 'mwanza', 'dodoma', '06542354', '2019-06-28'),
+(8, '', 'dar', 'arusha', '', '2019-07-11'),
+(9, 'mshindi    mshindi', 'mwanza', 'dodoma', '06548949865', '2019-07-11');
 
 -- --------------------------------------------------------
 
@@ -86,6 +100,12 @@ CREATE TABLE `ticket` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`adminID`);
 
 --
 -- Indexes for table `bus_details`
@@ -112,16 +132,22 @@ ALTER TABLE `ticket`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `bus_details`
 --
 ALTER TABLE `bus_details`
-  MODIFY `bus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `bus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `passenger`
 --
 ALTER TABLE `passenger`
-  MODIFY `passenger_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `passenger_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ticket`
