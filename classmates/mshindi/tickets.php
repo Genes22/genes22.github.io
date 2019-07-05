@@ -11,11 +11,12 @@ if (isset($_GET['save'])){
     $passid = cleaner($_GET['passengerID']);
 
     //get bus id
-    $bus = $db->prepare("SELECT `bus_id`,`bus_photo` FROM `bus_details` WHERE `name`=?");
+    $bus = $db->prepare("SELECT `bus_id`,`bus_photo`, `bus_fare` FROM `bus_details` WHERE `name`=?");
     $bus->execute(array($_GET['busname']));
     $buside = $bus->fetch(PDO::FETCH_ASSOC);
     $busID = $buside['bus_id'];
     $busPhoto = $buside['bus_photo'];
+    $fare = $buside['bus_fare'];
     
     //update passenger details
     $buses = $db->prepare("UPDATE `passenger` SET `pass_name` = ?, `phone` = ? WHERE `passenger_id` = ?");
@@ -46,15 +47,19 @@ if (isset($_GET['save'])){
 </head>
 
 <body>
-    <div class="row">
-        <div class="col-sm-4 col-md-7 offset-md-3">
-            <div class="pricingTable green" style="margin-top: 100px;">
-                <div class="pricingTable-header">
-                    <p style="float: right; font-weight: bold;">Not paid</p>
+    <center>
+    <div class="row"  style="margin-top: 10%;">
+        <div class="col-sm-3 col-md-6 offset-md-3">
+                <div style="float: left;margin-left: 5px; margin-top: 70px;">
+                  <img src="assets/images/buses/<?php echo $busPhoto; ?>" alt="bus image">
+                </div>
+                <div style="float: right;">
+                  <div class="pricingTable-header">
+                    <!-- <p style="float: right; font-weight: bold;">Not paid</p> -->
                     <center><h3>Ticket</h3></center>
                 </div>
                 <div class="pricingContent">
-                    <table class="table table-hover table-dark">
+                    <table class="table table-dark" style="width: 350px;">
                       <tbody>
                         <tr>
                           <th>First name</th>
@@ -78,7 +83,7 @@ if (isset($_GET['save'])){
                         </tr>
                         <tr>
                           <th>Bus fare</th>
-                          <td>40,000Tsh</td>
+                          <td><?php echo $fare; ?></td>
                         </tr>
                         <tr>
                           <th>Ticket number</th>
@@ -88,11 +93,12 @@ if (isset($_GET['save'])){
                       </tbody>
                     </table>
                 </div>
-                <div class="pricingTable-sign-up"><a href="PAYMENT METHOD.HTML" class="btn btn-block">pay now</a></div>
-            </div>
-            <img src="assets/images/buses/<?php echo $busPhoto; ?>" alt="bus image">
+                <div class="pricingTable-sign-up"><a href="PAYMENT METHOD.HTML" class="btn btn-success">pay now</a></div>
+                </div>  
+            <!-- <img src="assets/images/buses/<?php //echo $busPhoto; ?>" alt="bus image"> -->
         </div>
     </div>
+    </center>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/script.min.js"></script>
