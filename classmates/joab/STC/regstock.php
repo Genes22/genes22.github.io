@@ -101,7 +101,7 @@ Jacque{
 
   <div class="topnav">
   <a class="active" href="outerpage.html">Home</a>
-  <a class="passive" href="ingizamauzo.html">Go Next</a>
+  <a class="passive" href="addsales.php">Go Next</a>
   </div>
   <h1>Register Stock</h1>
 

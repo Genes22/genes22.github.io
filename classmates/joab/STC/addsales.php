@@ -106,7 +106,7 @@ Jacque{
   <div class="topnav">
   <a class="active" href="outerpage.html">Home</a>
    <a class="passive" href="regstock.html">Previous</a>
-  <a class="passive" href="dailysales.html">Go Next</a>
+  <a class="passive" href="dailysales.php">Go Next</a>
   </div>
 
 

@@ -11,12 +11,12 @@ if (isset($_POST['register'])) {
 	$country = $_POST['country'];
 	//$region = $_POST['nn'];*/
 	$gender = $_POST['gender'];
-	$company = $_POST['company'];
-	$business = $_POST['business'];
+	$company = $_POST['Company'];
+	$business = $_POST['Business'];
 	$subject = $_POST['subject'];
 	
 	if(!empty($name1) && !empty($name2) && !empty($email) && !empty($passw) && !empty($phone) && !empty($country) && !empty($gender) && !empty($company) && !empty($business) && !empty($subject)){
-		$pass = $conn->prepare("INSERT INTO `users` (`first_name`, `last_name`, `email`, `password`, `phone_number`, `country`, `gender`, `company_name`, `business_name`, `subject`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$pass = $conn->prepare("INSERT INTO `user` (`first_name`, `last_name`, `email`, `password`, `phone_number`, `country`, `gender`, `company_name`, `business_name`, `subject`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		if($pass->execute(array($name1, $name2, $email, $passw, $phone, $country, $gender,$company, $business, $subject))){
 			header('location:logform.html');
 		}else{
