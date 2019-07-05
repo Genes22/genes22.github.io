@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: times new roman;font-style: oblique;  background-color: grey;}
+* {box-sizing: border-box;}
+
+.kalolo { 
+  float: center;
+  background-color: blue;
+  border: 0px solid blue;
+  margin-top: 0rem;
+  margin-left: 1rem;
+  font-weight: bold;
+  width: 5rem;
+  font-style: oblique;
+  font-size: 25px;
+  text-align: center;
+  color: #ccc;
+  border: none;border-radius: 15px;box-shadow: 0 9px pink;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=radio]{
+  background-color: red;
+  width: 19spx;
+  height: 14px;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+input placeholder{ background-color: #ccc; }
+
+
+}
+
+.gen {
+  background-color: none;
+  color: white;
+  font-style: italic;
+}
+
+
+.tab {
+  background-color: none;
+  color: white;
+  font-style: italic;
+}
+.tab input {
+  width: 20rem;
+  color: blue;
+  height: 2rem;
+  text-align: center;
+  border: none;border-radius: 15px;box-shadow: 0 9px grey;
+}
+
+.shah input {
+  width: 20rem;
+  color: blue;
+  height: 2rem;
+  text-align: center;
+  border: none;border-radius: 15px;box-shadow: 0 9px grey;
+
+.container {
+  border-radius: 5px;
+  width: 30rem;
+  float: right;
+  display: flex;
+  margin-top: -40rem;
+  margin-left: 38rem;
+  /*background-color: grey;*/
+  padding: 20px;
+}
+.coda { 
+  float:left;
+  background-color: none;
+  border: 0px solid blue;
+  margin-top: 3rem;
+  margin-left: 7rem;
+}
+</style>
+</head>
+<body>
+<div class="kalolo">
+      <p><a href="index.html">Home</a></p>
+</div>
+
+
+<form action="reguser.php"  method="POST">
+<div class="coda">
+   <h1 style="font-family: times new roman; font-size: 20px; font-weight: bolder;">REGISTER:</h1>
+ 
+  <div class="tab">Name:<br><br>
+    <input placeholder="First name..." name="fname"><br><br>
+    <input placeholder="Last name..." name="lname">
+  </div><br><br>
+  <div class="tab">Contact Info:<br><br>
+    <input placeholder="E-mail..."  name="email"><br><br>
+
+    <input placeholder="Password..."  name="psw"><br><br>
+
+    <input placeholder="Phone..."  name="phone">
+    </div><br><br>
+
+ <label for="country" style="color:white";>Country</label>
+    <select id="country"  style="  width: 500px;" name="country">
+      <option value="australia">Pakistan</option>
+      <option value="canada">Canada</option>
+      <option value="usa">Russia</option>
+      <option value="South Africa">USA</option>
+      <option value="Tanzania">Tanzania</option>
+    </select><br>
+    
+  <div class="gen"  style="color:white";>Gender:<br><br>
+ <input type="radio" name="gender" value="male" checked> Male<br><br>
+ <input type="radio" name="gender" value="female" style=""> Female<br><br>
+ <input type="radio" name="gender" value="other"> Other
+</div><br><br><br>
+
+  
+
+
+    <!--<label for="fname" style="color:white;";>Company Name</label>
+    <input type="text" style="  width: 500px;" id="fname" name="firstname" placeholder="Your Company name.."><br>
+
+    <label for="lname" style="color:white; " ;>Business Name</label>
+    <input type="text" style="  width: 500px;" id="lname" name="lastname" placeholder="Your Business name.."><br>
+
+    <p><label for="subject" style="color:white";>Subject</label></p>
+    <textarea id="subject" name="subject" placeholder="Write Short Description About Your Business.." style="height:95px; width: 800px; color:magenta; border: none; border-radius: 15px;box-shadow: 0 9px pink;"></textarea>
+<input type="submit" style="border: none;border-radius: 15px; background-color:brown;box-shadow: 0 9px pink;" name="register" value="Submit">-->
+
+
+    
+<div>
+  <label for="fname" style="color:white";>Company Name</label><br><br>
+        <input type="text" style="height:30px; width: 600px;"  class="tab" id="fname" name="Company" placeholder="Your Company name..">
+
+
+  <label for="lname" style="color:white";>Business Name</label><br><br>
+        <input type="text" style="height:30px; width: 600px;"   id="lname" name="Business" placeholder="Your Business name..">
+
+
+  <label for="subject" style="color:white";>Subject</label><br>
+        <textarea id="subject" name="subject" placeholder="Write Short Description About Your Business.." style="height:200px; width: 500px; color:magenta;"></textarea>
+
+<input type="submit" name="register" value="Submit">
+
+</div>
+        
+  </div>
+</form> 
+</body>
+</html>

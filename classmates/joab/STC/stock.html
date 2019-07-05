@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Oblique; background-color: magenta;}
+* {box-sizing: border-box;}
+
+.article {
+  float: right;
+  font-family: Times New Roman;
+  padding: 20px;
+  width: 70%;
+  background-color:#4CAF50;
+  height: 400px;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: pink;
+  color: red;
+  font-size: 1em;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 40px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.tab {
+  background-color: none;
+  color: black;
+  font-style: italic;
+}
+
+.container {
+  border-radius: 5px;
+  width: 600px;
+  font-style: oblique;
+  background-color: pink;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+  <div class="article">
+<h1>Stock Checking System</h1>
+     <p><i>Is online system</i>  created and aimed to serve bussiness owners as well as business adminstrators by proving interface or working place to fetch an get informed about their business about the quantities and condition of items held in stock inventory or warehouse .This may help to provide an audit of existing stock </p>.
+
+
+     <p>Also fetch source of discrepancy information include determination of stock which does not work  well on the market means has no customers which are fully need to take or buy. Not only that this system help to determine which stock work better and has good response to the customers, also helpfull to be proactive and responsive to the current needs of the business .</p>
+
+
+     <p>So this system by the way <i>aimed</i> to make good response basically to the owners by being responsive to their business whereby this are foundational act to make owners being easy updated for their business where this helpfull to increase efficiency,working capability as well as increase gross profit,improving control of allowances and reducing loss that sometimes comes from not being updated in business    </p>
+
+   </div>
+
+
+<div id="coda" >
+   <h1>Register:</h1>
+  <!-- One "tab" for each step in the form: -->
+  <div class="tab">Name:
+    <p><input placeholder="First name..." oninput="this.className = ''" name="fname"></p>
+    <p><input placeholder="Last name..." oninput="this.className = ''" name="lname"></p>
+  </div>
+  <div class="tab">Contact Info:
+    <p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>
+    <p><input placeholder="Phone..." oninput="this.className = ''" name="phone"></p>
+  </div>
+  <div class="tab">Where are you from:
+    <p><input placeholder="Your region" oninput="this.className = ''" name="dd"></p>
+    <p><input placeholder="District" oninput="this.className = ''" name="nn"></p>
+  </div>
+  <div class="tab">Login Info:
+    <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+    <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+  </div>
+  </form>
+  </div>  
+
+<div id="code">
+<h3 style="font-style:times new roman; width:">Short Description About Your Bussiness Form</h3>
+
+<div class="container">
+  <form action="/action_page.php">
+    <label for="fname">Company Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your Company name..">
+
+    <label for="lname">Business Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your Business..">
+
+    <label for="country">Country</label>
+    <select id="country" name="country">
+      <option value="australia">Australia</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+      <option value="South Africa">South Africa</option>
+      <option value="Tanzania">Tanzania</option>
+    </select>
+
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" placeholder="Write Short Description About Your Business.." style="height:100px"></textarea>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+</div>
+
+
+<div>
+  <button class="open-button" onclick="openForm()"><p style="color: black; font-style: oblique;">If Already Registered To Open Your Account Click Here</p>Login</button>
+</div>
+
+<div class="form-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Login</h1>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+    <button type="submit" class="btn">Login</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+</body>
+</html>
