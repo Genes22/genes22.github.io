@@ -49,7 +49,7 @@ if (isset($_GET['save'])){
 <body>
     <center>
     <div class="row"  style="margin-top: 10%;">
-        <div class="col-sm-3 col-md-6 offset-md-3">
+        <div class="col-sm-3 col-md-8 offset-md-2">
                 <div style="float: left;margin-left: 5px; margin-top: 70px;">
                   <img src="assets/images/buses/<?php echo $busPhoto; ?>" alt="bus image">
                 </div>
