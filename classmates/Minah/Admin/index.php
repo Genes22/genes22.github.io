@@ -3,8 +3,7 @@ require '../includes/main.php';
 session_start();
 
 if (isset($_SESSION['adminEmail'])) {
-  header('location: addprod.php');
-  $_SESSION['adminloginSuccess'] = "Welcome to Onoa shop";
+  unset($_SESSION['adminEmail']);
 }
 
 if(isset($_POST['Login'])){
@@ -25,7 +24,7 @@ if(isset($_POST['Login'])){
         $error =  'You have entered a wrong password please try again';
       }
     }else {
-      $error = "This email is not registered please <a href='register.php'><b>Click here to register</b></a>";
+      $error = "You're not an admin";
     }
   }
 }
@@ -134,7 +133,6 @@ if(isset($_POST['Login'])){
         <h2>Account Page</h2>
         <ol class="breadcrumb">
           <li><a href="index.php">Home</a></li>                   
-          <li class="active">Account</li>
         </ol>
         <p class="detailer">Please Login to use our shop</p>
       </div>
