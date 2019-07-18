@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2019 at 02:49 PM
+-- Generation Time: Jul 18, 2019 at 07:43 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -21,6 +21,35 @@ SET time_zone = "+00:00";
 --
 -- Database: `onoa`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cartitems`
+--
+
+CREATE TABLE `cartitems` (
+  `itemID` int(11) NOT NULL,
+  `itemName` varchar(255) NOT NULL,
+  `userSec` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cartitems`
+--
+
+INSERT INTO `cartitems` (`itemID`, `itemName`, `userSec`) VALUES
+(1, 'Full suit', 'aminahismail@gmail.com'),
+(2, 'Cotton Printed-shirt', 'aminahismail@gmail.com'),
+(3, 'Blue jeans', 'aminahismail@gmail.com'),
+(4, 'Suit jacket', 'aminahismail@gmail.com'),
+(5, 'Slim shirt', 'aminahismail@gmail.com'),
+(6, 'Sleeve shirt', 'aminahismail@gmail.com'),
+(7, 'Red black gown', 'aminahismail@gmail.com'),
+(8, 'Red chiffon gown', 'aminahismail@gmail.com'),
+(9, 'Simple dress', 'aminahismail@gmail.com'),
+(10, 'Black Floral Gawn', 'aminahismail@gmail.com'),
+(11, 'Summer cotton men shirt', 'aminahismail@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -46,7 +75,7 @@ CREATE TABLE `orders` (
 CREATE TABLE `products` (
   `Product id` int(11) NOT NULL,
   `ProductName` varchar(255) NOT NULL,
-  `Product description` varchar(255) NOT NULL,
+  `ProductDesc` varchar(255) NOT NULL,
   `category` tinyint(1) DEFAULT '0',
   `Product quantity` text NOT NULL,
   `ProductPrice` int(11) NOT NULL,
@@ -57,7 +86,7 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`Product id`, `ProductName`, `Product description`, `category`, `Product quantity`, `ProductPrice`, `productImage`) VALUES
+INSERT INTO `products` (`Product id`, `ProductName`, `ProductDesc`, `category`, `Product quantity`, `ProductPrice`, `productImage`) VALUES
 (5, 'Black Floral Gawn', 'Black Floral Gawn description', 0, '1', 10000, 'women1.jpg'),
 (6, 'Black top', 'Black top description ', 0, '1', 40000, 'women2.jpg'),
 (9, 'Blue jeans', 'Blue jeans description  ', 1, '2', 45000, 'blue-washed-jeans.jpg'),
@@ -78,20 +107,6 @@ INSERT INTO `products` (`Product id`, `ProductName`, `Product description`, `cat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student`
---
-
-CREATE TABLE `student` (
-  `id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `birth` date NOT NULL,
-  `gpa` float NOT NULL,
-  `grade` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `subscription`
 --
 
@@ -107,7 +122,9 @@ CREATE TABLE `subscription` (
 INSERT INTO `subscription` (`subs_id`, `email`) VALUES
 (1, 'amina@gmail.com'),
 (7, 'aminaismail@gmail.com'),
-(8, 'genes0022@gmail.com');
+(8, 'genes0022@gmail.com'),
+(9, 'minah658@gmail.com'),
+(10, 'amm@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -134,6 +151,12 @@ INSERT INTO `users` (`userID`, `Username`, `Email`, `Password`) VALUES
 --
 
 --
+-- Indexes for table `cartitems`
+--
+ALTER TABLE `cartitems`
+  ADD PRIMARY KEY (`itemID`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -147,12 +170,6 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`Product id`);
-
---
--- Indexes for table `student`
---
-ALTER TABLE `student`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `subscription`
@@ -171,6 +188,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `cartitems`
+--
+ALTER TABLE `cartitems`
+  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
@@ -183,16 +206,10 @@ ALTER TABLE `products`
   MODIFY `Product id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `student`
---
-ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `subscription`
 --
 ALTER TABLE `subscription`
-  MODIFY `subs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `subs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
