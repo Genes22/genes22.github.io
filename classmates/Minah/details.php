@@ -100,12 +100,12 @@ $product = $proddet->fetch(PDO::FETCH_ASSOC);
   </header>
   <!-- / header section -->
   <!-- menu -->
-  <section id="menu">
+  <section id="menu" style="margin-bottom: 10px;">
     <div class="container">
       <div class="menu-area">
         <!-- Navbar -->
         <div class="navbar navbar-default" role="navigation">
-          <div class="navbar-header">
+          <div class="navbar-header" >
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
@@ -113,7 +113,7 @@ $product = $proddet->fetch(PDO::FETCH_ASSOC);
               <span class="icon-bar"></span>
             </button>          
           </div>
-          <ul>
+          <ul style="padding: 20px;">
           <li style="float: left;"><a href="./">Home</a></li>                   
           <li class="active"></li>
           <li style="float: right;"><a href="logout.php">Logout</a></li>
