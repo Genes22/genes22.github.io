@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2019 at 07:43 PM
+-- Generation Time: Jul 19, 2019 at 09:00 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -34,23 +34,6 @@ CREATE TABLE `cartitems` (
   `userSec` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `cartitems`
---
-
-INSERT INTO `cartitems` (`itemID`, `itemName`, `userSec`) VALUES
-(1, 'Full suit', 'aminahismail@gmail.com'),
-(2, 'Cotton Printed-shirt', 'aminahismail@gmail.com'),
-(3, 'Blue jeans', 'aminahismail@gmail.com'),
-(4, 'Suit jacket', 'aminahismail@gmail.com'),
-(5, 'Slim shirt', 'aminahismail@gmail.com'),
-(6, 'Sleeve shirt', 'aminahismail@gmail.com'),
-(7, 'Red black gown', 'aminahismail@gmail.com'),
-(8, 'Red chiffon gown', 'aminahismail@gmail.com'),
-(9, 'Simple dress', 'aminahismail@gmail.com'),
-(10, 'Black Floral Gawn', 'aminahismail@gmail.com'),
-(11, 'Summer cotton men shirt', 'aminahismail@gmail.com');
-
 -- --------------------------------------------------------
 
 --
@@ -59,12 +42,40 @@ INSERT INTO `cartitems` (`itemID`, `itemName`, `userSec`) VALUES
 
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
-  `order_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `order_date` date NOT NULL,
   `order_name` varchar(255) NOT NULL,
   `order_email` varchar(255) NOT NULL,
-  `phoneNumber` varchar(15) NOT NULL,
-  `Region` varchar(255) NOT NULL
+  `itemName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `order_date`, `order_name`, `order_email`, `itemName`) VALUES
+(12, '2019-07-19', 'aminah', 'aminahismail@gmail.com', ''),
+(13, '2019-07-19', 'aminah', 'aminahismail@gmail.com', ''),
+(15, '2019-07-19', 'aminah', 'aminahismail@gmail.com', ''),
+(16, '2019-07-19', 'aminah', 'aminahismail@gmail.com', ''),
+(17, '2019-07-19', 'aminah', 'aminahismail@gmail.com', ''),
+(18, '2019-07-19', 'aminah', 'aminahismail@gmail.com', ''),
+(19, '2019-07-19', 'aminah', 'aminahismail@gmail.com', ''),
+(20, '2019-07-19', 'aminah', 'aminahismail@gmail.com', ''),
+(21, '2019-07-19', 'aminah', 'aminahismail@gmail.com', ''),
+(22, '2019-07-19', 'aminah', 'aminahismail@gmail.com', ''),
+(23, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Full suit'),
+(24, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Cotton Printed-shirt'),
+(25, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Blue jeans'),
+(26, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Suit jacket'),
+(27, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Slim shirt'),
+(28, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Sleeve shirt'),
+(29, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Red black gown'),
+(30, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Red chiffon gown'),
+(31, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Simple dress'),
+(32, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Summer cotton men shirt'),
+(33, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Casual gown'),
+(34, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Black top'),
+(35, '2019-07-19', 'aminah', 'aminahismail@gmail.com', 'Black Floral Gawn');
 
 -- --------------------------------------------------------
 
@@ -191,13 +202,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cartitems`
 --
 ALTER TABLE `cartitems`
-  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `products`

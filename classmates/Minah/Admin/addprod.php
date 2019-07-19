@@ -1,5 +1,4 @@
 <?php
-
 require '../includes/main.php';
 session_start();
 if(!isset($_SESSION['adminEmail'])){
@@ -131,7 +130,7 @@ if(isset($_POST['add'])){
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
             <ul class="nav navbar-nav">
-              <li><a href="home1.html">Home </a></li>
+              <li><a href="../">Home </a></li>
             
                 </ul>
               </li>

@@ -6,6 +6,7 @@ if (isset($_SESSION['loginEmail'])) {
     $email = $_SESSION['loginEmail'];
     $user = $db->prepare("SELECT * FROM `users` WHERE `Email`=:email");
     $user->execute(array(":email" => $email));
+    $usrow = $user->fetch(PDO::FETCH_ASSOC); 
     $count = $user->rowCount();
     if($count == 0){
       header('location: login.php');
@@ -20,10 +21,22 @@ if (isset($_SESSION['loginEmail'])) {
 
 //assign the session mail to use to query the database
 $mail = $_SESSION['loginEmail'];
+$username = $usrow['Username'];
+$day = date('Y-m-d');
 //fetching the cart items 
 $cartitems = $db->prepare("SELECT * FROM `cartitems` WHERE `userSec`=?");
 $cartitems->execute(array($mail));
-//print_r($cartitems->rowCount());
+while ($ord = $cartitems->fetch(PDO::FETCH_ASSOC)) {
+  $item = $ord['itemName'];
+  $ord = $db->prepare("INSERT INTO `orders` (`order_date`, `order_name`, `order_email`,`itemName`) VALUES (?, ?, ?, ?)");
+  if($ord->execute(array($day,$username, $mail,$item))){
+    $del = $db->prepare("DELETE FROM `cartitems` WHERE `itemName` = ? AND `userSec` = ?");
+    $del->execute(array($item, $mail));
+  }else{
+    echo "failed to add";
+  }
+
+}
 
 ?>
 <html>
@@ -116,7 +129,6 @@ $cartitems->execute(array($mail));
             <ul class="nav navbar-nav">
               
               <li><a href="./"><i class="fa fa-home fa-2x">Home</i></a></li>
-              <li><a href="checkout.php"><i class="fa fa-shopping-cart fa-2x">Orders</i></a></li>
               <li style="float: right;"><a href="logout.php">Logout</a></li>
                 </ul>
               </li>
@@ -130,32 +142,30 @@ $cartitems->execute(array($mail));
   <!-- / menu -->  
  <center>
  	<div style="padding: 20px;">
- 		<h3><b>Here are the items in your cart</b></h3>
-		<table border="1">
-			<th>Item</th>
-			<th>price</th>
-			<th>Quantity</th>
+ 		<h3><b>Orders</b></h3>
+    <table border="1">
+          <th>Order name</th>
+          <th>Order Email</th>
+          <th>Number of items</th>
 			<?php
-      if ($cartitems->rowCount() > 0) {
-      		while ($item = $cartitems->fetch(PDO::FETCH_ASSOC)){
-      			echo "<tr><td>".$item['itemName']."</td>";
-      			//select the price from products
-      			$prd = $item['itemName'];
-      			$prdpr = $db->prepare("SELECT `ProductPrice` FROM `products` WHERE `ProductName`=?");
-      			$prdpr->execute(array($prd));
-      			$price = $prdpr->fetch(PDO::FETCH_ASSOC);
-      			echo "<td>".$price['ProductPrice']."</td>";
-      			echo "<td><input type='number' value='1'/></td></tr>";
-      		}
+      $order = $db->prepare("SELECT * FROM `orders` WHERE `order_email` = ? AND `order_date` = ?");
+			$order->execute(array($mail, $day));
+      $or =$order->fetch(PDO::FETCH_ASSOC);
+      $count = $order->rowCount();
+      if ($count > 0) {
+        echo "
+          <tr>
+            <td>".$username."</td>
+            <td>".$mail."</td>
+            <td>".$count."</td>
+          </tr>
+        ";
       }else{
-        echo "<tr><td colspan='3'><h3>You have no items in your cart</h3><td/></tr>";
+        echo "You do not have any open order";        
       } 
 			?>      
 		</table>
 	</div>
-  <?php if($cartitems->rowcount()>0){ ?>
-	<button class="btn-success"><a href="checkout.php">Send order</a></button>
-<?php } ?>
 </center>
 </body>
 </html>
