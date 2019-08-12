@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/wasa/';
+$config['base_url'] = 'http://localhost:8000/genes22.github.com/classmates/wasa/';
 
 /*
 |--------------------------------------------------------------------------
