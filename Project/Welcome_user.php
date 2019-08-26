@@ -35,17 +35,17 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                             </a>
                             <div
                                 class="dropdown-menu" role="menu">
-                                <a class="dropdown-item text-info" role="presentation" href="Uploadhouse.php" style="font-size:16px;">
+                                <a class="dropdown-item text-info" role="presentation" href="uploaddet.php?prop=house" style="font-size:16px;">
                                     <strong>House</strong>
                                 </a>
-                                <a class="dropdown-item text-info" role="presentation" href="Uploadland.php" style="font-size:16px;">
+                                <a class="dropdown-item text-info" role="presentation" href="uploaddet.php?prop=land" style="font-size:16px;">
                                     <strong>Land</strong>
                                 </a>
                                 <a
-                                    class="dropdown-item text-info" role="presentation" href="Uploadgodown.php" style="font-size:16px;">
+                                    class="dropdown-item text-info" role="presentation" href="uploaddet.php?prop=godown" style="font-size:16px;">
                                     <strong>Godown</strong>
                                 </a>
-                                <a class="dropdown-item text-info" role="presentation" href="Uploadhostel.php" style="font-size:16px;">
+                                <a class="dropdown-item text-info" role="presentation" href="uploaddet.php?prop=hostel" style="font-size:16px;">
                                     <strong>Hostel</strong>
                                 </a>
                             </div>

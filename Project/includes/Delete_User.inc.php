@@ -2,10 +2,7 @@
 
 if (isset($_GET['Delete'])){
 	
-	
-
 	$ID = $_GET['Delete'];
-	
 	$sql = "DELETE FROM users WHERE idUsers=$ID;";
 
 	header("Location: ../User_Accounts.php");

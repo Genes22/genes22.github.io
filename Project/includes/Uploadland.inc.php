@@ -3,14 +3,14 @@ if (isset($_POST['land-Submit'])) {
 	
 	require 'dbh.inc.php';
 	
-	$Hstatus = $_POST['Status'];
-	$Hlocation = $_POST['Locality'];
-	$Hprice = $_POST['Price'];
-	$Hcontact = $_POST['Contact'];
-	$Hcity = $_POST['City'];
-	$Hdistrict = $_POST['District'];
-    $Harea = $_POST['Area'];
-	$Hdiscription = $_POST['Discription'];
+	$Hstatus = clean($_POST['Status']);
+	$Hlocation = clean($_POST['Locality']);
+	$Hprice = clean($_POST['Price']);
+	$Hcontact = clean($_POST['Contact']);
+	$Hcity = clean($_POST['City']);
+	$Hdistrict = clean($_POST['District']);
+    $Harea = clean($_POST['Area']);
+	$Hdiscription = clean($_POST['Discription']);
 	
 	if (empty($Hlocation) || empty($Hprice) || empty($Hcontact) || empty($Harea) || empty($Hdiscription)) {
 		header("Location: ../Uploadland.php?error=emptyfield");

@@ -7,6 +7,10 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
   header("location: Signin.php");
   exit;
 }
+
+if (isset($_GET['delete'])) {
+    # code...
+}
 ?>
 
 <!DOCTYPE html>
