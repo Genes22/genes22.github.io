@@ -1,16 +1,10 @@
 <?php
 
 if (isset($_GET['Delete'])){
-	
-	
-
 	$ID = $_GET['Delete'];
-	
 	$sql = "DELETE FROM hostel WHERE idUsers=$ID;";
-
 	header("Location: ../Searchhostel_Admin.php");
 	exit();
-	
 }
 ?>
 <!--

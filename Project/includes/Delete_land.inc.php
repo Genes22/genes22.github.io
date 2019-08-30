@@ -1,16 +1,10 @@
 <?php
 
 if (isset($_GET['Delete'])){
-	
-	
-
 	$ID = $_GET['Delete'];
-	
 	$sql = "DELETE FROM land WHERE idUsers=$ID;";
-
 	header("Location: ../Searchland_Admin.php");
 	exit();
-	
 }
 ?>
 <!--

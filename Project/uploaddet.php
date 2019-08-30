@@ -1,8 +1,6 @@
 <?php
 // Initialize the session
-session_start();
 require_once 'auth.php';
-
 if (isset($_GET['prop'])) {
     $prop = $_GET['prop'];
 }else{
@@ -198,8 +196,8 @@ if (isset($_GET['prop'])) {
                                 
                                 <!-- For uploading the lands images -->
 
-<!-- Land   -->                          <?php if ($prop == 'land'): ?>
-                    <form class="flex-shrink-1 align-items-center flex-sm-shrink-1 align-items-sm-center align-content-sm-center flex-md-shrink-1 align-items-md-center align-content-md-center" action="includes/Uploadland.inc.php" method="post" 
+<!-- Land   -->     <?php if ($prop == 'land'): ?>
+                    <form enctype="multipart/form-data" class="flex-shrink-1 align-items-center flex-sm-shrink-1 align-items-sm-center align-content-sm-center flex-md-shrink-1 align-items-md-center align-content-md-center" action="includes/Uploadland.inc.php" method="POST" 
                     style="background-color:rgba(0,0,0,0.37);width:654px;margin-top:11px;height:481px;margin-left:91px;">
                     <div class="form-group" style="margin-left:-62px;">
                         <h2 style="margin-left:195px;color:rgb(255,255,255);">
@@ -210,25 +208,24 @@ if (isset($_GET['prop'])) {
                         <label style="color:rgb(255,255,255);">
                             <strong>Status:</strong>
                         </label>
-                        <select class="form-control form-control-sm" name="Status" style="width:200px;color:rgb(0,0,0);">
+                        <select class="form-control form-control-sm" name="Status" style="width:200px;color:rgb(0,0,0);" required>
                             <option value="For Sell" selected="">For Sell</option>
                             <option value="For Rent">For Rent</option>
                         </select>
                     </div>
-                    <input
-                        class="form-control form-control-sm" type="text" name="Locality" placeholder="Locality" style="width:200px;margin-left:4px;color:rgb(0,0,0);">
+                    <input class="form-control form-control-sm" type="text" name="Locality" placeholder="Locality" style="width:200px;margin-left:4px;color:rgb(0,0,0);" required>
                         <div class="form-group" style="width:200px;margin-left:447px;margin-top:-110px;margin-bottom:21px;">
                             <label style="margin-bottom:18px;color:rgb(255,255,255);">
                                 <strong>District:</strong>
                             </label>
-                            <select class="form-control form-control-sm" name="District" style="margin-top:-12px;width:200px;color:rgb(0,0,0);">
-                                <option value="Kinondoni" selected="">Kinondoni</option>
+                            <select class="form-control form-control-sm" name="District" style="margin-top:-12px;width:200px;color:rgb(0,0,0);" required>
+                                <option value="Kinondoni" selected>Kinondoni</option>
                                 <option value="Ilala">Ilala</option>
                                 <option value="Temeke">Temeke</option>
                                 <option value="Kigamboni">Kigamboni</option>
                             </select>
                         </div>
-                    <input class="form-control form-control-sm" type="number" min="1" value="1" name="Price" style="width:200px;margin-left:447px;margin-top:-4px;color:rgb(0,0,0);margin-bottom:0px;">
+                    <input class="form-control form-control-sm" type="number" min="1"  name="Price" placeholder="Price in Tsh" style="width:200px;margin-left:447px;margin-top:-4px;color:rgb(0,0,0);margin-bottom:0px;" required>
                         <div class="form-group" style="width:200px;margin-left:229px;margin-top:-111px;margin-bottom:178px;"><label style="color:rgb(255,255,255);">
                             <strong>City:</strong>
                         </label>
@@ -236,9 +233,8 @@ if (isset($_GET['prop'])) {
                                 <option value="Dar-es-Salaam" selected="">Dar-es-Salaam</option>
                             </select>
                         </div>
-                        <input
-                            class="form-control form-control-sm" type="number" minlength="10" maxlength="13" name="Contact" placeholder="Contact" style="width:200px;margin-left:229px;margin-top:-162px;color:rgb(0,0,0);margin-bottom:44px;">
-                            <input class="form-control form-control-sm" type="text" name="Area" placeholder="Area(Meter Square)" style="width:200px;margin-left:229px;margin-top:-33px;color:rgb(0,0,0);">
+                        <input class="form-control form-control-sm" type="number" minlength="10" maxlength="13" name="Contact" placeholder="Contact" style="width:200px;margin-left:229px;margin-top:-162px;color:rgb(0,0,0);margin-bottom:44px;" required>
+                            <input class="form-control form-control-sm" type="text" name="Area" placeholder="Area(Meter Square)" style="width:200px;margin-left:229px;margin-top:-33px;color:rgb(0,0,0);" required>
                             <label for="imageL" style="color:white"><b>Land photo: </b></label>
                                 <input type="file"  name="imageL" style="width:200px;margin-left:20px;margin-top:20px;color:rgb(0,0,0);" required><br><br>
                             <div class="form-group" style="margin-left:6px;width:629px;">

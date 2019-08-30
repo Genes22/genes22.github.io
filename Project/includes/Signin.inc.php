@@ -1,23 +1,20 @@
  <?php
- if (isset($_POST['signin-submit'])) {
-
  require 'dbh.inc.php';
 
- $mailusername = $_POST['Username'];
- $pwd =  ($_POST['Password']);
+if (isset($_POST['signin-submit'])) {
+	$mailusername = $_POST['Username'];
+	$pwd =  ($_POST['Password']);
 
- if (empty($mailusername) || empty($pwd)) {
- 	header("Location: ../Signin.php?error=emptyfield");
-exit();
- }
- else {
-$sql = "SELECT * FROM users WHERE uName=? OR uMail=?";
-$stmt = mysqli_stmt_init($conn);
-if (!mysqli_stmt_prepare($stmt, $sql)) {
-	header("Location: ../Signin.php?error=sqlerror");
-exit();
-}
-else{
+	if (empty($mailusername) || empty($pwd)) {
+		header("Location: ../Signin.php?error=emptyfield");
+		exit();
+	}else {
+	$sql = "SELECT * FROM users WHERE uName=? OR uMail=?";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("Location: ../Signin.php?error=sqlerror");
+	exit();
+	}else{
 	mysqli_stmt_bind_param($stmt, "ss", $mailusername, $mailusername);
 	mysqli_stmt_execute($stmt);	
     $result = mysqli_stmt_get_result($stmt);

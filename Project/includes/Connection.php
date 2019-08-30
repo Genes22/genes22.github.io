@@ -1,11 +1,15 @@
 <?php
-$servername="localhost";
-$dBUsername="root";
-$dBPassword="";
-$dBName="homesitesystem";
 
-$conn = mysql_connect($servername,$dBUsername,$dBPassword,$dBName);
+$conn = new PDO('mysql:host=127.0.0.1;dbname=homesitesystem;', 'root', '');
 
 if (!$conn){
-	die("Connection failed: ".mysql_connect_error());
+	die("Failed to connect to the database");
 }
+function clean($data){
+	$a = stripcslashes(strip_tags($data));
+	$b = htmlentities($a);
+	$c = htmlspecialchars($b);
+	return $c;
+}
+
+?>

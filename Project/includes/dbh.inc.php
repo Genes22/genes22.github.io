@@ -1,16 +1,9 @@
 <?php
-
-$servername = "localhost";
-$dBUsername = "genes";
-$dBPassword = "geek";
-$dBName = "homesitesystem";
-
-$conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
+$conn = new PDO('mysql:host=127.0.0.1;dbname=homesitesystem', 'root', '');
 
 if (!$conn) {
-	die("Connection failed: ".mysql_connect_error());
+	die("Failed to connect to the database");
 }
-
 function clean($data){
 	$a = stripcslashes(strip_tags($data));
 	$b = htmlentities($a);
