@@ -124,11 +124,11 @@
             </div>
             <div class="form-group">
                 <i class="fa fa-unlock-alt"></i>
-                <input class="form-control form-control-sm" type="password" name="Password" placeholder="Password" style="background-color:#ffffff;color:rgb(0,0,0);font-size:15px;">
+                <input class="form-control form-control-sm" type="password" name="Password" minlength="8" placeholder="Password" style="background-color:#ffffff;color:rgb(0,0,0);font-size:15px;">
             </div>
             <div class="form-group">
                 <i class="fa fa-unlock-alt"></i>
-                <input class="form-control form-control-sm" type="password" name="RPassword" placeholder="Retype Password" style="background-color:#ffffff;color:rgb(0,0,0);font-size:15px;">
+                <input class="form-control form-control-sm" type="password" name="RPassword"minlength="8" placeholder="Retype Password" style="background-color:#ffffff;color:rgb(0,0,0);font-size:15px;">
             </div>
             <div class="form-group">
                 <i class="fa fa-envelope"></i>

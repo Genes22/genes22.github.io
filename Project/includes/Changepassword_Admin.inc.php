@@ -1,21 +1,17 @@
 <?php
 session_start();
+require 'dbh.inc.php';
 
 if (isset($_POST['change-password'])) {
-
-	require 'dbh.inc.php';
-
 	$Npwd = $_POST['Npassword'];
 	$CNpwd = $_POST['CNpassword'];
 
-
 	if (empty($Npwd) || empty($CNpwd)) {
- 	header("Location: ../Changepassword_Admin.php?error=emptyfield");
-exit();
- } 
- elseif (!preg_match("/^[a-zA-Z0-9]*$/", $Npwd)) {
- 	header("Location: ../Changepassword_Admin.php?error=invalidpwd");
-exit();
+   	header("Location: ../Changepassword_Admin.php?error=emptyfield");
+    exit();
+  }elseif (!preg_match("/^[a-zA-Z0-9]*$/", $Npwd)) {
+ 	  header("Location: ../Changepassword_Admin.php?error=invalidpwd");
+    exit();
  }
  elseif (strlen($Npwd) < 8) {
  	header("Location: ../Changepassword_Admin.php?error=passwordlength");

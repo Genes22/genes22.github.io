@@ -1,13 +1,10 @@
 <?php
 session_start();
+require 'dbh.inc.php';
 
 if (isset($_POST['change-password'])) {
-
-	require 'dbh.inc.php';
-
 	$Npwd = $_POST['Npassword'];
 	$CNpwd = $_POST['CNpassword'];
-
 
 	if (empty($Npwd) || empty($CNpwd)) {
  	header("Location: ../Change_password.php?error=emptyfield");
