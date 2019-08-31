@@ -1,11 +1,9 @@
  <?php
 session_start();
 require 'dbh.inc.php';
-
 if (isset($_POST['signin-submit'])) {
  	$mailusername = clean($_POST['Username']);
  	$pwd =  clean($_POST['Password']);
-
  	if (empty($mailusername) || empty($pwd)) {
  		header("Location: ../signin.php?error=emptyfield");
 		exit();
@@ -15,8 +13,9 @@ if (isset($_POST['signin-submit'])) {
 		$row = $check->fetch(PDO::FETCH_ASSOC);
 		$count = $check->rowCount();
 		if ($count > 0) { //check for user in db
-			$ver = password_verify($pwd, $row['uPwd']);
-			if ($ver) {
+			$salt = "@_*_@";
+			$pass = md5($salt.$pwd.$salt);
+			if ($pass == $row['uPwd']){
 				$_SESSION['loggedin'] = true;
 				$_SESSION['id'] = $row['idUsers'];
 				$_SESSION['username'] = $row['uName'];

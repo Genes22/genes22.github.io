@@ -1,21 +1,19 @@
 <?php
 // Initialize the session
 session_start();
- 
+require 'includes/dbh.inc.php';
 // Check if the user is already logged in, if no then redirect him to signin page
 if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
   header("location: Signin.php");
   exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome_user</title>
+    <title>Welcome user</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.9/typicons.min.css">
@@ -29,8 +27,6 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
     <div>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color:rgb(90,125,251);">
             <div class="container"><a class="navbar-brand" href="#" style="font-family:Roboto, sans-serif;font-size:20px;">HOMESITE AND ESTATE AGENT ONLINE MENAGEMENT SYSTEM</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div
-                    class="collapse navbar-collapse" id="navcol-1"><a class="btn btn-primary active btn-block btn-sm float-left mr-auto" role="button" href="#" style="background-color:rgb(255,107,0);margin-left:430px;"><strong>BACK</strong></a></div>
     </div>
     </nav>
     </div>
@@ -110,24 +106,18 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
             </table>
         </div>
     </div>
-
-
-
-
     <div style="height:346px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <div class="table-responsive table-bordered" style="width:1089px;margin-top:3px;">
                         <?php
-                        require 'includes/dbh.inc.php';
-
                         $id = $_SESSION['id'];
-                        $sql = "SELECT * FROM users WHERE idUsers = $id;";
-                        $result = mysqli_query($conn, $sql);
+                        $user = $conn->prepare("SELECT * FROM users WHERE idUsers = ?");
+                        $user->execute(array($id));
+                        $user->fetch();
 
-                        if (mysqli_num_rows($result) > 0) {
-
+                        if ($user->rowCount() > 0) {
                             echo '<table class="table table-bordered table-hover table-dark">';
                             echo '<thead>';
                                 echo '<tr>';
@@ -140,7 +130,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                             echo '</thead>';
                             echo '<tbody>';
 
-                            while ($row = mysqli_fetch_assoc($result)) {
+                            while ($row = $user->fetch(PDO::FETCH_ASSOC)) {
                                 echo '<tr>';
                                     echo '<td style="width:105px;">'.$row['fName'].'<a class="btn btn-link active btn-sm" role="button" href="UpdatefName.php"><strong>Edit</strong></a></td>';
 
@@ -159,9 +149,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                         }
                         ?>
                     </div>
-                    <div style="margin-left:585px;margin-bottom:307px;margin-top:-327px;">
-                        <h1 style="width:338px;font-size:31px;color:rgb(255,255,255);margin-top:332px;margin-left:-143px;">View my all post</h1>
-                    </div>
+            
                     <div style="margin-left:585px;margin-bottom:307px;margin-top:0px;width:500px;">
                         <div class="table-responsive" style="width:382px;margin-left:-214px;margin-top:-302px;">
                             <table class="table table-dark">
@@ -205,13 +193,9 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
 
             <?php
             if (isset($_POST['searchh_all_submit'])) {
-
-                require 'includes/dbh.inc.php';
-
-                $sql = "SELECT Id, Status, Bedrooms, Bathrooms, Kitchens, Sittingrooms, Garages, Location, Price, Contact, Discription FROM houses;";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
+                $result = $conn->prepare("SELECT Id, Status, Bedrooms, Bathrooms, Kitchens, Sittingrooms, Garages, Location, Price, Contact, Discription FROM houses");
+                $result->execute();
+                if ($result->rowCount() > 0) {
                     echo '<table class="table table-striped table-dark">';
                     echo '<thead>';
                     echo '<tr>';
@@ -228,7 +212,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 echo '<tr>';
                     echo '<td>'.$row['Id'].'</td>';
                     echo '<td>'.$row['Status'].'</td>';
@@ -246,21 +230,15 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 echo '</tr>';
             echo '</tbody>';
             }
-                
         echo '</table>';
                 }
             }
             ?>
-
             <?php
-            if (isset($_POST['searchl_all_submit'])) {
-
-                require 'includes/dbh.inc.php';
-
-                $sql = "SELECT Id, Status, Location, Price, Contact, Area, Discription FROM land;";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
+            if (isset($_POST['searchl_all_submit'])){
+                $search = $conn->prepare("SELECT Id, Status, Location, Price, Contact, Area, Discription FROM land");
+                $search->execute();
+                if ($search->rowCount() > 0) {
                     echo '<table class="table table-striped table-dark">';
                     echo '<thead>';
                     echo '<tr>';
@@ -274,7 +252,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = $search->fetch(PDO::FETCH_ASSOC)) {
                 echo '<tr>';
                     echo '<td>'.$row['Id'].'</td>';
                     echo '<td>'.$row['Status'].'</td>';
@@ -294,16 +272,11 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 }
             }
             ?>
-
             <?php
            if (isset($_POST['searchg_all_submit'])) {
-
-                require 'includes/dbh.inc.php';
-
-                $sql = "SELECT Id, Status, Location, Price, Contact, Area, Discription FROM godown;";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
+                $sear = $conn->prepare("SELECT Id, Status, Location, Price, Contact, Area, Discription FROM godown");
+                $sear->execute();
+                if ($sear->rowCount() > 0) {
                     echo '<table class="table table-striped table-dark">';
                     echo '<thead>';
                     echo '<tr>';
@@ -317,7 +290,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = $sear->fetch(PDO::FETCH_ASSOC)) {
                 echo '<tr>';
                     echo '<td>'.$row['Id'].'</td>';
                     echo '<td>'.$row['Status'].'</td>';
@@ -331,22 +304,16 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                     echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
                 echo '</tr>';
             echo '</tbody>';
-            }
-                
+            }   
         echo '</table>';
                 }
             }
-
             ?>
             <?php
            if (isset($_POST['searchho_all_submit'])) {
-
-                require 'includes/dbh.inc.php';
-
-                $sql = "SELECT Id, Water, Electricity, Locality, Price, Contact, Discription FROM hostel;";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
+                $hostel = $conn->prepare("SELECT Id, Water, Electricity, Locality, Price, Contact, Discription FROM hostel");
+                $hostel->execute();
+                if ($hostel->rowCount() > 0) {
                     echo '<table class="table table-striped table-dark">';
                     echo '<thead>';
                     echo '<tr>';
@@ -360,7 +327,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = $hostel->fetch(PDO::FETCH_ASSOC)) {
                 echo '<tr>';
                     echo '<td>'.$row['Id'].'</td>';
                     echo '<td>'.$row['Water'].'</td>';
@@ -375,34 +342,10 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 echo '</tr>';
             echo '</tbody>';
             }
-                
         echo '</table>';
                 }
             }
             ?>
-    <!--
-    <div>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Column 1</th>
-                        <th>Column 2</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                    </tr>
-                    <tr>
-                        <td>Cell 3</td>
-                        <td>Cell 4</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>-->
     <div class="footer-dark" style="background-color:rgb(0,0,0);">
         <footer>
             <div class="container">
@@ -410,9 +353,10 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                     <div class="col-sm-6 col-md-3 item">
                         <h3>Services</h3>
                         <ul>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
+                            <li><a href="#">house</a></li>
+                            <li><a href="#"></a>Hostel</li>
+                            <li><a href="#"></a>Godown</li>
+                            <li><a href="#"></a>Land</li>
                         </ul>
                     </div>
                     <div class="col-sm-6 col-md-3 item">
