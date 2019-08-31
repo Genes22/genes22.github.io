@@ -1,10 +1,16 @@
 <?php
 
 if (isset($_GET['Delete'])){
+	
+	
+
 	$ID = $_GET['Delete'];
+	
 	$sql = "DELETE FROM houses WHERE idUsers=$ID;";
+
 	header("Location: ../Searchhouse_Admin.php");
 	exit();
+	
 }
 ?>
 <!--

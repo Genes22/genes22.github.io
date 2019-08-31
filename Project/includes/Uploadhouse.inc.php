@@ -37,30 +37,37 @@ if(isset($_POST['house-Submit'])){
     }
 
 	if (empty($Hstatus) || empty($Hbedrooms) || empty($Hbathrooms) || empty($Hgarages) || empty($Hkitchens) || empty($Hsittingrooms) || empty($Hcity) || empty($Hdistrict) || empty($Hlocation) || empty($Hprice) || empty($Hcontact) || empty($Hdiscription)) {
-		header("Location: ../uploaddet.php?prop=house&error=emptyfield");
+		header("Location: ../Uploadhouse.php?error=emptyfield");
 		exit();
 	}elseif (!preg_match("/^[0-9]*$/", $Hprice)) {
-	    header("Location: ../uploaddet.php?prop=house&error=invalidvalue");
+	    header("Location: ../Uploadhouse.php?error=invalidvalue");
 	    exit();
 	}elseif (!preg_match("/^[+0-9]*$/", $Hcontact)) {
-        header("Location: ../uploaddet.php?prop=house&error=invalidcontact");
+        header("Location: ../Uploadhouse.php?error=invalidcontact");
         exit();
 	}elseif (strlen($Hcontact) > 13 || strlen($Hcontact) < 10) {
-        header("Location: ../uploaddet.php?prop=house&error=invalidcontact");
+        header("Location: ../Uploadhouse.php?error=invalidcontact");
         exit();
 	}else {
-		$up = $conn->prepare("INSERT INTO houses (uName, Status, Bedrooms, Bathrooms, Garages, Kitchens, Sittingrooms, City, District, Location, Price, Contact, Discription,image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-		$Username = $_SESSION['username'];
-		$upload = $up->execute(array($Username, $Hstatus, $Hbedrooms, $Hbathrooms, $Hgarages, $Hkitchens, $Hsittingrooms, $Hcity, $Hdistrict, $Hlocation, $Hprice, $Hcontact, $Hdiscription, $housepic));
-		if (!$upload) {
-			header("Location: ../uploaddet.php?prop=house&upload=success");
-			exit();	
-		}else{
-			header("Location: ../uploaddet.php?prop=house&error=sqlerror");
-			exit();
-		}
+	$sql = "INSERT INTO houses (uName, Status, Bedrooms, Bathrooms, Garages, Kitchens, Sittingrooms, City, District, Location, Price, Contact, Discription,image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("Location: ../Uploadhouse.php?error=sqlerror");
+		exit();
 	}
-}else {
+	else {
+		$Username = $_SESSION['username'];
+		mysqli_stmt_bind_param($stmt, ssiiiiisssiss,$Username, $Hstatus, $Hbedrooms, $Hbathrooms, $Hgarages, $Hkitchens, $Hsittingrooms, $Hcity, $Hdistrict, $Hlocation, $Hprice, $Hcontact, $Hdiscription, $housepic);
+		mysqli_stmt_execute($stmt);
+		header("Location: ../Uploadhouse.php?upload=success");
+		exit();
+	}
+
+}
+	mysqli_stmt_close($stmt);
+	mysqli_close($conn);
+}
+else {
 	header("Location: ../welcome.php");
 	exit();
 }

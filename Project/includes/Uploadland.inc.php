@@ -33,27 +33,24 @@ if (isset($_POST['land-Submit'])) {
     }
     
 	if (empty($Hlocation) || empty($Hprice) || empty($Hcontact) || empty($Harea) || empty($Hdiscription)) {
-		header("Location: ../uploaddet.php?prop=land&error=emptyfield");
+		header("Location: ../uploaddet.php?prop=land&&error=emptyfield");
 		exit();
 	}elseif (!preg_match("/^[+0-9]*$/", $Hcontact)) {
-        header("Location: ../uploaddet.php?prop=land&error=invalidcontact");
+        header("Location: ../uploaddet.php?prop=land&&error=invalidcontact");
         exit();
 	}elseif (strlen($Hcontact) > 13 || strlen($Hcontact) < 10) {
-        header("Location: ../uploaddet.php?prop=land&error=invalidcontact");
+        header("Location: ../uploaddet.php?prop=land&&error=invalidcontact");
         exit();
 	}elseif (!preg_match("/^[0-9]*$/", $Hprice)) {
-        header("Location: ../uploaddet.php?prop=land&error=invalidprice");
+        header("Location: ../uploaddet.php?prop=land&&error=invalidprice");
         exit();
 	}elseif (!preg_match("/^[a-zA-Z0-9]*$/", $Harea)) {
-        header("Location: ../uploaddet.php?prop=land&error=invalidinputs");
+        header("Location: ../uploaddet.php?prop=land&&error=invalidinputs");
         exit();
-	}
-
-	$up = $conn->prepare("INSERT INTO land (uName, Status, Location, Price, Contact, City, District, Area, Discription) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-	print_r($up);
-	if (!$up) {
-		echo "some error";
-		//header("Location: ../uploaddet.php?prop=land&error=sqlerror");
+	}$sql = "INSERT INTO land (uName, Status, Location, Price, Contact, City, District, Area, Discription) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("Location: ../Uploadland.php?error=sqlerror");
 		exit();
 	}else {
 		session_start();
@@ -61,7 +58,7 @@ if (isset($_POST['land-Submit'])) {
 
 		mysqli_stmt_bind_param($stmt, sssisssis,$Username , $Hstatus, $Hlocation, $Hprice, $Hcontact, $Hcity, $Hdistrict, $Harea, $Hdiscription);
 		mysqli_stmt_execute($stmt);
-		header("Location: ../uploaddet.php?prop=land&upload=success");
+		header("Location: ../Uploadland.php?upload=success");
 		exit();
 	}
 	mysqli_stmt_close($stmt);

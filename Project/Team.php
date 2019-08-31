@@ -34,7 +34,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                     <ul class="nav navbar-nav mr-auto">
                         <li class="nav-item" role="presentation"><a class="nav-link" href="index.html" data-bs-hover-animate="tada" style="color:rgba(255,255,255,0.48);"><strong>Home</strong></a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="About.html" data-bs-hover-animate="tada" style="color:rgba(255,255,255,0.48);"><strong>About Us</strong></a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="Contact.html" data-bs-hover-animate="tada" style="color:rgba(255,255,255,0.49);"><strong>Contact Us</strong></a></li>
+                      <!--  <li class="nav-item" role="presentation"><a class="nav-link" href="Contact.html" data-bs-hover-animate="tada" style="color:rgba(255,255,255,0.49);"><strong>Contact Us</strong></a></li>-->
                     </ul><a href="#" data-bs-hover-animate="pulse" style="font-size:20px;color:rgb(255,255,255);"><strong>Back</strong></a><span class="navbar-text"><i class="typcn typcn-arrow-back" data-bs-hover-animate="pulse" style="color:#ff6565;font-size:26px;"></i></span></div>
             </div>
         </nav>

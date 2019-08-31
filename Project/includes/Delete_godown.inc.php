@@ -1,7 +1,11 @@
 <?php
 
 if (isset($_GET['Delete'])){
+	
+	
+
 	$ID = $_GET['Delete'];
+	
 	$sql = "DELETE FROM godown WHERE idUsers=$ID;";
 
 	header("Location: ../Searchgodown_Admin.php");
