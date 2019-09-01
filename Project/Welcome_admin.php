@@ -1,6 +1,7 @@
 <?php
 // Initialize the session
 session_start();
+require 'includes/dbh.inc.php';
  
 // Check if the user is already logged in, if no then redirect him to signin page
 if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
@@ -14,11 +15,14 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome_user</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <title>Welcome admin</title>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alike">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.9/typicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
     <link rel="stylesheet" href="assets/css/styles.min.css">
 </head>
 
@@ -64,13 +68,12 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 <div class="col-md-6">
                     <div class="table-responsive table-bordered" style="width:1089px;margin-top:3px;">
                         <?php
-                        require 'includes/dbh.inc.php';
-
                         $id = $_SESSION['id'];
-                        $sql = "SELECT * FROM admin WHERE idUsers = $id;";
-                        $result = mysqli_query($conn, $sql);
+                        $result = $conn->prepare("SELECT * FROM admin WHERE idUsers = ?");
+                        $result->execute(array($id));
+                        $result->fetch();
 
-                        if (mysqli_num_rows($result) > 0) {
+                        if ($result->rowCount() > 0) {
 
                             echo '<table class="table table-bordered table-hover table-dark">';
                             echo '<thead>';
@@ -84,7 +87,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                             echo '</thead>';
                             echo '<tbody>';
 
-                            while ($row = mysqli_fetch_assoc($result)) {
+                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                                 echo '<tr>';
                                     echo '<td style="width:105px;">'.$row['fName'].'<a class="btn btn-link active btn-sm" role="button" href="UpdatefNameadmin.php"><strong>Edit</strong></a></td>';
 
@@ -149,13 +152,11 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
 
             <?php
             if (isset($_POST['searchh_all_submit'])) {
+                $house =$conn->prepare("SELECT Id, Status, Bedrooms, Bathrooms, Kitchens, Sittingrooms, Garages, Location, Price, Contact, Discription FROM houses;");
+                $house->execute();
+                $house->fetch(PDO::FETCH_ASSOC);
 
-                require 'includes/dbh.inc.php';
-
-                $sql = "SELECT Id, Status, Bedrooms, Bathrooms, Kitchens, Sittingrooms, Garages, Location, Price, Contact, Discription FROM houses;";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
+                if ($house->rowCount() > 0) {
                     echo '<table class="table table-striped table-dark">';
                     echo '<thead>';
                     echo '<tr>';
@@ -172,7 +173,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = $house->fetch(PDO::FETCH_ASSOC)) {
                 echo '<tr>';
                     echo '<td>'.$row['Id'].'</td>';
                     echo '<td>'.$row['Status'].'</td>';
@@ -198,13 +199,10 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
 
             <?php
             if (isset($_POST['searchl_all_submit'])) {
-
-                require 'includes/dbh.inc.php';
-
-                $sql = "SELECT Id, Status, Location, Price, Contact, Area, Discription FROM land;";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
+                $land =$conn->prepare("SELECT Id, Status, Location, Price, Contact, Area, Discription FROM land");
+                $land->execute();
+                $land->fetch(PDO::FETCH_ASSOC);
+                if ($land->rowCount() > 0) {
                     echo '<table class="table table-striped table-dark">';
                     echo '<thead>';
                     echo '<tr>';
@@ -218,7 +216,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = $land->fetch(PDO::FETCH_ASSOC)) {
                 echo '<tr>';
                     echo '<td>'.$row['Id'].'</td>';
                     echo '<td>'.$row['Status'].'</td>';
@@ -241,13 +239,10 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
 
             <?php
            if (isset($_POST['searchg_all_submit'])) {
-
-                require 'includes/dbh.inc.php';
-
-                $sql = "SELECT Id, Status, Location, Price, Contact, Area, Discription FROM godown;";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
+                $godown = $conn->prepare("SELECT Id, Status, Location, Price, Contact, Area, Discription FROM godown");
+                $godown->execute();
+                $godown->fetch(PDO::FETCH_ASSOC);
+                if ($godown->rowCount() > 0) {
                     echo '<table class="table table-striped table-dark">';
                     echo '<thead>';
                     echo '<tr>';
@@ -261,7 +256,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = $godown->fetch(PDO::FETCH_ASSOC)) {
                 echo '<tr>';
                     echo '<td>'.$row['Id'].'</td>';
                     echo '<td>'.$row['Status'].'</td>';
@@ -284,13 +279,10 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
             ?>
             <?php
            if (isset($_POST['searchho_all_submit'])) {
-
-                require 'includes/dbh.inc.php';
-
-                $sql = "SELECT Id, Water, Electricity, Locality, Price, Contact, Discription FROM hostel;";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
+                $hostel = $conn->prepare("SELECT Id, Water, Electricity, Locality, Price, Contact, Discription FROM hostel");
+                $hostel->execute();
+                $hostel->fetch(PDO::FETCH_ASSOC);
+                if ($hostel->rowCount() > 0) {
                     echo '<table class="table table-striped table-dark">';
                     echo '<thead>';
                     echo '<tr>';
@@ -304,7 +296,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = $hostel->fetch(PDO::FETCH_ASSOC)) {
                 echo '<tr>';
                     echo '<td>'.$row['Id'].'</td>';
                     echo '<td>'.$row['Water'].'</td>';
@@ -328,26 +320,6 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
         <footer>
             <div class="container">
                 <div class="row">
-                    <!--<div class="col-sm-6 col-md-3 item">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6 item text">
-                        <h3>Company Name</h3>
-                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
-                    </div>-->
                     <div class="col item social"><a href="#" data-bs-hover-animate="rubberBand">
                         <i class="icon ion-social-whatsapp-outline">
                             
@@ -375,8 +347,9 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
             </div>
         </footer>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
     <script src="assets/js/script.min.js"></script>
 </body>
 

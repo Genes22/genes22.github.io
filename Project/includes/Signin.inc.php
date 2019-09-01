@@ -19,7 +19,7 @@ if (isset($_POST['signin-submit'])) {
 				$_SESSION['loggedin'] = true;
 				$_SESSION['id'] = $row['idUsers'];
 				$_SESSION['username'] = $row['uName'];
-		       	header("Location: ../welcome-user.php?signin=success");
+		       	header("Location: ../welcome-user.php");
 	           	exit();
 			}else{
 		       header("Location: ../signin.php?error=wrongpassword");

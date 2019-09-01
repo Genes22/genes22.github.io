@@ -13,20 +13,21 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome user</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <title>Welcome user| HOMESITE AND ESTATE AGENT ONLINE MANAGEMENT SYSTEM</title>
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.9/typicons.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alike">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
     <link rel="stylesheet" href="assets/css/styles.min.css">
 </head>
 
-<body style="background-image:url(&quot;assets/img/home.jpg&quot;);">
+<body style="background-image:url(assets/img/home.jpg);">
     <div>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color:rgb(90,125,251);">
-            <div class="container"><a class="navbar-brand" href="#" style="font-family:Roboto, sans-serif;font-size:20px;">HOMESITE AND ESTATE AGENT ONLINE MENAGEMENT SYSTEM</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="container"><a class="navbar-brand" href="welcome-user.php" style="font-family:Roboto, sans-serif;font-size:20px;">HOMESITE AND ESTATE AGENT ONLINE MENAGEMENT SYSTEM</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
     </div>
     </nav>
     </div>
@@ -36,15 +37,15 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                     data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav mr-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="index.html" data-bs-hover-animate="tada" style="color:#ffffff;"><strong>Home</strong></a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="About.html" data-bs-hover-animate="tada" style="color:#ffffff;"><strong>About Us</strong></a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="Contact.html" data-bs-hover-animate="tada" style="color:#ffffff;"><strong>Contact Us</strong></a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="welcome-user.php" data-bs-hover-animate="tada" style="color:#ffffff;"><strong>Home</strong></a></li>
                         <li class="dropdown"><a class="dropdown-toggle nav-link text-monospace dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="font-size:17px;color:#ffffff;font-family:Alike, serif;"><strong>Upload..</strong></a>
-                            <div
-                                class="dropdown-menu" role="menu"><a class="dropdown-item text-info" role="presentation" href="Uploadhouse.php" style="font-size:16px;"><strong>House</strong></a><a class="dropdown-item text-info" role="presentation" href="Uploadland.php" style="font-size:16px;"><strong>Land</strong></a>
-                                <a
-                                    class="dropdown-item text-info" role="presentation" href="Uploadgodown.php" style="font-size:16px;"><strong>Godown</strong></a><a class="dropdown-item text-info" role="presentation" href="Uploadhostel.php" style="font-size:16px;"><strong>Hostel</strong></a></div>
-                </li>
+                            <div class="dropdown-menu" role="menu">
+                                <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=house" style="font-size:16px;"><strong>House</strong></a>
+                                <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=land" style="font-size:16px;"><strong>Land</strong></a>
+                                <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=godown" style="font-size:16px;"><strong>Godown</strong></a>
+                                <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=hostel" style="font-size:16px;"><strong>Hostel</strong></a>
+                            </div>
+                        </li>
                 <li class="dropdown"><a class="dropdown-toggle nav-link text-monospace dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="font-family:Alike, serif;font-size:18px;color:#ffffff;"><strong>Search..</strong></a>
                     <div
                         class="dropdown-menu" role="menu"><a class="dropdown-item text-info" role="presentation" href="Searchhouse.php" style="font-size:16px;"><strong>House</strong></a><a class="dropdown-item text-info" role="presentation" href="Searcland.php" style="font-size:16px;"><strong>Land</strong></a>
@@ -59,10 +60,8 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
     </div>
     </nav>
     </div>
-
-
-
-     <div style="width:248px;margin-top:0px;">
+<div class="column">
+     <div class="container" style="width:25%;margin-left:1%;float: left;">
         <div class="table-responsive" style="width:301px;background-color:rgba(0,0,0,0);">
             <table class="table table-striped table-hover table-dark">
                 <thead>
@@ -97,140 +96,53 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                     <tr>
                         <td colspan="2"><strong>View my posts</strong></td>
                     </tr>
-                    <tr>
-                        <td colspan="2"><br><a class="btn btn-primary active btn-sm float-left" role="button" href="#"><strong>Hostel</strong></a><button class="btn btn-primary active btn-sm" type="button" style="margin-left:2px;"><strong>Houses</strong></button>
-                            <button
-                                class="btn btn-primary active btn-sm float-none" type="button" style="margin-left:0px;"><strong>Land</strong></button><button class="btn btn-primary active btn-sm float-right" type="button"><strong>Warehouses</strong></button></td>
-                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div style="height:346px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="table-responsive table-bordered" style="width:1089px;margin-top:3px;">
-                        <?php
-                        $id = $_SESSION['id'];
-                        $user = $conn->prepare("SELECT * FROM users WHERE idUsers = ?");
-                        $user->execute(array($id));
-                        $user->fetch();
-
-                        if ($user->rowCount() > 0) {
-                            echo '<table class="table table-bordered table-hover table-dark">';
-                            echo '<thead>';
-                                echo '<tr>';
-                                    echo '<th style="width:190px;">First Name</th>';
-                                    echo '<th>Last Name</th>';
-                                    echo '<th>User Name</th>';
-                                    echo '<th>E-mail</th>';
-                                    echo '<th>Contact</th>';
-                                echo '</tr>';
-                            echo '</thead>';
-                            echo '<tbody>';
-
-                            while ($row = $user->fetch(PDO::FETCH_ASSOC)) {
-                                echo '<tr>';
-                                    echo '<td style="width:105px;">'.$row['fName'].'<a class="btn btn-link active btn-sm" role="button" href="UpdatefName.php"><strong>Edit</strong></a></td>';
-
-                                    echo '<td>'.$row['lName'].'<a class="btn btn-link active btn-sm" role="button" href="UpdatelName.php"><strong>Edit</strong></a></td>';
-
-                                    echo '<td>'.$row['uName'].'<a class="btn btn-link active btn-sm" role="button" href="UpdateuName.php"><strong>Edit</strong></a></td>';
-
-                                    echo '<td>'.$row['uMail'].'<a class="btn btn-link active btn-sm" role="button" href="UpdateuMail.php"><strong>Edit</strong></a></td>';
-
-                                    echo '<td>'.$row['uContact'].'<a class="btn btn-link active btn-sm" role="button" href="UpdateuContact.php"><strong>Edit</strong></a></td>';
-                                echo '</tr>';
-
-                            echo '</tbody>';
-                            }
-                            echo '</table>';
-                        }
-                        ?>
-                    </div>
-            
-                    <div style="margin-left:585px;margin-bottom:307px;margin-top:0px;width:500px;">
-                        <div class="table-responsive" style="width:382px;margin-left:-214px;margin-top:-302px;">
-                            <table class="table table-dark">
-                                <thead>
-                                    <tr>
-                                        <th colspan="4" style="width:290px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Categories</th>
-                                    </tr>
-                                </thead>
-                                <tbody style="width:268px;">
-                                    <tr>
-                                        <td style="width:-26px;">
-                                            <form action="#" method="post"><button class="btn btn-primary active btn-sm" type="submit" name="searchh_all_submit" data-bs-hover-animate="pulse">HOUSE</button></form>
-                                        </td>
-                                        <td>
-                                            <form action="#" method="post"><button class="btn btn-primary active btn-sm" type="submit" name="searchl_all_submit" data-bs-hover-animate="pulse">LAND</button></form>
-                                        </td>
-                                        <td>
-                                            <form action="#" method="post"><button class="btn btn-primary active btn-sm" type="submit" name="searchg_all_submit" data-bs-hover-animate="pulse">GODOWN</button></form>
-                                        </td>
-                                        <td>
-                                            <form action="#" method="post"><button class="btn btn-primary active btn-sm" type="submit" name="searchho_all_submit" data-bs-hover-animate="pulse">HOSTEL</button></form>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <h1 style="font-size:25px;margin-left:251px;color:rgb(255,255,255);">RESULT</h1>
-    </div>
-
-    <div>
+    <div class="container" style="width: 70%;float: right;">
+        <center>
+            <table>
+                <tbody>
+                    <tr>
+                        <td colspan="2"><br>
+                            <form method="POST">
+                            <button class="btn btn-primary active btn-sm" role="button" name="searchho_all_submit" type="submit">
+                                <strong>Hostel</strong></button>
+                            <button class="btn btn-primary active btn-sm"  name="searchh_all_submit" type="submit" style="">
+                                <strong>Houses</strong></button>
+                            <button class="btn btn-primary active btn-sm" name="searchl_all_submit" type="submit" style="">
+                                <strong>Land</strong>
+                            </button>
+                            <button class="btn btn-primary active btn-sm" name="searchg_all_submit" type="submit">
+                                <strong>Warehouses</strong>
+                            </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </center>
+        <h1 style="font-size:25px;color:rgb(255,255,255);">RESULT</h1>
         <div class="table-responsive" style="background-color:#ffffff;color:rgb(0,0,0);">
-
-           <div>
-        <div class="table-responsive" style="background-color:#ffffff;color:rgb(0,0,0);">
-
             <?php
             if (isset($_POST['searchh_all_submit'])) {
-                $result = $conn->prepare("SELECT Id, Status, Bedrooms, Bathrooms, Kitchens, Sittingrooms, Garages, Location, Price, Contact, Discription FROM houses");
+                $result = $conn->prepare("SELECT Id, Status, Bedrooms, Bathrooms, Kitchens, Sittingrooms, Garages, Location, Price, Contact, Discription, image FROM houses");
                 $result->execute();
                 if ($result->rowCount() > 0) {
-                    echo '<table class="table table-striped table-dark">';
-                    echo '<thead>';
-                    echo '<tr>';
-                    echo '<th>Ref#</th>';
-                    echo '<th>Status</th>';
-                    echo '<th>Bedroom</th>';
-                    echo '<th>Bathroom</th>';
-                    echo '<th>Kitchen</th>';
-                    echo '<th>Sittingroom</th>';
-                    echo '<th>Garage</th>';
-                    echo '<th>Locality</th>';
-                    echo '<th>Price</th>';
-                    echo '<th>Contact</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                echo '<tr>';
-                    echo '<td>'.$row['Id'].'</td>';
-                    echo '<td>'.$row['Status'].'</td>';
-                    echo '<td>'.$row['Bedrooms'].'</td>';
-                    echo '<td>'.$row['Bathrooms'].'</td>';
-                    echo '<td>'.$row['Kitchens'].'</td>';
-                    echo '<td>'.$row['Sittingrooms'].'</td>';
-                    echo '<td>'.$row['Garages'].'</td>';
-                    echo '<td>'.$row['Location'].'</td>';
-                    echo '<td>'.$row['Price'].'</td>';
-                    echo '<td>+255777222444</td>';
-                echo '</tr>';
-                echo '<tr>';
-                    echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                echo '</tr>';
-            echo '</tbody>';
-            }
-        echo '</table>';
+                    echo "<div class='container'>";
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<div class='well' style='width=10%;'>
+                            <div id='card'>
+                                <img src=assets/img/houses/" .$row['image']." alt='images' height='200' width='200'>
+                                <div class='hover-overlay'>
+                                </div>
+                                <div class='feature-box-text'>sdsd
+                                  <a href='details.php?prop=house&id=".$row['Id'].">View more..</a>
+                                </div>
+                            </div>
+                        </div>";
+                    }
                 }
             }
             ?>
@@ -286,7 +198,6 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                     echo '<th>Price</th>';
                     echo '<th>Contact</th>';
                     echo '<th>Area(M<sup>2</sup>)</th>';
-                    #echo '<th>Column 7</th>';
                 echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -346,6 +257,10 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 }
             }
             ?>
+    </div>
+</div>
+</div>
+<div style="clear: both;" class="clear"></div>
     <div class="footer-dark" style="background-color:rgb(0,0,0);">
         <footer>
             <div class="container">
@@ -380,9 +295,40 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
             </div>
         </footer>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
     <script src="assets/js/script.min.js"></script>
 </body>
 
 </html>
+
+
+
+later
+<div class="container">
+  <div class="row" >
+    <?php
+    while($row = mysqli_fetch_assoc($result)){
+    ?>
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="well">
+          <div class="" id="card">
+            <?php echo "<center><h4>" .$row['pname']. "</h4></center>" ?>
+            <?php echo "<img src='" .$row['name']. "' alt='img1'>"?>
+            <div class="hover-overlay">
+            </div>
+            <div class="feature-box-text">
+              <p>Location:  <?php echo $row['location'] ?></p>     
+              <p>Hall name:   <?php echo $row['hname'] ?></p>
+              <p>Price: <?php echo $row['price'] ?></p>
+              <a href="viewmorenot.php?id=<?=$row['id'];?>" >View more..</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <?php
+    }
+    ?>
+  </div>
+</div>

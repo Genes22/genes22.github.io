@@ -1,58 +1,60 @@
 <?php
+session_start();
+require 'dbh.inc.php';
 if (isset($_POST['godown-Submit'])) {
-	
-	require 'dbh.inc.php';
-	
-	$Hstatus = $_POST['Status'];
-	$Hlocation = $_POST['Locality'];
-	$Hprice = $_POST['Price'];
-	$Hcontact = $_POST['Contact'];
-	$Hcity = $_POST['City'];
-	$Hdistrict = $_POST['District'];
-    $Harea = $_POST['Area'];
-	$Hdiscription = $_POST['Discription'];
+	$Hstatus = clean($_POST['Status']);
+	$Hlocation = clean($_POST['Locality']);
+	$Hprice = clean($_POST['Price']);
+	$Hcontact = clean($_POST['Contact']);
+	$Hcity = clean($_POST['City']);
+	$Hdistrict = clean($_POST['District']);
+    $Harea = clean($_POST['Area']);
+	$Hdiscription = clean($_POST['Discription']);
+
+	if (isset($_FILES['imageG'])){
+      $file_name = $_FILES['imageG']['name'];
+      $file_size = $_FILES['imageG']['size'];
+      $file_tmp = $_FILES['imageG']['tmp_name'];
+      $file_type = $_FILES['imageG']['type'];
+      $path_parts = pathinfo($file_name);
+      $file_ext = strtolower($path_parts['extension']);
+      $filename = $path_parts['filename'];
+      $imageName = $filename.'.'.$file_ext;
+      if(empty($errors)==true) {
+        //moving the image file to products directory
+          move_uploaded_file($file_tmp,"../assets/img/godown/".$imageName);
+          $godownpic = $imageName;
+      }else{
+          print_r($errors);
+      }
+      $godownpic = $imageName;
+    }
 	
 	if (empty($Hlocation) || empty($Hprice) || empty($Hcontact) || empty($Harea) || empty($Hdiscription)) {
-		header("Location: ../Uploadland.php?error=emptyfield");
+		header("Location: ../upload.php?prop=godown&error=emptyfield");
 		exit();
-	}
-     elseif (!preg_match("/^[+0-9]*$/", $Hcontact)) {
-        header("Location: ../Uploadland.php?error=invalidcontact");
+	}elseif (!preg_match("/^[+0-9]*$/", $Hcontact)) {
+        header("Location: ../upload.php?prop=godown&error=invalidcontact");
         exit();
-}
-    elseif (strlen($Hcontact) > 13) {
-        header("Location: ../Uploadland.php?error=invalidcontact");
+	}elseif (strlen($Hcontact) > 13) {
+        header("Location: ../upload.php?prop=godown&error=invalidcontact");
         exit();
-}
-    elseif (!preg_match("/^[0-9]*$/", $Hprice)) {
-        header("Location: ../Uploadland.php?error=invalidprice");
+	}elseif (!preg_match("/^[0-9]*$/", $Hprice)) {
+        header("Location: ../upload.php?prop=godown&error=invalidprice");
         exit();
-}
-    elseif (!preg_match("/^[0-9]*$/", $Harea)) {
-        header("Location: ../Uploadland.php?error=invalidinputs");
+	}elseif (!preg_match("/^[0-9]*$/", $Harea)) {
+        header("Location: ../upload.php?prop=godown&error=invalidinputs");
         exit();
-}
-else {
-	$sql = "INSERT INTO godown (uName, Status, Location, Price, Contact, City, District, Area,  Discription) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)";
-	$stmt = mysqli_stmt_init($conn);
-	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("Location: ../Uploadgodown.php?error=sqlerror");
-		exit();
-	}
-	else {
-		session_start();
+	}else {
 		$Username = $_SESSION['username'];
-		mysqli_stmt_bind_param($stmt, sssisssis,$Username, $Hstatus, $Hlocation, $Hprice, $Hcontact, $Hcity, $Hdistrict, $Harea, $Hdiscription);
-		mysqli_stmt_execute($stmt);
-		header("Location: ../Uploadgodown.php?upload=success");
-		exit();
+		$up = $conn->prepare("INSERT INTO godown (uName, Status, Location, Price, Contact, City, District, Area,  Discription, image) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		$upg = $up->execute(array($Username, $Hstatus, $Hlocation, $Hprice, $Hcontact, $Hcity, $Hdistrict, $Harea, $Hdiscription, $godownpic));
+		if ($upg) {
+			header("Location: ../upload.php?prop=godown&upload=success");
+			exit();
+		}
 	}
-
-}
-	mysqli_stmt_close($stmt);
-	mysqli_close($conn);
-}
-else {
-	header("Location: ../welcome.php");
+}else {
+	header("Location: ../welcome-user.php");
 	exit();
 }
