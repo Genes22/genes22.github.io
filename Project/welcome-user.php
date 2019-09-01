@@ -25,45 +25,51 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
 </head>
 
 <body style="background-image:url(assets/img/home.jpg);">
-    <div>
-        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color:rgb(90,125,251);">
-            <div class="container"><a class="navbar-brand" href="welcome-user.php" style="font-family:Roboto, sans-serif;font-size:20px;">HOMESITE AND ESTATE AGENT ONLINE MENAGEMENT SYSTEM</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-    </div>
+<div>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color:rgb(90,125,251);">
+        <div class="container"><a class="navbar-brand" href="welcome-user.php" style="font-family:Roboto, sans-serif;font-size:20px;">HOMESITE AND ESTATE AGENT ONLINE MENAGEMENT SYSTEM</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
     </nav>
-    </div>
-    <div style="color:rgb(254,254,254);">
-        <nav class="navbar navbar-dark navbar-expand-md sticky-top navigation-clean-button" style="background-color:rgb(177,77,71);">
-            <div class="container-fluid"><a class="navbar-brand" href="#" data-bs-hover-animate="pulse" style="background-repeat:no-repeat;background-size:cover;width:217px;height:106px;background-color:#ffffff;background-image:url(&quot;assets/img/imagess.png&quot;);"></a><button class="navbar-toggler"
-                    data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="welcome-user.php" data-bs-hover-animate="tada" style="color:#ffffff;"><strong>Home</strong></a></li>
-                        <li class="dropdown"><a class="dropdown-toggle nav-link text-monospace dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="font-size:17px;color:#ffffff;font-family:Alike, serif;"><strong>Upload..</strong></a>
-                            <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=house" style="font-size:16px;"><strong>House</strong></a>
-                                <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=land" style="font-size:16px;"><strong>Land</strong></a>
-                                <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=godown" style="font-size:16px;"><strong>Godown</strong></a>
-                                <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=hostel" style="font-size:16px;"><strong>Hostel</strong></a>
-                            </div>
-                        </li>
-                <li class="dropdown"><a class="dropdown-toggle nav-link text-monospace dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="font-family:Alike, serif;font-size:18px;color:#ffffff;"><strong>Search..</strong></a>
-                    <div
-                        class="dropdown-menu" role="menu"><a class="dropdown-item text-info" role="presentation" href="Searchhouse.php" style="font-size:16px;"><strong>House</strong></a><a class="dropdown-item text-info" role="presentation" href="Searcland.php" style="font-size:16px;"><strong>Land</strong></a>
-                        <a
-                            class="dropdown-item text-info" role="presentation" href="Searchgodown.php" style="font-size:16px;"><strong>Godown</strong></a><a class="dropdown-item text-info" role="presentation" href="Searchhostel.php" style="font-size:16px;"><strong>Hostel</strong></a></div>
-            </li>
-            
-             </ul><a class="btn btn-primary active btn-sm float-right visible" role="button" href="Change_password.php" data-bs-hover-animate="pulse" style="margin-top:-3px;width:155px;background-color:rgb(26,108,143);margin-right:15px;"><strong>CHANGE PASSWORD</strong></a>
-            <form
-                class="form-inline flex-shrink-1 flex-sm-shrink-1 flex-md-shrink-1" action="includes/Signout.inc.php" method="post"><button class="btn btn-primary active btn-sm float-right visible" name="submit-signout" type="submit" data-bs-hover-animate="pulse" style="margin-top:-3px;width:76px;background-color:rgb(0,0,0);margin-right:22px;"><strong>Sign Out</strong></button></form>
-    </div>
-    </div>
+</div>
+<div style="color:rgb(254,254,254);">
+    <nav class="navbar navbar-dark navbar-expand-md sticky-top navigation-clean-button" style="background-color:rgb(177,77,71);">
+        <div class="container-fluid"><a class="navbar-brand" href="#" data-bs-hover-animate="pulse" style="background-repeat:no-repeat;background-size:cover;width:217px;height:106px;background-color:#ffffff;background-image:url(&quot;assets/img/imagess.png&quot;);"></a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="welcome-user.php" data-bs-hover-animate="tada" style="color:#ffffff;"><strong>Home</strong></a></li>
+                    <li class="dropdown"><a class="dropdown-toggle nav-link text-monospace dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="font-size:17px;color:#ffffff;font-family:Alike, serif;"><strong>Upload..</strong></a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=house" style="font-size:16px;"><strong>House</strong></a>
+                            <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=land" style="font-size:16px;"><strong>Land</strong></a>
+                            <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=godown" style="font-size:16px;"><strong>Godown</strong></a>
+                            <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=hostel" style="font-size:16px;"><strong>Hostel</strong></a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle nav-link text-monospace dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="font-family:Alike, serif;font-size:18px;color:#ffffff;"><strong>Search..</strong></a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item text-info" role="presentation" href="search.php?prop=house" style="font-size:16px;"><strong>House</strong></a>
+                            <a class="dropdown-item text-info" role="presentation" href="search.php?prop=land" style="font-size:16px;"><strong>Land</strong></a>
+                            <a class="dropdown-item text-info" role="presentation" href="search.php?prop=godown" style="font-size:16px;"><strong>Godown</strong></a>
+                            <a class="dropdown-item text-info" role="presentation" href="search.php?prop=hostel" style="font-size:16px;"><strong>Hostel</strong></a>
+                        </div>
+                    </li>
+                </ul>
+                <a class="btn btn-primary active btn-sm float-right visible" role="button" href="Change_password.php" data-bs-hover-animate="pulse" style="margin-top:-3px;width:155px;background-color:rgb(26,108,143);margin-right:15px;"><strong>CHANGE PASSWORD</strong></a>
+                <form class="form-inline flex-shrink-1 flex-sm-shrink-1 flex-md-shrink-1" action="includes/Signout.inc.php" method="post"><button class="btn btn-primary active btn-sm float-right visible" type="submit" data-bs-hover-animate="pulse" style="margin-top:-3px;width:76px;background-color:rgb(0,0,0);margin-right:22px;"><strong>Sign Out</strong></button></form>
+            </div>
+        </div>
     </nav>
-    </div>
-<div class="column">
-     <div class="container" style="width:25%;margin-left:1%;float: left;">
-        <div class="table-responsive" style="width:301px;background-color:rgba(0,0,0,0);">
-            <table class="table table-striped table-hover table-dark">
+</div>
+<div class="row">
+    <div class="column" style="width:18%;margin-left:2%;">
+            <table class="table table-hover table-dark">
                 <thead>
                     <tr>
                         <th colspan="2">My Account Information</th>
@@ -98,9 +104,8 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                     </tr>
                 </tbody>
             </table>
-        </div>
     </div>
-    <div class="container" style="width: 70%;float: right;">
+    <div class="container" style="width: 80%;">
         <center>
             <table>
                 <tbody>
@@ -123,212 +128,181 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                 </tbody>
             </table>
         </center>
-        <h1 style="font-size:25px;color:rgb(255,255,255);">RESULT</h1>
-        <div class="table-responsive" style="background-color:#ffffff;color:rgb(0,0,0);">
-            <?php
-            if (isset($_POST['searchh_all_submit'])) {
-                $result = $conn->prepare("SELECT Id, Status, Bedrooms, Bathrooms, Kitchens, Sittingrooms, Garages, Location, Price, Contact, Discription, image FROM houses");
-                $result->execute();
-                if ($result->rowCount() > 0) {
-                    echo "<div class='container'>";
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<div class='well' style='width=10%;'>
-                            <div id='card'>
-                                <img src=assets/img/houses/" .$row['image']." alt='images' height='200' width='200'>
-                                <div class='hover-overlay'>
+        <div class="column">
+                <?php
+                if (isset($_POST['searchh_all_submit'])) {
+                    $result = $conn->prepare("SELECT * FROM houses");
+                    $result->execute();
+                    if ($result->rowCount() > 0) {
+                        echo "<div class='column' style='display:block; padding-top:20px;'>";
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+                            <div class='column' style='margin-bottom:10px;'>
+                            <img src='assets/img/houses/".$row['image']."' alt='some image' height='200' width='200'>
                                 </div>
-                                <div class='feature-box-text'>sdsd
-                                  <a href='details.php?prop=house&id=".$row['Id'].">View more..</a>
-                                </div>
-                            </div>
-                        </div>";
+                                <div class='col p-3'>
+                                  <strong class='d-inline-block mb-2 text-primary'>".$row['Status']."</strong>
+                                  <h3 class='mb-0'>".$row['City']."</h3>
+                                  <div class='mb-1 text-muted'>".$row['District']."</div>
+                                  <p class='card-text mb-auto'>".$row['Discription']."</p>
+                                  <a href='details.php/".$row['Id']."' class='stretched-link'>Continue reading</a>
+                                </div> </div>";
+                        }
                     }
                 }
-            }
-            ?>
-            <?php
-            if (isset($_POST['searchl_all_submit'])){
-                $search = $conn->prepare("SELECT Id, Status, Location, Price, Contact, Area, Discription FROM land");
-                $search->execute();
-                if ($search->rowCount() > 0) {
-                    echo '<table class="table table-striped table-dark">';
-                    echo '<thead>';
+                ?>
+                <?php
+                if (isset($_POST['searchl_all_submit'])){
+                    $search = $conn->prepare("SELECT Id, Status, Location, Price, Contact, Area, Discription FROM land");
+                    $search->execute();
+                    if ($search->rowCount() > 0) {
+                        echo '<table class="table table-striped table-dark">';
+                        echo '<thead>';
+                        echo '<tr>';
+                        echo '<th>Ref#</th>';
+                        echo '<th>Status</th>';
+                        echo '<th>Locality</th>';
+                        echo '<th>Price</th>';
+                        echo '<th>Contact</th>';
+                        echo '<th>Area(M<sup>2</sup>)</th>';
+                        #echo '<th>Column 7</th>';
+                    echo '</tr>';
+                echo '</thead>';
+                echo '<tbody>';
+                while ($row = $search->fetch(PDO::FETCH_ASSOC)) {
                     echo '<tr>';
-                    echo '<th>Ref#</th>';
-                    echo '<th>Status</th>';
-                    echo '<th>Locality</th>';
-                    echo '<th>Price</th>';
-                    echo '<th>Contact</th>';
-                    echo '<th>Area(M<sup>2</sup>)</th>';
-                    #echo '<th>Column 7</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            while ($row = $search->fetch(PDO::FETCH_ASSOC)) {
-                echo '<tr>';
-                    echo '<td>'.$row['Id'].'</td>';
-                    echo '<td>'.$row['Status'].'</td>';
-                    echo '<td>'.$row['Location'].'</td>';
-                    echo '<td>'.$row['Price'].'</td>';
-                    echo '<td>+255777222444</td>';
-                    echo '<td>'.$row['Area'].'</td>';
-                    #echo '<td>Cell 2</td>';
-                echo '</tr>';
-                echo '<tr>';
-                    echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                echo '</tr>';
-            echo '</tbody>';
-            }
-                
-        echo '</table>';
-                }
-            }
-            ?>
-            <?php
-           if (isset($_POST['searchg_all_submit'])) {
-                $sear = $conn->prepare("SELECT Id, Status, Location, Price, Contact, Area, Discription FROM godown");
-                $sear->execute();
-                if ($sear->rowCount() > 0) {
-                    echo '<table class="table table-striped table-dark">';
-                    echo '<thead>';
+                        echo '<td>'.$row['Id'].'</td>';
+                        echo '<td>'.$row['Status'].'</td>';
+                        echo '<td>'.$row['Location'].'</td>';
+                        echo '<td>'.$row['Price'].'</td>';
+                        echo '<td>+255777222444</td>';
+                        echo '<td>'.$row['Area'].'</td>';
+                        #echo '<td>Cell 2</td>';
+                    echo '</tr>';
                     echo '<tr>';
-                    echo '<th>Ref#</th>';
-                    echo '<th>Status</th>';
-                    echo '<th>Locality</th>';
-                    echo '<th>Price</th>';
-                    echo '<th>Contact</th>';
-                    echo '<th>Area(M<sup>2</sup>)</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            while ($row = $sear->fetch(PDO::FETCH_ASSOC)) {
-                echo '<tr>';
-                    echo '<td>'.$row['Id'].'</td>';
-                    echo '<td>'.$row['Status'].'</td>';
-                    echo '<td>'.$row['Location'].'</td>';
-                    echo '<td>'.$row['Price'].'</td>';
-                    echo '<td>+255777222444</td>';
-                    echo '<td>'.$row['Area'].'</td>';
-                    #echo '<td>Cell 2</td>';
-                echo '</tr>';
-                echo '<tr>';
-                    echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                echo '</tr>';
-            echo '</tbody>';
-            }   
-        echo '</table>';
+                        echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
+                    echo '</tr>';
+                    echo '</tbody>';
                 }
-            }
-            ?>
-            <?php
-           if (isset($_POST['searchho_all_submit'])) {
-                $hostel = $conn->prepare("SELECT Id, Water, Electricity, Locality, Price, Contact, Discription FROM hostel");
-                $hostel->execute();
-                if ($hostel->rowCount() > 0) {
-                    echo '<table class="table table-striped table-dark">';
-                    echo '<thead>';
+                    
+                    echo '</table>';
+                    }
+                }
+                ?>
+                <?php
+               if (isset($_POST['searchg_all_submit'])) {
+                    $sear = $conn->prepare("SELECT Id, Status, Location, Price, Contact, Area, Discription FROM godown");
+                    $sear->execute();
+                    if ($sear->rowCount() > 0) {
+                        echo '<table class="table table-striped table-dark">';
+                        echo '<thead>';
+                        echo '<tr>';
+                        echo '<th>Ref#</th>';
+                        echo '<th>Status</th>';
+                        echo '<th>Locality</th>';
+                        echo '<th>Price</th>';
+                        echo '<th>Contact</th>';
+                        echo '<th>Area(M<sup>2</sup>)</th>';
+                    echo '</tr>';
+                    echo '</thead>';
+                    echo '<tbody>';
+                while ($row = $sear->fetch(PDO::FETCH_ASSOC)) {
                     echo '<tr>';
-                    echo '<th>Ref#</th>';
-                    echo '<th>WaterServ</th>';
-                    echo '<th>ElectricityServ</th>';
-                    echo '<th>Locality</th>';
-                    echo '<th>Price</th>';
-                    echo '<th>Contact</th>';
-                    #echo '<th>Column 7</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            while ($row = $hostel->fetch(PDO::FETCH_ASSOC)) {
-                echo '<tr>';
-                    echo '<td>'.$row['Id'].'</td>';
-                    echo '<td>'.$row['Water'].'</td>';
-                    echo '<td>'.$row['Electricity'].'</td>';
-                    echo '<td>'.$row['Locality'].'</td>';
-                    echo '<td>'.$row['Price'].'</td>';
-                    echo '<td>+255777222444</td>';
-                    #echo '<td>Cell 2</td>';
-                echo '</tr>';
-                echo '<tr>';
-                    echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                echo '</tr>';
-            echo '</tbody>';
-            }
-        echo '</table>';
+                        echo '<td>'.$row['Id'].'</td>';
+                        echo '<td>'.$row['Status'].'</td>';
+                        echo '<td>'.$row['Location'].'</td>';
+                        echo '<td>'.$row['Price'].'</td>';
+                        echo '<td>+255777222444</td>';
+                        echo '<td>'.$row['Area'].'</td>';
+                        #echo '<td>Cell 2</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                        echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
+                    echo '</tr>';
+                    echo '</tbody>';
+                }   
+                    echo '</table>';
+                    }
                 }
-            }
-            ?>
-    </div>
-</div>
-</div>
-<div style="clear: both;" class="clear"></div>
-    <div class="footer-dark" style="background-color:rgb(0,0,0);">
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#">house</a></li>
-                            <li><a href="#"></a>Hostel</li>
-                            <li><a href="#"></a>Godown</li>
-                            <li><a href="#"></a>Land</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6 item text">
-                        <h3>Company Name</h3>
-                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
-                    </div>
-                    <div class="col item social"><a href="#" data-bs-hover-animate="rubberBand"><i class="icon ion-social-whatsapp-outline"></i></a><a href="#" data-bs-hover-animate="rubberBand"><i class="icon ion-social-facebook"></i></a><a href="#" data-bs-hover-animate="rubberBand"><i class="icon ion-social-instagram"></i></a>
-                        <a
-                            href="#" data-bs-hover-animate="rubberBand"><i class="icon ion-social-twitter"></i></a>
-                    </div>
-                </div>
-                <p class="copyright">TeflonDon © 2019</p>
-            </div>
-        </footer>
-    </div>
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
-    <script src="assets/js/script.min.js"></script>
-</body>
-
-</html>
-
-
-
-later
-<div class="container">
-  <div class="row" >
-    <?php
-    while($row = mysqli_fetch_assoc($result)){
-    ?>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="well">
-          <div class="" id="card">
-            <?php echo "<center><h4>" .$row['pname']. "</h4></center>" ?>
-            <?php echo "<img src='" .$row['name']. "' alt='img1'>"?>
-            <div class="hover-overlay">
-            </div>
-            <div class="feature-box-text">
-              <p>Location:  <?php echo $row['location'] ?></p>     
-              <p>Hall name:   <?php echo $row['hname'] ?></p>
-              <p>Price: <?php echo $row['price'] ?></p>
-              <a href="viewmorenot.php?id=<?=$row['id'];?>" >View more..</a>
-            </div>
-          </div>
+                ?>
+                <?php
+               if (isset($_POST['searchho_all_submit'])) {
+                    $hostel = $conn->prepare("SELECT Id, Water, Electricity, Locality, Price, Contact, Discription FROM hostel");
+                    $hostel->execute();
+                    if ($hostel->rowCount() > 0) {
+                        echo '<table class="table table-striped table-dark">';
+                        echo '<thead>';
+                        echo '<tr>';
+                        echo '<th>Ref#</th>';
+                        echo '<th>WaterServ</th>';
+                        echo '<th>ElectricityServ</th>';
+                        echo '<th>Locality</th>';
+                        echo '<th>Price</th>';
+                        echo '<th>Contact</th>';
+                        #echo '<th>Column 7</th>';
+                    echo '</tr>';
+                    echo '</thead>';
+                    echo '<tbody>';
+                while ($row = $hostel->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<tr>';
+                        echo '<td>'.$row['Id'].'</td>';
+                        echo '<td>'.$row['Water'].'</td>';
+                        echo '<td>'.$row['Electricity'].'</td>';
+                        echo '<td>'.$row['Locality'].'</td>';
+                        echo '<td>'.$row['Price'].'</td>';
+                        echo '<td>+255777222444</td>';
+                        #echo '<td>Cell 2</td>';
+                    echo '</tr>';
+                    echo '<tr>';
+                        echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
+                        echo '</tr>';
+                        echo '</tbody>';
+                    }
+                        echo '</table>';
+                        }
+                    }
+                    ?>
         </div>
-      </div>
-    <?php
-    }
-    ?>
-  </div>
+    </div>
 </div>
+<div class="clear" style="clear: both;"></div>
+<div class="footer-dark" style="background-color:rgb(0,0,0);width: 100%;">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">house</a></li>
+                        <li><a href="#"></a>Hostel</li>
+                        <li><a href="#"></a>Godown</li>
+                        <li><a href="#"></a>Land</li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 item text">
+                    <h3>Company Name</h3>
+                    <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                </div>
+                <div class="col item social"><a href="#" data-bs-hover-animate="rubberBand"><i class="icon ion-social-whatsapp-outline"></i></a><a href="#" data-bs-hover-animate="rubberBand"><i class="icon ion-social-facebook"></i></a><a href="#" data-bs-hover-animate="rubberBand"><i class="icon ion-social-instagram"></i></a>
+                    <a
+                        href="#" data-bs-hover-animate="rubberBand"><i class="icon ion-social-twitter"></i></a>
+                </div>
+            </div>
+            <p class="copyright">TeflonDon © 2019</p>
+        </div>
+    </footer>
+</div>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+<script src="assets/js/script.min.js"></script>
+</body>
+</html>
