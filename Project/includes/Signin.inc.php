@@ -19,6 +19,9 @@ if (isset($_POST['signin-submit'])) {
 				$_SESSION['loggedin'] = true;
 				$_SESSION['id'] = $row['idUsers'];
 				$_SESSION['username'] = $row['uName'];
+				if ($row['prev']==1) {
+					$_SESSION['admin'] = $row['prev'];
+				}
 		       	header("Location: ../welcome-user.php");
 	           	exit();
 			}else{

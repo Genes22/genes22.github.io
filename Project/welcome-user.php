@@ -7,6 +7,12 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
   header("location: Signin.php");
   exit;
 }
+
+if (isset($_SESSION['admin'])) {
+    $isadmin = $_SESSION['admin'];
+}else{
+    unset($_SESSION['admin']);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +42,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
 </div>
 <div style="color:rgb(254,254,254);">
     <nav class="navbar navbar-dark navbar-expand-md sticky-top navigation-clean-button" style="background-color:rgb(177,77,71);">
-        <div class="container-fluid"><a class="navbar-brand" href="#" data-bs-hover-animate="pulse" style="background-repeat:no-repeat;background-size:cover;width:217px;height:106px;background-color:#ffffff;background-image:url(&quot;assets/img/imagess.png&quot;);"></a>
+        <div class="container-fluid"><a class="navbar-brand" href="welcome-user.php" data-bs-hover-animate="pulse" style="background-repeat:no-repeat;background-size:cover;width:217px;height:106px;background-color:#ffffff;background-image:url(&quot;assets/img/imagess.png&quot;);"></a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
                 <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
             </button>
@@ -60,6 +66,9 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                             <a class="dropdown-item text-info" role="presentation" href="search.php?prop=hostel" style="font-size:16px;"><strong>Hostel</strong></a>
                         </div>
                     </li>
+                    <?php if (isset($isadmin)): ?>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="manage.php" data-bs-hover-animate="tada" style="color:#ffffff;"><strong>Manage</strong></a></li>
+                    <?php endif ?>
                 </ul>
                 <a class="btn btn-primary active btn-sm float-right visible" role="button" href="Change_password.php" data-bs-hover-animate="pulse" style="margin-top:-3px;width:155px;background-color:rgb(26,108,143);margin-right:15px;"><strong>CHANGE PASSWORD</strong></a>
                 <form class="form-inline flex-shrink-1 flex-sm-shrink-1 flex-md-shrink-1" action="includes/Signout.inc.php" method="post"><button class="btn btn-primary active btn-sm float-right visible" type="submit" data-bs-hover-animate="pulse" style="margin-top:-3px;width:76px;background-color:rgb(0,0,0);margin-right:22px;"><strong>Sign Out</strong></button></form>
@@ -68,7 +77,7 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
     </nav>
 </div>
 <div class="row">
-    <div class="column" style="width:18%;margin-left:2%;">
+    <div class="column" style="width:16%;margin-left:1%;">
             <table class="table table-hover table-dark">
                 <thead>
                     <tr>
@@ -76,31 +85,35 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                        $id = $_SESSION['id'];
+                        $details = $conn->prepare("SELECT * FROM users WHERE idUsers= ?");
+                        $details->execute(array($id));
+                        while ($det = $details->fetch(PDO::FETCH_ASSOC)) {
+                     ?>
                     <tr>
-                        <td><strong>First Name</strong></td>
-                        <td><a class="btn btn-secondary active btn-sm float-right" role="button" href="UpdatefName.php">Edit</a></td>
+                        <td><strong>Firstname</strong></td>
+                        <td><a class="btn btn-primary active btn-sm float-right" role="button" href="UpdatefName.php" title="Click to edit"><?php echo ucfirst($det['fName']); ?></a></td>
                     </tr>
                     <tr>
-                        <td><strong>Last Name</strong></td>
-                        <td><a class="btn btn-secondary active btn-sm float-right" role="button" href="UpdatefName.php">Edit</a></td>
+                        <td><strong>Lastname</strong></td>
+                        <td><a class="btn btn-primary active btn-sm float-right" role="button" href="UpdatelName.php" title="Click to edit"><?php echo ucfirst($det['lName']); ?></a></td>
                     </tr>
                     <tr>
-                        <td><strong>User Name</strong></td>
-                        <td><a class="btn btn-secondary active btn-sm float-right" role="button" href="UpdatefName.php">Edit</a></td>
+                        <td><strong>Username</strong></td>
+                        <td><a class="btn btn-warning active btn-sm float-right" role="button" title="Username Cannot be changed"><?php echo ucfirst($det['uName']); ?></td>
                     </tr>
                     <tr>
                         <td><strong>E-mail</strong></td>
-                        <td><a class="btn btn-secondary active btn-sm float-right" role="button" href="UpdatefName.php">Edit</a></td>
+                        <td><a class="btn btn-warning active btn-sm float-right" role="button" title="Email Cannot be changed"><?php echo $det['uMail']; ?></td>
                     </tr>
                     <tr>
                         <td><strong>Contact</strong></td>
-                        <td><a class="btn btn-secondary active btn-sm float-right" role="button" href="UpdatefName.php">Edit</a></td>
+                        <td><a class="btn btn-primary active btn-sm float-right" role="button" href="UpdateuContact.php" title="Click to change the Phone number"><?php echo $det['uContact']; ?></a></td>
                     </tr>
+                <?php } ?>
                     <tr>
-                        <td colspan="2"><a class="btn btn-secondary active btn-block btn-sm" role="button" href="Change_password.php">Change Account Password</a></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><strong>View my posts</strong></td>
+                        <td colspan="2"><a class="btn btn-danger active btn-block btn-sm" role="button" href="Change_password.php">Change Account Password</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -130,7 +143,9 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
         </center>
         <div class="column">
                 <?php
+                $main = 'houses'; //this variable will be unset in every submisson
                 if (isset($_POST['searchh_all_submit'])) {
+                    unset($main);
                     $result = $conn->prepare("SELECT * FROM houses");
                     $result->execute();
                     if ($result->rowCount() > 0) {
@@ -141,127 +156,130 @@ if(!isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] !== true){
                             <img src='assets/img/houses/".$row['image']."' alt='some image' height='200' width='200'>
                                 </div>
                                 <div class='col p-3'>
-                                  <strong class='d-inline-block mb-2 text-primary'>".$row['Status']."</strong>
+                                  <strong class='d-inline-block mb-2 text-primary'> House ".$row['Status']."</strong>
                                   <h3 class='mb-0'>".$row['City']."</h3>
                                   <div class='mb-1 text-muted'>".$row['District']."</div>
-                                  <p class='card-text mb-auto'>".$row['Discription']."</p>
-                                  <a href='details.php/".$row['Id']."' class='stretched-link'>Continue reading</a>
+                                  <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+                                  <a href='details.php?prop=house&un=".$row['Id']."'>Continue reading</a>
+                                  ";
+                               if (isset($isadmin)) {
+                            echo "<a href='delete.php?prop=house&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
                                 </div> </div>";
+                            }else{
+                                  echo "</div> </div>";  
+                            }
                         }
                     }
                 }
-                ?>
-                <?php
                 if (isset($_POST['searchl_all_submit'])){
-                    $search = $conn->prepare("SELECT Id, Status, Location, Price, Contact, Area, Discription FROM land");
+                    unset($main);
+                    $search = $conn->prepare("SELECT *  FROM land");
                     $search->execute();
                     if ($search->rowCount() > 0) {
-                        echo '<table class="table table-striped table-dark">';
-                        echo '<thead>';
-                        echo '<tr>';
-                        echo '<th>Ref#</th>';
-                        echo '<th>Status</th>';
-                        echo '<th>Locality</th>';
-                        echo '<th>Price</th>';
-                        echo '<th>Contact</th>';
-                        echo '<th>Area(M<sup>2</sup>)</th>';
-                        #echo '<th>Column 7</th>';
-                    echo '</tr>';
-                echo '</thead>';
-                echo '<tbody>';
-                while ($row = $search->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<tr>';
-                        echo '<td>'.$row['Id'].'</td>';
-                        echo '<td>'.$row['Status'].'</td>';
-                        echo '<td>'.$row['Location'].'</td>';
-                        echo '<td>'.$row['Price'].'</td>';
-                        echo '<td>+255777222444</td>';
-                        echo '<td>'.$row['Area'].'</td>';
-                        #echo '<td>Cell 2</td>';
-                    echo '</tr>';
-                    echo '<tr>';
-                        echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                    echo '</tr>';
-                    echo '</tbody>';
-                }
-                    
-                    echo '</table>';
+                        echo "<div class='column' style='display:block; padding-top:20px;'>";
+                    while ($row = $search->fetch(PDO::FETCH_ASSOC)) {
+                     echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+                            <div class='column' style='margin-bottom:10px;'>
+                            <img src='assets/img/land/".$row['image']."' alt='some image' height='200' width='200'>
+                                </div>
+                                <div class='col p-3'>
+                                  <strong class='d-inline-block mb-2 text-primary'>Land ".$row['Status']."</strong>
+                                  <h3 class='mb-0'>".$row['City']."</h3>
+                                  <div class='mb-1 text-muted'>".$row['District']."</div>
+                                  <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+                                  <a href='details.php?prop=land&un=".$row['Id']."'>Continue reading</a>
+                                  ";
+                            if (isset($isadmin)) {
+                                echo "<a href='delete.php?prop=land&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
+                                </div> </div>";
+                            }else{
+                                  echo "</div> </div>";  
+                            }
+                        }        
                     }
                 }
-                ?>
-                <?php
                if (isset($_POST['searchg_all_submit'])) {
-                    $sear = $conn->prepare("SELECT Id, Status, Location, Price, Contact, Area, Discription FROM godown");
+                    unset($main);
+                    $sear = $conn->prepare("SELECT * FROM godown");
                     $sear->execute();
                     if ($sear->rowCount() > 0) {
-                        echo '<table class="table table-striped table-dark">';
-                        echo '<thead>';
-                        echo '<tr>';
-                        echo '<th>Ref#</th>';
-                        echo '<th>Status</th>';
-                        echo '<th>Locality</th>';
-                        echo '<th>Price</th>';
-                        echo '<th>Contact</th>';
-                        echo '<th>Area(M<sup>2</sup>)</th>';
-                    echo '</tr>';
-                    echo '</thead>';
-                    echo '<tbody>';
-                while ($row = $sear->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<tr>';
-                        echo '<td>'.$row['Id'].'</td>';
-                        echo '<td>'.$row['Status'].'</td>';
-                        echo '<td>'.$row['Location'].'</td>';
-                        echo '<td>'.$row['Price'].'</td>';
-                        echo '<td>+255777222444</td>';
-                        echo '<td>'.$row['Area'].'</td>';
-                        #echo '<td>Cell 2</td>';
-                    echo '</tr>';
-                    echo '<tr>';
-                        echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                    echo '</tr>';
-                    echo '</tbody>';
-                }   
-                    echo '</table>';
+                        echo "<div class='column' style='display:block; padding-top:20px;'>";
+                     while ($row = $sear->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+                            <div class='column' style='margin-bottom:10px;'>
+                            <img src='assets/img/godown/".$row['image']."' alt='some image' height='200' width='200'>
+                                </div>
+                                <div class='col p-3'>
+                                  <strong class='d-inline-block mb-2 text-primary'> Godown ".$row['Status']."</strong>
+                                  <h3 class='mb-0'>".$row['City']."</h3>
+                                  <div class='mb-1 text-muted'>".$row['District']."</div>
+                                  <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+                                  <a href='details.php?prop=godown&un=".$row['Id']."'>Continue reading</a>
+                                  ";
+                            if (isset($isadmin)) {
+                                echo "<a href='delete.php?prop=godown&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
+                                </div> </div>";
+                            }else{
+                                  echo "</div> </div>";  
+                            }
+                        }            
                     }
                 }
-                ?>
-                <?php
                if (isset($_POST['searchho_all_submit'])) {
-                    $hostel = $conn->prepare("SELECT Id, Water, Electricity, Locality, Price, Contact, Discription FROM hostel");
+                    unset($main);
+                    $hostel = $conn->prepare("SELECT * FROM hostel");
                     $hostel->execute();
                     if ($hostel->rowCount() > 0) {
-                        echo '<table class="table table-striped table-dark">';
-                        echo '<thead>';
-                        echo '<tr>';
-                        echo '<th>Ref#</th>';
-                        echo '<th>WaterServ</th>';
-                        echo '<th>ElectricityServ</th>';
-                        echo '<th>Locality</th>';
-                        echo '<th>Price</th>';
-                        echo '<th>Contact</th>';
-                        #echo '<th>Column 7</th>';
-                    echo '</tr>';
-                    echo '</thead>';
-                    echo '<tbody>';
+                        echo "<div class='column' style='display:block; padding-top:20px;'>";
                 while ($row = $hostel->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<tr>';
-                        echo '<td>'.$row['Id'].'</td>';
-                        echo '<td>'.$row['Water'].'</td>';
-                        echo '<td>'.$row['Electricity'].'</td>';
-                        echo '<td>'.$row['Locality'].'</td>';
-                        echo '<td>'.$row['Price'].'</td>';
-                        echo '<td>+255777222444</td>';
-                        #echo '<td>Cell 2</td>';
-                    echo '</tr>';
-                    echo '<tr>';
-                        echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                        echo '</tr>';
-                        echo '</tbody>';
-                    }
-                        echo '</table>';
+                    echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+                            <div class='column' style='margin-bottom:10px;'>
+                            <img src='assets/img/hostel/".$row['image']."' alt='some image' height='200' width='200'>
+                                </div>
+                                <div class='col p-3'>
+                                  <strong class='d-inline-block mb-2 text-primary'> Hostel ".$row['Status']."</strong>
+                                  <h3 class='mb-0'>".$row['City']."</h3>
+                                  <div class='mb-1 text-muted'>".$row['District']."</div>
+                                  <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+                                  <a href='details.php?prop=hostel&un=".$row['Id']."'>Continue reading</a>
+                                  ";
+                            if (isset($isadmin)) {
+                                    echo "<a href='delete.php?prop=hostel&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
+                                </div> </div>";
+                            }else{
+                                  echo "</div> </div>";  
+                            }
                         }
                     }
-                    ?>
+                }
+                
+                if (isset($main)) {
+                    $result = $conn->prepare("SELECT * FROM houses");
+                    $result->execute();
+                    if ($result->rowCount() > 0) {
+                        echo "<div class='column' style='display:block; padding-top:20px;'>";
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+                            <div class='column' style='margin-bottom:10px;'>
+                            <img src='assets/img/houses/".$row['image']."' alt='some image' height='200' width='200'>
+                                </div>
+                                <div class='col p-3'>
+                                  <strong class='d-inline-block mb-2 text-primary'> House ".$row['Status']."</strong>
+                                  <h3 class='mb-0'>".$row['City']."</h3>
+                                  <div class='mb-1 text-muted'>".$row['District']."</div>
+                                  <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+                                  <a href='details.php?prop=house&un=".$row['Id']."'>Continue reading</a>";
+                        if (isset($isadmin)) {
+                        echo "<a href='delete.php?prop=house&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
+                            </div> </div>";
+                        }else{
+                              echo "</div> </div>";  
+                        }
+                    }
+                }
+            }
+
+                ?>
         </div>
     </div>
 </div>

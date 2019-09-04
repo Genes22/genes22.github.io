@@ -14,47 +14,48 @@
     <link rel="stylesheet" href="assets/css/styles.min.css">
 </head>
 <body>
-    <div>
-        <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color:rgb(90,125,251);">
-            <div class="container"><a class="navbar-brand" href="#" style="font-family:Roboto, sans-serif;font-size:20px;">HOMESITE AND ESTATE AGENT ONLINE MENAGEMENT SYSTEM</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-    </div>
+ <div>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="background-color:rgb(90,125,251);">
+        <div class="container"><a class="navbar-brand" href="./" style="font-family:Roboto, sans-serif;font-size:20px;">HOMESITE AND ESTATE AGENT ONLINE MENAGEMENT SYSTEM</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
     </nav>
-    </div>
-    <div style="color:rgb(254,254,254);">
-        <nav class="navbar navbar-dark navbar-expand-md sticky-top navigation-clean-button" style="background-color:rgb(177,77,71);">
-            <div class="container-fluid"><a class="navbar-brand" href="./" data-bs-hover-animate="pulse" style="background-repeat:no-repeat;background-size:cover;width:217px;height:106px;background-color:#ffffff;background-image:url(&quot;assets/img/imagess.png&quot;);"></a><button class="navbar-toggler"
-                    data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav mr-auto">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" href="./" data-bs-hover-animate="tada" style="color:#ffffff;"><strong>Home</strong></a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" href="about.html" data-bs-hover-animate="tada" style="color:#ffffff;"><strong>About Us</strong></a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle nav-link text-monospace dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="font-size:17px;color:#ffffff;font-family:Alike, serif;"><strong>Upload..</strong></a>
-                            <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item text-info" role="presentation" href="uploadhouse.php" style="font-size:16px;"><strong>House</strong></a>
-                                <a class="dropdown-item text-info" role="presentation" href="uploadland.php" style="font-size:16px;"><strong>Land</strong></a>
-                                <a class="dropdown-item text-info" role="presentation" href="uploadgodown.php" style="font-size:16px;"><strong>Godown</strong></a>
-                                <a class="dropdown-item text-info" role="presentation" href="uploadhostel.php" style="font-size:16px;"><strong>Hostel</strong></a>
-                            </div>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle nav-link text-monospace dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="font-family:Alike, serif;font-size:18px;color:#ffffff;"><strong>Search..</strong></a>
-                            <div class="dropdown-menu" role="menu">
-                                <a class="dropdown-item text-info" role="presentation" href="searchhouse.php" style="font-size:16px;"><strong>House</strong></a>
-                                <a class="dropdown-item text-info" role="presentation" href="searchland.php" style="font-size:16px;"><strong>Land</strong></a>
-                                <a class="dropdown-item text-info" role="presentation" href="searchgodown.php" style="font-size:16px;"><strong>Godown</strong></a><a class="dropdown-item text-info" role="presentation" href="searchhostel.php" style="font-size:16px;"><strong>Hostel</strong></a>
-                            </div>
-                        </li>
-                    </ul>
-                    <a class="btn btn-primary active btn-sm float-right visible" role="button" href="signin.php" data-bs-hover-animate="pulse" style="margin-top:-3px;width:129px;background-color: green;margin-right:22px;"><strong>SIGN IN</strong></a>
-                </div>
+</div>
+<div style="color:rgb(254,254,254);">
+    <nav class="navbar navbar-dark navbar-expand-md sticky-top navigation-clean-button" style="background-color:rgb(177,77,71);">
+        <div class="container-fluid"><a class="navbar-brand" href="./" data-bs-hover-animate="pulse" style="background-repeat:no-repeat;background-size:cover;width:217px;height:106px;background-color:#ffffff;background-image:url(&quot;assets/img/imagess.png&quot;);"></a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="./" data-bs-hover-animate="tada" style="color:#ffffff;"><strong>Home</strong></a></li>
+                    <li class="dropdown"><a class="dropdown-toggle nav-link text-monospace dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="font-size:17px;color:#ffffff;font-family:Alike, serif;"><strong>Upload..</strong></a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=house" style="font-size:16px;"><strong>House</strong></a>
+                            <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=land" style="font-size:16px;"><strong>Land</strong></a>
+                            <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=godown" style="font-size:16px;"><strong>Godown</strong></a>
+                            <a class="dropdown-item text-info" role="presentation" href="upload.php?prop=hostel" style="font-size:16px;"><strong>Hostel</strong></a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle nav-link text-monospace dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" data-bs-hover-animate="pulse" style="font-family:Alike, serif;font-size:18px;color:#ffffff;"><strong>Search..</strong></a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item text-info" role="presentation" href="search.php?prop=house" style="font-size:16px;"><strong>House</strong></a>
+                            <a class="dropdown-item text-info" role="presentation" href="search.php?prop=land" style="font-size:16px;"><strong>Land</strong></a>
+                            <a class="dropdown-item text-info" role="presentation" href="search.php?prop=godown" style="font-size:16px;"><strong>Godown</strong></a>
+                            <a class="dropdown-item text-info" role="presentation" href="search.php?prop=hostel" style="font-size:16px;"><strong>Hostel</strong></a>
+                        </div>
+                    </li>
+                </ul>
+                <a class="btn btn-primary active btn-sm float-right visible" role="button" href="signin.php" data-bs-hover-animate="pulse" style="margin-top:-3px;width:129px;background-color: green;margin-right:22px;"><strong>SIGN IN</strong></a>
+                    <a class="btn btn-primary active btn-sm float-right visible" role="button" href="signup.php" data-bs-hover-animate="pulse" style="margin-top:-3px;width:129px;background-color:rgb(26,108,143);margin-right:22px;"><strong>SIGN UP</strong></a>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
+</div>
  <main>
     <div class="login-dark" style="background-image:url(&quot;assets/img/home.jpg&quot;);">
         <form action="includes/Signup.inc.php" method="post" style="background-color:rgba(30,40,51,0.68);margin-top:-131px;">

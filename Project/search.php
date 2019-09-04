@@ -13,7 +13,11 @@ if (isset($_GET['prop'])) {
 }else{
     $property = 'house';
 }
-
+if (isset($_SESSION['admin'])) {
+    $isadmin = $_SESSION['admin'];
+}else{
+    unset($_SESSION['admin']);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -193,8 +197,7 @@ if (isset($_GET['prop'])) {
                     <option value="5">5</option>
                 </select>
             </div>
-    <input
-        class="form-control form-control-sm" type="text" name="Locality" placeholder="Locality" style="width:200px;margin-left:229px;margin-top:-145px;color:rgb(0,0,0);">
+    <input class="form-control form-control-sm" type="text" name="Locality" placeholder="Locality" style="width:200px;margin-left:229px;margin-top:-145px;color:rgb(0,0,0);">
         <div class="form-group" style="margin-left:-110px;margin-top:16px;">
             <button class="btn btn-primary active" type="submit" name="search_specific_submit" data-bs-hover-animate="rubberBand" style="width:283px;margin-left:299px;margin-top:10px;">
                 <strong>Search..</strong>
@@ -202,11 +205,6 @@ if (isset($_GET['prop'])) {
         </div>
         </form>
     </div>
-
-    <form class="flex-shrink-1 flex-sm-shrink-1 flex-md-shrink-1" action="includes/Signout.inc.php" method="post">
-        <button class="btn btn-primary active btn-sm float-right" type="submit" name="submit-signout" data-bs-hover-animate="pulse" style="margin-top:-446px;width:76px;background-color:rgb(255,90,90);margin-right:22px;">
-        <strong>Sign Out</strong></button>
-    </form>
     </div>
 
     <div>
@@ -214,48 +212,33 @@ if (isset($_GET['prop'])) {
 
             <?php
             if (isset($_POST['search_all_submit'])) {
-                $search = $conn->prepare("SELECT Id, Status, Bedrooms, Bathrooms, Kitchens, Sittingrooms, Garages, Location, Price, Contact, Discription FROM houses");
+                $search = $conn->prepare("SELECT * FROM houses");
                 $search->execute();
                 $search->fetch(PDO::FETCH_ASSOC);
 
                 if ($search->rowCount() > 0) {
-                    echo '<table class="table table-striped table-dark">';
-                    echo '<thead>';
-                    echo '<tr>';
-                    echo '<th>Ref#</th>';
-                    echo '<th>Status</th>';
-                    echo '<th>Bedroom</th>';
-                    echo '<th>Bathroom</th>';
-                    echo '<th>Kitchen</th>';
-                    echo '<th>Sittingroom</th>';
-                    echo '<th>Garage</th>';
-                    echo '<th>Locality</th>';
-                    echo '<th>Price</th>';
-                    echo '<th>Contact</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
+                    echo "<div class='column' style='display:block; padding-top:20px;'>";
             while ($row = $search->fetch(PDO::FETCH_ASSOC)) {
-                echo '<tr>';
-                    echo '<td>'.$row['Id'].'</td>';
-                    echo '<td>'.$row['Status'].'</td>';
-                    echo '<td>'.$row['Bedrooms'].'</td>';
-                    echo '<td>'.$row['Bathrooms'].'</td>';
-                    echo '<td>'.$row['Kitchens'].'</td>';
-                    echo '<td>'.$row['Sittingrooms'].'</td>';
-                    echo '<td>'.$row['Garages'].'</td>';
-                    echo '<td>'.$row['Location'].'</td>';
-                    echo '<td>'.$row['Price'].'</td>';
-                    echo '<td>+255777222444</td>';
-                echo '</tr>';
-                echo '<tr>';
-                    echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                echo '</tr>';
-            echo '</tbody>';
-            }
-        echo '</table>';
-                }
-            }
+               echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+	            <div class='column' style='margin-bottom:10px;'>
+	            <img src='assets/img/houses/".$row['image']."' alt='some image' height='200' width='200'>
+	                </div>
+	                <div class='col p-3'>
+	                  <strong class='d-inline-block mb-2 text-primary'> House ".$row['Status']."</strong>
+	                  <h3 class='mb-0'>".$row['City']."</h3>
+	                  <div class='mb-1 text-muted'>".$row['District']."</div>
+	                  <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+	                  <a href='details.php?prop=house&un=".$row['Id']."'>Continue reading</a>
+	                  ";
+			               if (isset($isadmin)) {
+			            echo "<a href='delete.php?prop=house&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
+			                </div> </div>";
+			            }else{
+			                  echo "</div> </div>";  
+			            }
+			        }
+			    }
+			}
             if (isset($_POST['search_specific_submit'])) {
                 $Status = clean($_POST['Status']);
                 $Kitchens = clean($_POST['Kitchens']);
@@ -267,57 +250,36 @@ if (isset($_GET['prop'])) {
                 $Garages = clean($_POST['Garages']);
                 $Sittingrooms = clean($_POST['Sittingrooms']);
 
-                $search = $conn->prepare("SELECT * FROM houses WHERE Status = '" . $Status ."' AND Kitchens = '". $Kitchens. "' AND Bathrooms = '". $Bathrooms ."' AND Location = '". $Locality ."'  AND City = '". $City ."'  AND District = '". $District. "' AND Bedrooms = '". $Bedrooms. "' AND Garages = '". $Garages ."' AND Sittingrooms = '". $Sittingrooms ."'");
+                $search = $conn->prepare("SELECT * FROM houses WHERE Status = '". $Status."' AND Kitchens = '".$Kitchens."' AND Bathrooms = '".$Bathrooms."' AND Location ='".$Locality."' AND City ='".$City."'  AND District ='".$District."' AND Bedrooms ='".$Bedrooms."' AND Garages ='".$Garages."' AND Sittingrooms ='".$Sittingrooms."'");
                 $search->execute();
                 $search->fetch(PDO::FETCH_ASSOC);
 
                 if ($search->rowCount() > 0) {
-                    echo '<table class="table table-striped table-dark">';
-                    echo '<thead>';
-                    echo '<tr>';
-                    echo '<th>Ref#</th>';
-                    echo '<th>Status</th>';
-                    echo '<th>Bedroom</th>';
-                    echo '<th>Bathroom</th>';
-                    echo '<th>Kitchen</th>';
-                    echo '<th>Sittingroom</th>';
-                    echo '<th>Garage</th>';
-                    echo '<th>Locality</th>';
-                    echo '<th>Price</th>';
-                    echo '<th>Contact</th>';
-                    #echo '<th>Column 7</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
+                    echo "<div class='column' style='display:block; padding-top:20px;'>";
             while ($row = $search->fetch(PDO::FETCH_ASSOC)) {
-                echo '<tr>';
-                    echo '<td>'.$row['Id'].'</td>';
-                    echo '<td>'.$row['Status'].'</td>';
-                    echo '<td>'.$row['Bedrooms'].'</td>';
-                    echo '<td>'.$row['Bathrooms'].'</td>';
-                    echo '<td>'.$row['Kitchens'].'</td>';
-                    echo '<td>'.$row['Sittingrooms'].'</td>';
-                    echo '<td>'.$row['Garages'].'</td>';
-                    echo '<td>'.$row['Location'].'</td>';
-                    echo '<td>'.$row['Price'].'</td>';
-                    echo '<td>+255777222444</td>';
-                    #echo '<td>Cell 2</td>';
-                echo '</tr>';
-                echo '<tr>';
-                    echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                echo '</tr>';
-            echo '</tbody>';
-            }
-                
-        echo '</table>';
-                }
-                else {
+                echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+                            <div class='column' style='margin-bottom:10px;'>
+                            <img src='assets/img/houses/".$row['image']."' alt='some image' height='200' width='200'>
+                                </div>
+                                <div class='col p-3'>
+                                  <strong class='d-inline-block mb-2 text-primary'> House ".$row['Status']."</strong>
+                                  <h3 class='mb-0'>".$row['City']."</h3>
+                                  <div class='mb-1 text-muted'>".$row['District']."</div>
+                                  <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+                                  <a href='details.php?prop=house&un=".$row['Id']."'>Continue reading</a>
+                                  ";
+                               if (isset($isadmin)) {
+                            echo "<a href='delete.php?prop=house&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
+                                </div> </div>";
+                            }else{
+                                  echo "</div> </div>";  
+                            }
+                        }
+                    }else {
                     echo '<p class="text-center" style="color:rgb(255,0,0);font-size:20px;">
                           <strong>Oops!..No Result Found!..</strong></p>';
                 }
             } 
-
-
             ?>
         </div>
     </div>
@@ -379,108 +341,71 @@ if (isset($_GET['prop'])) {
                     </div>
         </form>
     </div>
-
-    <form class="flex-shrink-1 flex-sm-shrink-1 flex-md-shrink-1" action="includes/Signout.inc.php" method="post">
-        <button class="btn btn-primary active btn-sm float-right" type="submit" name="submit-signout" data-bs-hover-animate="pulse" style="margin-top:-364px;width:76px;background-color:rgb(255,90,90);margin-right:22px;">
-            <strong>Sign Out</strong>
-        </button>
-    </form>
     </div>
 
     <?php
             if (isset($_POST['search_all_submit'])) {
-
-                require 'includes/dbh.inc.php';
-
-                $sql = "SELECT Id, Status, Location, Price, Contact, Area, Discription FROM land;";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '<table class="table table-striped table-dark">';
-                    echo '<thead>';
-                    echo '<tr>';
-                    echo '<th>Ref#</th>';
-                    echo '<th>Status</th>';
-                    echo '<th>Locality</th>';
-                    echo '<th>Price</th>';
-                    echo '<th>Contact</th>';
-                    echo '<th>Area(M<sup>2</sup>)</th>';
-                    #echo '<th>Column 7</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo '<tr>';
-                    echo '<td>'.$row['Id'].'</td>';
-                    echo '<td>'.$row['Status'].'</td>';
-                    echo '<td>'.$row['Location'].'</td>';
-                    echo '<td>'.$row['Price'].'</td>';
-                    echo '<td>+255777222444</td>';
-                    echo '<td>'.$row['Area'].'</td>';
-                    #echo '<td>Cell 2</td>';
-                echo '</tr>';
-                echo '<tr>';
-                    echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                echo '</tr>';
-            echo '</tbody>';
+                $result = $conn->prepare("SELECT * FROM land");
+                $result->execute();
+                $result->fetch(PDO::FETCH_ASSOC);
+                if ($result->rowCount() > 0) {
+                    echo "<div class='column' style='display:block; padding-top:20px;'>";
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+                <div class='column' style='margin-bottom:10px;'>
+                <img src='assets/img/land/".$row['image']."' alt='some image' height='200' width='200'>
+                    </div>
+                    <div class='col p-3'>
+                      <strong class='d-inline-block mb-2 text-primary'>Land ".$row['Status']."</strong>
+                      <h3 class='mb-0'>".$row['City']."</h3>
+                      <div class='mb-1 text-muted'>".$row['District']."</div>
+                      <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+                      <a href='details.php?prop=land&un=".$row['Id']."'>Continue reading</a>
+                      ";
+                    if (isset($isadmin)) {
+                        echo "<a href='delete.php?prop=land&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
+                        </div> </div>";
+                    }else{
+                          echo "</div> </div>";  
+                    }
+                }        
             }
-                
-        echo '</table>';
-                }
-            }
-
-            
+        }
             if (isset($_POST['search_specific_submit'])) {
-
-                require 'includes/dbh.inc.php';
-
-                $Status = $_POST['Status'];
-                $Locality = $_POST['Locality'];
-                $District = $_POST['District'];
-                $Area = $_POST['Area'];
-                $City = $_POST['City'];
-
-
-                $sql = "SELECT * FROM land WHERE Status = '" . $Status ."' AND Location = '". $Locality. "' AND City = '". $City ."' AND District = '". $District ."'  AND Area<= '". $Area ."';";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '<table class="table table-striped table-dark">';
-                    echo '<thead>';
-                    echo '<tr>';
-                    echo '<th>Ref#</th>';
-                    echo '<th>Status</th>';
-                    echo '<th>Locality</th>';
-                    echo '<th>Price</th>';
-                    echo '<th>Contact</th>';
-                    echo '<th>Area(M<sup>2</sup>)</th>';
-                    #echo '<th>Column 7</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo '<tr>';
-                    echo '<td>'.$row['Id'].'</td>';
-                    echo '<td>'.$row['Status'].'</td>';
-                    echo '<td>'.$row['Location'].'</td>';
-                    echo '<td>'.$row['Price'].'</td>';
-                    echo '<td>+255777222444</td>';
-                    echo '<td>'.$row['Area'].'</td>';
-                    #echo '<td>Cell 2</td>';
-                echo '</tr>';
-                echo '<tr>';
-                    echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                echo '</tr>';
-            echo '</tbody>';
-            }
-                
-        echo '</table>';
-                }
-                else {
-                    echo '<p class="text-center" style="color:rgb(255,0,0);font-size:20px;">
-                    <strong>Oops!...No Result Found!..</strong></p>';
-                }
-            }             
+                $Status = clean($_POST['Status']);
+                $Locality = clean($_POST['Locality']);
+                $District = clean($_POST['District']);
+                $Area = clean($_POST['Area']);
+                $City = clean($_POST['City']);
+                $result =$conn->prepare("SELECT * FROM land WHERE Status = '" . $Status ."' AND Location = '". $Locality. "' AND City = '". $City ."' AND District = '". $District ."'  AND Area<= '". $Area ."'");
+                $result->execute();
+                $result->fetch(PDO::FETCH_ASSOC);
+                if ($result->rowCount() > 0) {
+                    echo "<div class='column' style='display:block; padding-top:20px;'>";
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+                    <div class='column' style='margin-bottom:10px;'>
+                    <img src='assets/img/land/".$row['image']."' alt='some image' height='200' width='200'>
+                        </div>
+                        <div class='col p-3'>
+                          <strong class='d-inline-block mb-2 text-primary'>Land ".$row['Status']."</strong>
+                          <h3 class='mb-0'>".$row['City']."</h3>
+                          <div class='mb-1 text-muted'>".$row['District']."</div>
+                          <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+                          <a href='details.php?prop=land&un=".$row['Id']."'>Continue reading</a>
+                          ";
+                    if (isset($isadmin)) {
+                        echo "<a href='delete.php?prop=land&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
+                        </div> </div>";
+                    }else{
+                          echo "</div> </div>";  
+                    }
+                }        
+            }else {
+            echo '<p class="text-center" style="color:rgb(255,0,0);font-size:20px;">
+            <strong>Oops!...No Result Found!..</strong></p>';
+        }
+    }             
             ?>
 <?php endif ?> <!-- End of search land -->
 
@@ -538,105 +463,73 @@ if (isset($_GET['prop'])) {
                     </div>
         </form>
     </div>
-    <form class="flex-shrink-1 flex-sm-shrink-1 flex-md-shrink-1" action="includes/Signout.inc.php" method="post"><button class="btn btn-primary active btn-sm float-right" type="submit" name="submit-signout" data-bs-hover-animate="pulse" style="margin-top:-364px;width:76px;background-color:rgb(255,90,90);margin-right:22px;"><strong>Sign Out</strong></button></form>
     </div>
     <div>
         <div class="table-responsive" style="color:rgb(0,0,0);background-color:#ffffff;">
             <?php
             if (isset($_POST['search_all_submit'])) {
-
-                require 'includes/dbh.inc.php';
-
-                $sql = "SELECT Id, Status, Location, Price, Contact, Area, Discription FROM godown;";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '<table class="table table-striped table-dark">';
-                    echo '<thead>';
-                    echo '<tr>';
-                    echo '<th>Ref#</th>';
-                    echo '<th>Status</th>';
-                    echo '<th>Locality</th>';
-                    echo '<th>Price</th>';
-                    echo '<th>Contact</th>';
-                    echo '<th>Area(M<sup>2</sup>)</th>';
-                    #echo '<th>Column 7</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo '<tr>';
-                    echo '<td>'.$row['Id'].'</td>';
-                    echo '<td>'.$row['Status'].'</td>';
-                    echo '<td>'.$row['Location'].'</td>';
-                    echo '<td>'.$row['Price'].'</td>';
-                    echo '<td>+255777222444</td>';
-                    echo '<td>'.$row['Area'].'</td>';
-                    #echo '<td>Cell 2</td>';
-                echo '</tr>';
-                echo '<tr>';
-                    echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                echo '</tr>';
-            echo '</tbody>';
-            }
-                
-        echo '</table>';
+                $result =$conn->prepare("SELECT * FROM godown");
+                $result->execute();
+                $result->fetch(PDO::FETCH_ASSOC);
+                if ($result->rowCount() > 0) {
+                    echo "<div class='column' style='display:block; padding-top:20px;'>";
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+                <div class='column' style='margin-bottom:10px;'>
+                <img src='assets/img/godown/".$row['image']."' alt='some image' height='200' width='200'>
+                    </div>
+                    <div class='col p-3'>
+                      <strong class='d-inline-block mb-2 text-primary'> Godown ".$row['Status']."</strong>
+                      <h3 class='mb-0'>".$row['City']."</h3>
+                      <div class='mb-1 text-muted'>".$row['District']."</div>
+                      <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+                      <a href='details.php?prop=godown&un=".$row['Id']."'>Continue reading</a>
+                      ";
+                if (isset($isadmin)) {
+                    echo "<a href='delete.php?prop=godown&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
+                    </div> </div>";
+                }else{
+                      echo "</div> </div>";  
                 }
-            }
-
-            
+            }            
+        }
+    }
             if (isset($_POST['search_specific_submit'])) {
+                $Status = clean($_POST['Status']);
+                $Locality = clean($_POST['Locality']);
+                $District = clean($_POST['District']);
+                $Area = clean($_POST['Area']);
+                $City = clean($_POST['City']);
 
-                require 'includes/dbh.inc.php';
-
-                $Status = $_POST['Status'];
-                $Locality = $_POST['Locality'];
-                $District = $_POST['District'];
-                $Area = $_POST['Area'];
-                $City = $_POST['City'];
-
-
-                $sql = "SELECT * FROM godown WHERE Status = '" . $Status ."' AND Location = '". $Locality. "' AND City = '". $City ."' AND District = '". $District ."'  AND Area<= '". $Area ."';";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '<table class="table table-striped table-dark">';
-                    echo '<thead>';
-                    echo '<tr>';
-                    echo '<th>Ref#</th>';
-                    echo '<th>Status</th>';
-                    echo '<th>Locality</th>';
-                    echo '<th>Price</th>';
-                    echo '<th>Contact</th>';
-                    echo '<th>Area(M<sup>2</sup>)</th>';
-                    #echo '<th>Column 7</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo '<tr>';
-                    echo '<td>'.$row['Id'].'</td>';
-                    echo '<td>'.$row['Status'].'</td>';
-                    echo '<td>'.$row['Location'].'</td>';
-                    echo '<td>'.$row['Price'].'</td>';
-                    echo '<td>+255777222444</td>';
-                    echo '<td>'.$row['Area'].'</td>';
-                    #echo '<td>Cell 2</td>';
-                echo '</tr>';
-                echo '<tr>';
-                    echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                echo '</tr>';
-            echo '</tbody>';
-            }
-                
-        echo '</table>';
+                $result = $conn->prepare("SELECT * FROM godown WHERE Status = '" . $Status ."' AND Location = '". $Locality. "' AND City = '". $City ."' AND District = '". $District ."'  AND Area<= '". $Area ."'");
+                $result->execute();
+                $result->fetch(PDO::FETCH_ASSOC);
+                if ($result->rowCount() > 0) {
+                    echo "<div class='column' style='display:block; padding-top:20px;'>";
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+                <div class='column' style='margin-bottom:10px;'>
+                <img src='assets/img/godown/".$row['image']."' alt='some image' height='200' width='200'>
+                    </div>
+                    <div class='col p-3'>
+                      <strong class='d-inline-block mb-2 text-primary'> Godown ".$row['Status']."</strong>
+                      <h3 class='mb-0'>".$row['City']."</h3>
+                      <div class='mb-1 text-muted'>".$row['District']."</div>
+                      <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+                      <a href='details.php?prop=godown&un=".$row['Id']."'>Continue reading</a>
+                      ";
+                if (isset($isadmin)) {
+                    echo "<a href='delete.php?prop=godown&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
+                    </div> </div>";
+                }else{
+                      echo "</div> </div>";  
                 }
-                else {
-                    echo '<p class="text-center" style="color:rgb(255,0,0);font-size:20px;">
-        <strong>Oops!...No Result Found!..</strong></p>';
-                }
-            }
-
+            }            
+        }else {
+        echo '<p class="text-center" style="color:rgb(255,0,0);font-size:20px;">
+<strong>Oops!...No Result Found!..</strong></p>';
+    }
+}
             ?>
         </div>
     </div>
@@ -715,105 +608,72 @@ if (isset($_GET['prop'])) {
             </div>
             </form>
     </div>
-
-    <form class="flex-shrink-1 flex-sm-shrink-1 flex-md-shrink-1" action="includes/Signout.inc.php" method="post">
-        <button class="btn btn-primary active btn-sm float-right" type="submit" name="submit-signout" data-bs-hover-animate="pulse" style="margin-top:-446px;width:76px;background-color:rgb(255,90,90);margin-right:22px;">
-            <strong>Sign Out</strong>
-        </button>
-    </form>
     </div>
     <div>
         <div class="table-responsive" style="background-color:#ffffff;color:rgb(0,0,0);">
 
              <?php
             if (isset($_POST['search_all_submit'])) {
-
-                require 'includes/dbh.inc.php';
-
-                $sql = "SELECT Id, Water, Electricity, Locality, Price, Contact, Discription FROM hostel;";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '<table class="table table-striped table-dark">';
-                    echo '<thead>';
-                    echo '<tr>';
-                    echo '<th>Ref#</th>';
-                    echo '<th>WaterServ</th>';
-                    echo '<th>ElectricityServ</th>';
-                    echo '<th>Locality</th>';
-                    echo '<th>Price</th>';
-                    echo '<th>Contact</th>';
-                    #echo '<th>Column 7</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo '<tr>';
-                    echo '<td>'.$row['Id'].'</td>';
-                    echo '<td>'.$row['Water'].'</td>';
-                    echo '<td>'.$row['Electricity'].'</td>';
-                    echo '<td>'.$row['Locality'].'</td>';
-                    echo '<td>'.$row['Price'].'</td>';
-                    echo '<td>+255777222444</td>';
-                    #echo '<td>Cell 2</td>';
-                echo '</tr>';
-                echo '<tr>';
-                    echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                echo '</tr>';
-            echo '</tbody>';
-            }
-                
-        echo '</table>';
-                }
-            } 
+                $result = $conn->prepare("SELECT * FROM hostel");
+                $result->execute();
+                $result->fetch(PDO::FETCH_ASSOC);
+                if ($result->rowCount() > 0) {
+                    echo "<div class='column' style='display:block; padding-top:20px;'>";
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+                <div class='column' style='margin-bottom:10px;'>
+                <img src='assets/img/hostel/".$row['image']."' alt='some image' height='200' width='200'>
+                    </div>
+                    <div class='col p-3'>
+                      <strong class='d-inline-block mb-2 text-primary'> Hostel ".$row['Status']."</strong>
+                      <h3 class='mb-0'>".$row['City']."</h3>
+                      <div class='mb-1 text-muted'>".$row['District']."</div>
+                      <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+                      <a href='details.php?prop=hostel&un=".$row['Id']."'>Continue reading</a>
+                      ";
+	                if (isset($isadmin)) {
+	                    echo "<a href='delete.php?prop=hostel&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
+	                    </div> </div>";
+	                }else{
+	                      echo "</div> </div>";  
+	                }
+	            }
+	        }
+	    }
 
             if (isset($_POST['search_specific_submit'])) {
+                $Status = clean($_POST['Status']);
+                $Water = clean($_POST['Water']);
+                $Electricity = clean($_POST['Electricity']);
+                $City = clean($_POST['City']);
+                $Locality = clean($_POST['Locality']);
+                $District = clean($_POST['District']);
 
-                require 'includes/dbh.inc.php';
-
-                $Status = $_POST['Status'];
-                $Water = $_POST['Water'];
-                $Electricity = $_POST['Electricity'];
-                $City = $_POST['City'];
-                $Locality = $_POST['Locality'];
-                $District = $_POST['District'];
-
-                $sql = "SELECT * FROM hostel WHERE Status = '" . $Status ."' AND Electricity = '". $Electricity. "' AND Water = '". $Water ."' AND Locality = '". $Locality ."'  AND City = '". $City ."'  AND District = '". $District. "';";
-                $result = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '<table class="table table-striped table-dark">';
-                    echo '<thead>';
-                    echo '<tr>';
-                    echo '<th>Ref#</th>';
-                    echo '<th>WaterServ</th>';
-                    echo '<th>ElectricityServ</th>';
-                    echo '<th>Locality</th>';
-                    echo '<th>Price</th>';
-                    echo '<th>Contact</th>';
-                    #echo '<th>Column 7</th>';
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo '<tr>';
-                    echo '<td>'.$row['Id'].'</td>';
-                    echo '<td>'.$row['Water'].'</td>';
-                    echo '<td>'.$row['Electricity'].'</td>';
-                    echo '<td>'.$row['Locality'].'</td>';
-                    echo '<td>'.$row['Price'].'</td>';
-                    echo '<td>+255777222444</td>';
-                    #echo '<td>Cell 2</td>';
-                echo '</tr>';
-                echo '<tr>';
-                    echo '<td colspan="7" style="color:rgb(255,255,255);">'.$row['Discription'].'</td>';
-                echo '</tr>';
-            echo '</tbody>';
-            }
-                
-        echo '</table>';
-                }
-                else {
+                $result = $conn->prepare("SELECT * FROM hostel WHERE Status ='".$Status."' AND Electricity ='".$Electricity."' AND Water ='".$Water."' AND Locality ='".$Locality."'  AND City = '".$City."'  AND District ='".$District."'");
+                $result->execute();
+                $result->fetch(PDO::FETCH_ASSOC);
+                if ($result->rowCount() > 0) {
+                    echo "<div class='column' style='display:block; padding-top:20px;'>";
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                echo "<div class='row border rounded mb-2' style='margin-left:25px;background-color:#afafaf;width:450px;float:left;'>
+                            <div class='column' style='margin-bottom:10px;'>
+                            <img src='assets/img/hostel/".$row['image']."' alt='some image' height='200' width='200'>
+                                </div>
+                                <div class='col p-3'>
+                                  <strong class='d-inline-block mb-2 text-primary'> Hostel ".$row['Status']."</strong>
+                                  <h3 class='mb-0'>".$row['City']."</h3>
+                                  <div class='mb-1 text-muted'>".$row['District']."</div>
+                                  <p class='card-text mb-auto'>".substr($row['Discription'], 0, 50)."...</p>
+                                  <a href='details.php?prop=hostel&un=".$row['Id']."'>Continue reading</a>
+                                  ";
+                            if (isset($isadmin)) {
+                                    echo "<a href='delete.php?prop=hostel&del=".$row['Id']."' class='btn btn-danger'>Delete</a>
+                                </div> </div>";
+                            }else{
+                                  echo "</div> </div>";  
+                            }
+                        }
+                    }else {
                     echo '<p class="text-center" style="color:rgb(255,0,0);font-size:21px;">
                           <strong>Oops!..No Result Found!..</strong></p>';
                 }
