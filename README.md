@@ -1,2 +1,2 @@
-# genes22.github.io
+# iamgenes.github.io
 personal development
